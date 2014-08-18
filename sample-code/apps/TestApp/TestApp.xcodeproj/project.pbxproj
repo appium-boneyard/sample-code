@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FD861CB19A2933400F753B7 /* MyViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD861CD19A2933400F753B7 /* MyViewControllerViewController.xib */; };
 		1BB2B952189053DC00D0591D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB2B951189053DC00D0591D /* CoreLocation.framework */; };
 		255BAFEC1790223300DE7158 /* GestureTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255BAFEA1790223300DE7158 /* GestureTestViewController.m */; };
 		255BAFED1790223300DE7158 /* GestureTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 255BAFEB1790223300DE7158 /* GestureTestViewController.xib */; };
@@ -18,13 +19,13 @@
 		3647AE1F15CA0082006F70D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647AE1E15CA0082006F70D6 /* main.m */; };
 		3647AE2315CA0082006F70D6 /* TA2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647AE2215CA0082006F70D6 /* TA2AppDelegate.m */; };
 		3647AE2C15CA00D5006F70D6 /* MyViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647AE2A15CA00D5006F70D6 /* MyViewControllerViewController.m */; };
-		3647AE2D15CA00D5006F70D6 /* MyViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3647AE2B15CA00D5006F70D6 /* MyViewControllerViewController.xib */; };
 		36FEEFEE1656DD6000100C04 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FEEFED1656DD6000100C04 /* Default-568h@2x.png */; };
 		ABB96E8E192ECF150022BE43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABB96E8C192ECF150022BE43 /* Localizable.strings */; };
 		EA040B6118D3DF5E00AC02D8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA040B6018D3DF5E00AC02D8 /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0FD861CC19A2933400F753B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyViewControllerViewController.xib; sourceTree = "<group>"; };
 		1BB2B951189053DC00D0591D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		255BAFE91790223300DE7158 /* GestureTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTestViewController.h; sourceTree = "<group>"; };
 		255BAFEA1790223300DE7158 /* GestureTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTestViewController.m; sourceTree = "<group>"; };
@@ -42,7 +43,6 @@
 		3647AE2215CA0082006F70D6 /* TA2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TA2AppDelegate.m; sourceTree = "<group>"; };
 		3647AE2915CA00D5006F70D6 /* MyViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewControllerViewController.h; sourceTree = "<group>"; };
 		3647AE2A15CA00D5006F70D6 /* MyViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewControllerViewController.m; sourceTree = "<group>"; };
-		3647AE2B15CA00D5006F70D6 /* MyViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewControllerViewController.xib; sourceTree = "<group>"; };
 		36FEEFED1656DD6000100C04 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		ABB96E8D192ECF150022BE43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EA040B6018D3DF5E00AC02D8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -104,7 +104,7 @@
 				3647AE1915CA0082006F70D6 /* Supporting Files */,
 				3647AE2915CA00D5006F70D6 /* MyViewControllerViewController.h */,
 				3647AE2A15CA00D5006F70D6 /* MyViewControllerViewController.m */,
-				3647AE2B15CA00D5006F70D6 /* MyViewControllerViewController.xib */,
+				0FD861CD19A2933400F753B7 /* MyViewControllerViewController.xib */,
 				255BAFE91790223300DE7158 /* GestureTestViewController.h */,
 				255BAFEA1790223300DE7158 /* GestureTestViewController.m */,
 				255BAFEB1790223300DE7158 /* GestureTestViewController.xib */,
@@ -178,7 +178,7 @@
 			files = (
 				ABB96E8E192ECF150022BE43 /* Localizable.strings in Resources */,
 				3647AE1D15CA0082006F70D6 /* InfoPlist.strings in Resources */,
-				3647AE2D15CA00D5006F70D6 /* MyViewControllerViewController.xib in Resources */,
+				0FD861CB19A2933400F753B7 /* MyViewControllerViewController.xib in Resources */,
 				36FEEFEE1656DD6000100C04 /* Default-568h@2x.png in Resources */,
 				255BAFED1790223300DE7158 /* GestureTestViewController.xib in Resources */,
 			);
@@ -201,6 +201,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0FD861CD19A2933400F753B7 /* MyViewControllerViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0FD861CC19A2933400F753B7 /* en */,
+			);
+			name = MyViewControllerViewController.xib;
+			sourceTree = "<group>";
+		};
 		3647AE1B15CA0082006F70D6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
