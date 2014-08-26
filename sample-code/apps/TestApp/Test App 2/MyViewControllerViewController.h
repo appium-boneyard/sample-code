@@ -34,6 +34,7 @@
 - (IBAction)testGesture:(id)sender;
 - (IBAction)computeAction:(id)sender;
 - (IBAction)showAlert:(id)sender;
+- (IBAction)crashApp:(id)sender;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (void)logLocationAuthFromTimer:(NSTimer *)timer;
 - (void)logLocationAuth;

@@ -142,6 +142,10 @@
     [alert release];
 }
 
+- (IBAction)crashApp:(id)sender {
+    abort();
+}
+
 - (void)requestContactsPermission {
     ABAddressBookRef book = [MyViewControllerViewController addressBookForPermissionRequest];
     [self popContactsPermissionDialogWithAddressBook:book];
