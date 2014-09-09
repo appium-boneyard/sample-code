@@ -56,9 +56,8 @@ describe 'Computation' do
     values       = [rand(10), rand(10)]
     expected_sum = values.reduce(&:+)
 
-    textfields.each_with_index do |element, index|
-      element.send_keys values[index]
-    end
+    first_textfield.send_keys values[0]
+    last_textfield.send_keys values[1]
 
     # You can find buttons by text or, here, index
     button(1).click
