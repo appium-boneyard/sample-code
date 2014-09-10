@@ -101,10 +101,10 @@ class Selenium2OnSauce(unittest.TestCase):
         self.setUpTunnel()
 
         desired_capabilities={
-            'browserName': 'safari',
             'platformName': 'iOS',
-            'deviceName': 'iPhone Simulator',
             'platformVersion': '7.1',
+            'deviceName': 'iPhone Simulator',
+            'browserName': 'safari',
             'appiumVersion': '1.2.2',
             'name': 'Appium Python iOS Test (Connect)'
         })
