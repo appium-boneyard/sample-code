@@ -101,16 +101,16 @@ class Selenium2OnSauce(unittest.TestCase):
         self.setUpTunnel()
 
         desired_capabilities={
-            'browserName': '',
-            'platformName': 'Android',
+            'browserName': 'safari',
+            'platformName': 'iOS',
             'deviceName': 'iPhone Simulator',
-            'platformVersion': '6.1',
-            'app': app,
+            'platformVersion': '7.1',
+            'appiumVersion': '1.2.2',
             'name': 'Appium Python iOS Test (Connect)'
         })
 
         self.driver = webdriver.Remote(
-            desired_capabilities=caps,
+            desired_capabilities=desired_capabilities,
             command_executor="http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
         )
         self.driver.implicitly_wait(30)
