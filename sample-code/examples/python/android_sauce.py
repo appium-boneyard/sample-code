@@ -22,10 +22,10 @@ class SimpleAndroidSauceTests(unittest.TestCase):
         self.driver = webdriver.Remote(
             command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (SAUCE_USERNAME, SAUCE_ACCESS_KEY),
             desired_capabilities={
-                'appium-version': '1.0.0-beta.2',
+                'appiumVersion': '1.2.2',
                 'platformName': 'Android',
                 'deviceName': 'Android Emulator',
-                'platformVersion': '4.2',
+                'platformVersion': '4.4',
                 'app': app,
                 'name': 'Appium Python Android Test',
                 'appPackage': 'com.example.android.notepad',
