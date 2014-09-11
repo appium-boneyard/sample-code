@@ -107,7 +107,7 @@ class Selenium2OnSauce(unittest.TestCase):
             'browserName': 'safari',
             'appiumVersion': '1.2.2',
             'name': 'Appium Python iOS Test (Connect)'
-        })
+        }
 
         self.driver = webdriver.Remote(
             desired_capabilities=desired_capabilities,
