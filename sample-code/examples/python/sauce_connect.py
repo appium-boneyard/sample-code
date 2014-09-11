@@ -67,7 +67,8 @@ class Selenium2OnSauce(unittest.TestCase):
         thread.start()
 
     def setUpTunnel(self):
-        # Setting up Sauce Connect tunnel
+        # Setting up Sauce Connect 4.x tunnel
+        # May need to change ./sc/bin/sc depending on OS and directory structure 
         self.process = subprocess.Popen(['./sc/bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY'],
                                         shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         p = self.process
