@@ -68,8 +68,6 @@ class Selenium2OnSauce(unittest.TestCase):
 
     def setUpTunnel(self):
         # Setting up Sauce Connect tunnel
-        # self.process = subprocess.Popen(["java -jar Sauce-Connect.jar %s %s" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)],
-        #                                shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         self.process = subprocess.Popen(['./sc/bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY'],
                                         shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         p = self.process
@@ -86,7 +84,6 @@ class Selenium2OnSauce(unittest.TestCase):
                     read = p.stdout.readline()
                     sys.stdout.write("[Sauce Connect]: %s" % read)
 
-                    #if "Connected! You may start your tests." in read:
                     if "Sauce Connect is up, you may start your tests." in read:
                         print "[Sauce Connect]: Tunnel ready, running the test"
                         is_ready = True
