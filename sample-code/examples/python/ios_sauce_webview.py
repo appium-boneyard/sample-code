@@ -30,7 +30,7 @@ class WebViewIOSSauceTests(unittest.TestCase):
         self.driver = webdriver.Remote(
             command_executor = 'http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (SAUCE_USERNAME, SAUCE_ACCESS_KEY),
             desired_capabilities = {
-                'appium-version': '1.1.0',
+                'appiumVersion': '1.2.2',
                 'name': 'Appium iOS WebView Test',
                 'platformName': 'iOS',
                 'deviceName': 'iPhone Simulator',

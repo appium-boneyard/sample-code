@@ -68,9 +68,14 @@ class Selenium2OnSauce(unittest.TestCase):
 
     def setUpTunnel(self):
         # Setting up Sauce Connect tunnel
-        self.process = subprocess.Popen(["java -jar Sauce-Connect.jar %s %s" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        # self.process = subprocess.Popen(["java -jar Sauce-Connect.jar %s %s" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)],
+        #                                shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.process = subprocess.Popen(['./sc/bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY'],
+                                        shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         p = self.process
         print "[Sauce Connect]: Waiting for tunnel setup, this make take up to 30s"
+        print "For detailed documentation on Sauce Connect please refer to " \
+              "http://https://docs.saucelabs.com/reference/sauce-connect/"
         is_ready = False
         while True:
             reads = [p.stdout.fileno(), p.stderr.fileno()]
@@ -81,7 +86,8 @@ class Selenium2OnSauce(unittest.TestCase):
                     read = p.stdout.readline()
                     sys.stdout.write("[Sauce Connect]: %s" % read)
 
-                    if "Connected! You may start your tests." in read:
+                    #if "Connected! You may start your tests." in read:
+                    if "Sauce Connect is up, you may start your tests." in read:
                         print "[Sauce Connect]: Tunnel ready, running the test"
                         is_ready = True
                         break
@@ -89,7 +95,7 @@ class Selenium2OnSauce(unittest.TestCase):
                 if fd == p.stderr.fileno():
                     read = p.stderr.readline()
                     sys.stderr.write("[Sauce Connect]: %s" % read)
-                    if "Unable to access jarfile" in read:
+                    if "Finished! Deleting tunnel." in read:
                         self.process.terminate()
                         raise Exception("Sauce Connect could not start!")
 
@@ -100,13 +106,13 @@ class Selenium2OnSauce(unittest.TestCase):
         self.setUpWebServer()
         self.setUpTunnel()
 
-        desired_capabilities={
+        desired_capabilities = {
             'platformName': 'iOS',
             'platformVersion': '7.1',
             'deviceName': 'iPhone Simulator',
             'browserName': 'safari',
             'appiumVersion': '1.2.2',
-            'name': 'Appium Python iOS Test (Connect)'
+            'name': 'Appium Python iOS Test (Sauce Connect)'
         }
 
         self.driver = webdriver.Remote(
@@ -117,7 +123,7 @@ class Selenium2OnSauce(unittest.TestCase):
 
     def test_basic(self):
         driver = self.driver
-        driver.get("http://127.0.0.1:9999/")
+        driver.get("http://localhost:9999/")
         body = self.driver.find_element_by_tag_name("body")
         self.assertTrue("Welcome to the flipside!" in body.text)
 

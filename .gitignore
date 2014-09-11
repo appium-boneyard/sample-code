@@ -20,6 +20,9 @@ build/
 /doc/
 /rdoc/
 
+##Pycharm config
+ /.idea/
+
 ## Environment normalisation:
 /.bundle/
 /lib/bundler/man/
