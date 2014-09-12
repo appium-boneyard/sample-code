@@ -68,7 +68,7 @@ class Selenium2OnSauce(unittest.TestCase):
 
     def setUpTunnel(self):
         # Setting up Sauce Connect 4.x tunnel
-        # May need to change ./sc/bin/sc depending on OS and directory structure 
+        # May need to change ./sc/bin/sc depending on OS and directory structure
         self.process = subprocess.Popen(['./sc/bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY'],
                                         shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         p = self.process
@@ -112,7 +112,14 @@ class Selenium2OnSauce(unittest.TestCase):
             'appiumVersion': '1.2.2',
             'name': 'Appium Python iOS Test (Sauce Connect)'
         }
-
+        '''
+        When using Sauce Connect there are two options for sending commands to Sauce Labs. The first is
+        sending commands to ondemand.saucelabs.com. The second it sending commands to host running Sauce Connect
+        which will relay them to Sauce's infrastructure.
+        Starting Sauce Connect the -P flag will determine which port Sauce Connect starts on, then it's just a matter
+        of pointing the Remote WebDriver instance to
+        "http://%s:%s@%s:80/wd/hub" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY, SAUCE_CONNECT_HOST)
+        '''
         self.driver = webdriver.Remote(
             desired_capabilities=desired_capabilities,
             command_executor="http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
