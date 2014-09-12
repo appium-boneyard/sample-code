@@ -118,7 +118,7 @@ class Selenium2OnSauce(unittest.TestCase):
         which will relay them to Sauce's infrastructure.
         Starting Sauce Connect the -P flag will determine which port Sauce Connect starts on, then it's just a matter
         of pointing the Remote WebDriver instance to
-        "http://%s:%s@%s:80/wd/hub" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY, SAUCE_CONNECT_HOST)
+        "http://%s:%s@%s:%S/wd/hub" % (SAUCE_USERNAME, SAUCE_ACCESS_KEY, SAUCE_CONNECT_HOST, SAUCE_CONNECT_PORT)
         '''
         self.driver = webdriver.Remote(
             desired_capabilities=desired_capabilities,
