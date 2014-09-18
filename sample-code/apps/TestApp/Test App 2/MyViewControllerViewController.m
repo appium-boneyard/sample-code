@@ -68,9 +68,20 @@
     [computeSumButton setAccessibilityIdentifier:@"ComputeSumButton"];
     [answerLabel setAccessibilityIdentifier:@"Answer"];
     [locationStatus setAccessibilityIdentifier:@"locationStatus"];
+    
+    UISwipeGestureRecognizer * swipe =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeUp:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipe];
+    [swipe release];
 
     computeSumButton.titleLabel.text = NSLocalizedString(@"main.button.computeSum", @"Compute Sum button");
 }
+
+-(void)swipeUp:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    [secondArg resignFirstResponder];
+}
+
 
 - (void)logLocationAuthFromTimer:(NSTimer *)timer
 {
