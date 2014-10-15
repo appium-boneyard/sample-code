@@ -19,7 +19,7 @@ var webdriver = require('selenium-webdriver'),
     chai = require('chai');
 chai.should();
 
-describe("ios simple", function () {
+describe("ios selenium webdriver bridge", function () {
   this.timeout(300000);
   var driver;
   var wdDriver;

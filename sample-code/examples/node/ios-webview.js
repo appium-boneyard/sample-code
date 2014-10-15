@@ -6,7 +6,7 @@ var wd = require("wd"),
     _ = require('underscore'),
     serverConfigs = require('./helpers/appium-servers');
 
-describe("ios simple", function () {
+describe("ios webview", function () {
   this.timeout(300000);
   var driver;
   var allPassed = true;

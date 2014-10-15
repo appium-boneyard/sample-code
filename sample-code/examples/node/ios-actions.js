@@ -152,7 +152,7 @@ describe("ios actions", function () {
       });
   });
 
-  it.only("should zoom el", function () {
+  it("should zoom el", function () {
     return driver
       .waitForElementByName('Test Gesture', 5000).click()
       .sleep(1000)

@@ -10,7 +10,7 @@ var wd = require("yiewd"),
     _ = require('underscore'),
     serverConfigs = require('./helpers/appium-servers');
 
-describe("ios simple", function () {
+describe("ios yiewd", function () {
   this.timeout(300000);
   var driver;
   var allPassed = true;

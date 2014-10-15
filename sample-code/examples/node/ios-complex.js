@@ -9,7 +9,7 @@ var wd = require("wd"),
     _p = require('./helpers/promise-utils'),
     fs = require('fs');
 
-describe("ios simple", function () {
+describe("ios complex", function () {
   this.timeout(300000);
   var driver;
   var allPassed = true;
