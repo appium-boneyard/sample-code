@@ -2,7 +2,8 @@
 platformName = "ios"
 deviceName = "iPhone Simulator"
 platformVersion = "7.1"
-app = "/Users/sathishgogineni/development/ios-test-app/build/Release-iphonesimulator/TestApp.app"
+browserName = "Safari"
+custom_url = "http://localhost:4723/wd/hub"
 
 [appium_lib]
 sauce_username = false

@@ -20,7 +20,7 @@
 #
 # 1.  Start Appium in a terminal window
 # 2.  From another terminal window, open the cucumber example directory at 
-#     appium/sample-code/examples/ruby/cucumber_ios/
+#     appium/sample-code/examples/ruby/cucumber_web/
 # 3.  type 'cucumber' and hit enter
 # 4.  If you see '1 scenario (1 passed)' and some other stuff, SUCCESS! The
 #     test passed.  If you didn't, BOOOO, that's not right.  Make sure you've
@@ -35,13 +35,13 @@
 # https://github.com/cucumber/cucumber/wiki/Feature-Introduction
 
 
-Feature: Addition
-  In order to revolutionize maths teaching
-  As an iOS developer
-  I want to be able to sum two numbers
+  Feature:
+  In order to explore mobile web
+  As an mobile web QA developer
+  I want to check elements in guniapig
 
-  Scenario: Add two numbers
-    Given I have entered 4 into field 1 of the calculator
-    And I have entered 7 into field 2 of the calculator
-    When I press button 1
-    Then the result should be displayed as 11
+  Scenario: Enter email and comments
+    Given I have entered sandbox.example@guniapig.com into Email field
+    And I have entered 'Test comments' into Comments field
+    When I click on i am a link
+    Then I am on other page
