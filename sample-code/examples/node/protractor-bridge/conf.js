@@ -20,7 +20,7 @@ var config = {
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: _({}).chain()
-    .extend(require("../helpers/caps").ios71)
+    .extend(require("../helpers/caps").ios80)
     .extend({'browserName': 'safari'})
     .omit('app').value(),
   // Spec patterns are relative to the current working directly when

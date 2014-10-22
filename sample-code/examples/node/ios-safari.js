@@ -17,7 +17,7 @@ describe("ios safari", function () {
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
-    var desired = _.clone(require("./helpers/caps").ios71);
+    var desired = _.clone(require("./helpers/caps").ios80);
     desired.browserName = 'safari';
     if (process.env.SAUCE) {
       desired.name = 'ios - safari';
