@@ -26,14 +26,16 @@ export SAUCE_USERNAME=<SAUCE_USERNAME>
 export SAUCE_ACCESS_KEY=<SAUCE_ACCESS_KEY>
 ```
 
-If you also want to use Sauce Connect (secure tunelling), install and start
-the Sauce Connect client (see [doc here](https://saucelabs.com/docs/connect))
+If you also want to use Sauce Connect (secure tunelling):
+
+- [Read the doc here](https://saucelabs.com/docs/connect)
+- Install and start the Sauce Connect client 
 
 ## running tests
 
 ###iOS
 
-local:
+####local:
 
 ```
 mocha ios-simple.js
@@ -44,7 +46,7 @@ mocha ios-local-server.js
 mocha ios-selenium-webdriver-bridge.js
 ```
 
-using Sauce Labs:
+####using Sauce Labs:
 
 ```
 SAUCE=1 mocha ios-simple.js
@@ -54,7 +56,7 @@ SAUCE=1 mocha ios-actions.js
 SAUCE=1 mocha ios-selenium-webdriver-bridge.js
 ```
 
-using Sauce Labs + Sauce Connect:
+####using Sauce Labs + Sauce Connect:
 
 ```
 SAUCE=1 mocha ios-local-server.js
@@ -62,7 +64,7 @@ SAUCE=1 mocha ios-local-server.js
 
 ###Android
 
-local:
+####local:
 
 ```
 mocha android-simple.js
@@ -71,7 +73,7 @@ mocha android-webview.js
 mocha android-local-server.js
 ```
 
-using Sauce Labs:
+####using Sauce Labs:
 
 ```
 SAUCE=1 mocha android-simple.js
@@ -79,7 +81,7 @@ SAUCE=1 mocha android-complex.js
 SAUCE=1 mocha android-webview.js
 ```
 
-using Sauce Labs + Sauce Connect
+####using Sauce Labs + Sauce Connect
 
 ```
 SAUCE=1 mocha android-local-server.js
@@ -87,13 +89,13 @@ SAUCE=1 mocha android-local-server.js
 
 ###Selendroid
 
-local:
+####local:
 
 ```
 mocha selendroid-simple.js
 ```
 
-using Sauce Labs:
+####using Sauce Labs:
 
 ```
 SAUCE=1 mocha selendroid-simple.js
@@ -103,15 +105,14 @@ SAUCE=1 mocha selendroid-simple.js
 
 prerequisite: switch to node > 0.11
 
-local:
+####local:
 
 ```
 mocha --harmony ios-yiewd.js
 ```
 
-using Sauce Labs:
+####using Sauce Labs:
 
 ```
 SAUCE=1 mocha --harmony ios-yiewd.js
 ```
-
