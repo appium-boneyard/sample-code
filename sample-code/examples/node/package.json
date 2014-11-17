@@ -21,12 +21,13 @@
     "url": "https://github.com/appium/sample-code/issues"
   },
   "homepage": "https://github.com/appium/sample-code",
-  "dependencies": {
+  "devDependencies": {
     "chai": "^1.10.0",
     "chai-as-promised": "^4.1.1",
     "colors": "^1.0.3",
     "express": "^4.10.2",
     "q": "^1.1.1",
-    "underscore": "^1.7.0"
+    "underscore": "^1.7.0",
+    "wd": "^0.3.11"
   }
 }

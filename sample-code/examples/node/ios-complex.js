@@ -75,13 +75,14 @@ describe("ios complex", function () {
       })
       // various checks
       .first().getAttribute('name')
-        .should.become('Action Sheets, AAPLActionSheetViewController')
+        .should.become('Action Sheets')
       .waitForElementByClassName('UIANavigationBar')
         .should.eventually.exist;
   });
 
   it("should switch context", function () {
-    return clickMenuItem('Web View, AAPLWebViewController')
+    return clickMenuItem('Web View')
+      .sleep(1000)
       // get the contexts and switch to webview
       .contexts().should.eventually.deep.equal(
         ['NATIVE_APP','WEBVIEW_1']
@@ -131,7 +132,7 @@ describe("ios complex", function () {
 
   it("should edit a text field", function () {
     var el, defaultValue;
-    return clickMenuItem('Text Fields, AAPLTextFieldViewController')
+    return clickMenuItem('Text Fields')
       // get the field and the default/empty text
       .elementByClassName('UIATextField')
         .then(function (_el) {
@@ -153,7 +154,7 @@ describe("ios complex", function () {
   });
 
   it("should trigger/accept/dismiss an alert", function () {
-    return clickMenuItem('Alert Views, AAPLAlertViewController')
+    return clickMenuItem('Alert Views')
       // trigger simple alert
       .elementByName('Simple').click()
       .alertText().should.eventually.include('A Short Title Is Best')
@@ -168,7 +169,7 @@ describe("ios complex", function () {
 
   it("should set a slider value", function () {
     var slider;
-    return clickMenuItem('Sliders, AAPLSliderViewController')
+    return clickMenuItem('Sliders')
       // retrieve slider, check initial value
       .elementByClassName("UIASlider")
       .then(function (_slider) { slider = _slider; })
@@ -214,7 +215,7 @@ describe("ios complex", function () {
       })
       // text fields section source
       .then(function () {
-        return clickMenuItem("Text Fields, AAPLTextFieldViewController");
+        return clickMenuItem("Text Fields");
       }).source(function (textFieldSectionSource) {
         textFieldSectionSource.should.include('UIAStaticText');
         textFieldSectionSource.should.include('Text Fields');
