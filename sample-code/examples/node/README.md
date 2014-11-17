@@ -15,7 +15,7 @@ Install appium and start the appium server for your device, please refer to:
 - http://appium.io
 - https://github.com/appium/appium/blob/master/README.md
 
-### to run tests using Sauce Labs cloud.
+### to run tests using Sauce Labs cloud
 
 [Sign up here](https://saucelabs.com/signup/trial)
 
