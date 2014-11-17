@@ -17,7 +17,7 @@ describe("ios webview", function () {
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
-    var desired = _.clone(require("./helpers/caps").ios80);
+    var desired = _.clone(require("./helpers/caps").ios81);
     desired.app = require("./helpers/apps").iosWebviewApp;
     if (process.env.SAUCE) {
       desired.name = 'ios - webview';

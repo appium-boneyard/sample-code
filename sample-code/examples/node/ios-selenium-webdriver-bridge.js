@@ -29,7 +29,7 @@ describe("ios selenium webdriver bridge", function () {
     var builder;
     var caps = new webdriver.Capabilities();
 
-    _(require("./helpers/caps").ios80).each(function (val, key) {
+    _(require("./helpers/caps").ios81).each(function (val, key) {
       caps.set(key, val);
     });
     caps.set('app', require("./helpers/apps").iosTestApp);
