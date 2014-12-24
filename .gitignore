@@ -34,3 +34,4 @@ build/
 .rvmrc
 
 *.xcuserdatad
+.idea/
