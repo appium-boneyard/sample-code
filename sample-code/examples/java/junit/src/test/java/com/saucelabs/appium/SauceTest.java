@@ -1,9 +1,15 @@
 package com.saucelabs.appium;
 
-import com.saucelabs.common.SauceOnDemandAuthentication;
-import com.saucelabs.common.SauceOnDemandSessionIdProvider;
-import com.saucelabs.junit.SauceOnDemandTestWatcher;
+import static org.junit.Assert.assertEquals;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.ios.IOSDriver;
+
+import java.net.URL;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -13,13 +19,9 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.URL;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import static org.junit.Assert.assertEquals;
+import com.saucelabs.common.SauceOnDemandAuthentication;
+import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import com.saucelabs.junit.SauceOnDemandTestWatcher;
 
 /**
  * Simple test which demonstrates how to run an <a href="https://github.com/appium/appium">Appium</a>
@@ -76,7 +78,7 @@ public class SauceTest implements SauceOnDemandSessionIdProvider {
         capabilities.setCapability("appiumVersion", "1.3.4");
         capabilities.setCapability("app", "https://appium.s3.amazonaws.com/TestApp7.1.app.zip");
 
-        driver = new AppiumDriver(new URL(MessageFormat.format("http://{0}:{1}@ondemand.saucelabs.com:80/wd/hub", sauceUserName, sauceAccessKey)),
+        driver = new IOSDriver(new URL(MessageFormat.format("http://{0}:{1}@ondemand.saucelabs.com:80/wd/hub", sauceUserName, sauceAccessKey)),
                 capabilities);
         this.sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
         values = new ArrayList<Integer>();

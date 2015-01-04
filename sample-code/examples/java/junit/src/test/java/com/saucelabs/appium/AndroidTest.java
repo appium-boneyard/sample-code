@@ -1,6 +1,13 @@
 package com.saucelabs.appium;
 
+import static org.junit.Assert.assertEquals;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,12 +15,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class AndroidTest {
 
@@ -32,7 +33,7 @@ public class AndroidTest {
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("appPackage", "com.example.android.apis");
         capabilities.setCapability("appActivity", ".ApiDemos");
-        driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
     @After

@@ -1,7 +1,18 @@
 package com.saucelabs.appium;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.ios.IOSDriver;
+
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,18 +25,18 @@ import org.json.simple.parser.JSONParser;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebElement;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * <a href="https://github.com/appium/appium">Appium</a> test which runs against a local Appium instance deployed
@@ -51,7 +62,7 @@ public class UICatalogTest {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone Simulator");
         capabilities.setCapability("app", app.getAbsolutePath());
-        driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
     @After
@@ -61,7 +72,7 @@ public class UICatalogTest {
 
     private void openMenuPosition(int index) {
         //populate text fields with two random number
-        MobileElement table = new MobileElement((RemoteWebElement)driver.findElementByClassName("UIATableView"), driver);
+        MobileElement table = (MobileElement)driver.findElementByClassName("UIATableView");
         row = table.findElementsByClassName("UIATableCell").get(index);
         row.click();
     }
@@ -76,7 +87,7 @@ public class UICatalogTest {
     @Test
     public void testFindElement() throws Exception {
         //first view in UICatalog is a table
-        MobileElement table = new MobileElement((RemoteWebElement)driver.findElementByClassName("UIATableView"), driver);
+        MobileElement table = (MobileElement)driver.findElementByClassName("UIATableView");
         assertNotNull(table);
         //is number of cells/rows inside table correct
         List<WebElement> rows = table.findElementsByClassName("UIATableCell");
