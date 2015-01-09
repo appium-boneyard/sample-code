@@ -51,3 +51,6 @@ build/
 # Maven
 log/
 target/
+
+# npm
+node_modules

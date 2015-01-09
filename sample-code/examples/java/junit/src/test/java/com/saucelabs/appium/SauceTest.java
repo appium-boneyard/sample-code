@@ -80,7 +80,7 @@ public class SauceTest implements SauceOnDemandSessionIdProvider {
 
         driver = new IOSDriver(new URL(MessageFormat.format("http://{0}:{1}@ondemand.saucelabs.com:80/wd/hub", sauceUserName, sauceAccessKey)),
                 capabilities);
-        this.sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+        this.sessionId = driver.getSessionId().toString();
         values = new ArrayList<Integer>();
     }
 

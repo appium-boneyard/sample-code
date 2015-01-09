@@ -1,0 +1,23 @@
+{
+  "name": "appium-sample-code",
+  "version": "1.0.0",
+  "description": "Code examples for Appium",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appium/sample-code.git"
+  },
+  "keywords": [
+    "appium",
+    "testcode"
+  ],
+  "author": "appium",
+  "license": "apache-2.0",
+  "bugs": {
+    "url": "https://github.com/appium/sample-code/issues"
+  },
+  "homepage": "https://github.com/appium/sample-code"
+}
