@@ -9,6 +9,7 @@ using System.Threading;
 using System.Drawing;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Appium.iOS;
 
 namespace Appium.Samples
 {
@@ -28,7 +29,7 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-			driver = new AppiumDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+            driver = new IOSDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 
@@ -54,10 +55,10 @@ namespace Appium.Samples
 		public void GetPageTestCase ()
 		{
 			driver.FindElementByXPath("//UIATextField[@value='Enter URL']")
-				.SendKeys("https://www.google.com");
+				.SendKeys("www.google.com");
 			driver.FindElementByName ("Go").Click ();
 			driver.FindElementByClassName ("UIAWebView").Click (); // dismissing keyboard
-			driver.SetContext ("WEBVIEW");
+			driver.Context = "WEBVIEW";
 			Thread.Sleep (3000);
 			var el = driver.FindElementByName ("q");
 			el.SendKeys ("sauce labs");

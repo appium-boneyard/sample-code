@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -35,15 +35,21 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.2.42.0\lib\net40\WebDriver.dll</HintPath>
+      <HintPath>..\packages\Selenium.WebDriver.2.44.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="appium-dotnet-driver">
-      <HintPath>..\packages\Appium.WebDriver.1.0.0\lib\net40\appium-dotnet-driver.dll</HintPath>
+      <HintPath>..\packages\Appium.WebDriver.1.2.0.7\lib\net40\appium-dotnet-driver.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidComplexTest.cs" />
+    <Compile Include="AndroidConnectionTest.cs" />
+    <Compile Include="AndroidLocalServerTest.cs" />
+    <Compile Include="AndroidOrientationTest.cs" />
+    <Compile Include="AndroidSimpleTest.cs" />
+    <Compile Include="AndroidWebviewTest.cs" />
     <Compile Include="helpers\Actions.cs" />
     <Compile Include="helpers\AppiumServers.cs" />
     <Compile Include="helpers\Apps.cs" />
@@ -51,13 +57,10 @@
     <Compile Include="helpers\Env.cs" />
     <Compile Include="helpers\Filters.cs" />
     <Compile Include="helpers\LocalServer.cs" />
-    <Compile Include="AndroidComplexTest.cs" />
-    <Compile Include="AndroidLocalServerTest.cs" />
-    <Compile Include="AndroidSimpleTest.cs" />
-    <Compile Include="AndroidWebviewTest.cs" />
     <Compile Include="IosActionsTest.cs" />
     <Compile Include="IosComplexTest.cs" />
     <Compile Include="IosLocalServerTest.cs" />
+    <Compile Include="IosOrientationTest.cs" />
     <Compile Include="IosSimpleTest.cs" />
     <Compile Include="IosWebviewTest.cs" />
   </ItemGroup>

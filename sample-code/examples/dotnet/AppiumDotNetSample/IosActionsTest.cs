@@ -9,6 +9,7 @@ using System.Threading;
 using System.Drawing;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Appium.iOS;
 
 namespace Appium.Samples
 {
@@ -18,7 +19,7 @@ namespace Appium.Samples
 		private AppiumDriver driver;
 		private bool allPassed = true;
 
-		[TestFixtureSetUp]
+		[SetUp]
 		public void BeforeAll(){
 			DesiredCapabilities capabilities = Caps.getIos71Caps (Apps.get("iosTestApp")); 
 			if (Env.isSauce ()) {
@@ -28,26 +29,16 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-			driver = new AppiumDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+			driver = new IOSDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
-		}
-
-		[TestFixtureTearDown]
-		public void AfterAll(){
-			try
-			{
-				if(Env.isSauce())
-					((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (allPassed ? "passed" : "failed"));
-			}
-			finally
-			{
-				driver.Quit();
-			}
 		}
 
 		[TearDown]
 		public void AfterEach(){
 			allPassed = allPassed && (TestContext.CurrentContext.Result.State == TestState.Success);
+            if (Env.isSauce())
+                ((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (allPassed ? "passed" : "failed"));
+            driver.Quit();
 		}
 
 		[Test ()]
