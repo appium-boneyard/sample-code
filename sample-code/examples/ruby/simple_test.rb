@@ -36,8 +36,8 @@ APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
 desired_caps = {
   caps:       {
     platformName:  'iOS',
-    versionNumber: '7.1',
-    deviceName:    'iPhone Simulator',
+    versionNumber: '8.1',
+    deviceName:    'iPhone 6',
     app:           APP_PATH,
   },
   appium_lib: {
