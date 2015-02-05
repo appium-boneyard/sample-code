@@ -7,7 +7,7 @@ GEM
       nokogiri (~> 1.6.1)
       selenium-webdriver (~> 2.41, >= 2.41.0)
       toml (~> 0.0, >= 0.0.4)
-    awesome_print (1.6.1)
+    awesome_print (1.2)
     blankslate (2.1.2.4)
     builder (3.2.2)
     childprocess (0.5.5)
