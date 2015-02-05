@@ -9,10 +9,12 @@ Install appium client library:
 
 ```shell
 pip install Appium-Python-Client
+pip install pytest
 ```
 
 Usage:
 
 ```shell
+py.test ios_simple.py
 py.test -n2 --boxed ios_simple.py
 ```
