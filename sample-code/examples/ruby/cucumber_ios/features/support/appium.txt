@@ -1,6 +1,6 @@
 [caps]
 platformName = "ios"
-device = "iPhone 6"
+deviceName = "iPhone 6"
 platformVersion = "8.1"
 app = "../../../apps/TestApp/build/release-iphonesimulator/TestApp.app"
 
