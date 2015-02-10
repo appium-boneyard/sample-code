@@ -10,9 +10,9 @@ my $app = getcwd() . '/../../apps/TestApp/build/Release-iphonesimulator/TestApp.
 my $caps = {
     app               => abs_path($app),
     browserName       => "",
-    deviceName        => "iPhone Simulator",
+    deviceName        => "iPhone 6",
     platformName      => "iOS",
-    platformVersion   => "7.1"
+    platformVersion   => "8.1"
 };
 
 my $driver = Selenium::Remote::Driver->new_from_caps(

@@ -36,8 +36,8 @@ APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
 desired_caps = {
   caps:       {
     platformName:  'iOS',
-    versionNumber: '7.1',
-    deviceName:    'iPhone Simulator',
+    versionNumber: '8.1',
+    deviceName:    'iPhone 6',
     app:           APP_PATH,
   },
   appium_lib: {
@@ -96,8 +96,8 @@ module Calculator
 
     # Window Size is easy to get
     sizes = window_size
-    raise Exception unless sizes.height == 568
-    raise Exception unless sizes.width == 320
+    raise Exception unless sizes.height == 667
+    raise Exception unless sizes.width == 375
 
     # Quit when you're done!
     driver_quit

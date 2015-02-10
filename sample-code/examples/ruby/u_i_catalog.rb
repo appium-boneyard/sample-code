@@ -2,7 +2,7 @@
 # ---------
 # This test demonstrates the many, many things you can do with Appium.
 #
-# It relies on the setup in simple_test.rb, which is also a good starting 
+# It relies on the setup in simple_test.rb, which is also a good starting
 # point to make sure you can run any tests at all.
 #
 # run using:
@@ -29,8 +29,8 @@ def desired_caps
   {
     caps: {
       platformName: 'iOS',
-      deviceName:  'iPhone Simulator',
-      versionNumber:  '7.1',
+      deviceName:  'iPhone 6',
+      versionNumber:  '8.1',
       app: APP_PATH
     },
     appium_lib: {
@@ -76,7 +76,8 @@ describe 'UI Catalog' do
 
     it 'returns its text' do
       rows = subject.find_elements(:class_name, 'UIATableCell')
-      rows.first.name.should eq 'Buttons, Various uses of UIButton'
+  #    rows.first.name.should eq 'Buttons, Various uses of UIButton'
+  rows.first.name.should eq 'Buttons'
     end
   end
 
@@ -84,7 +85,8 @@ describe 'UI Catalog' do
     it 'is returned by the driver' do
       third_row = ele_index('UIATableCell', 3)
       third_row.location.x.should be 0
-      third_row.location.y.should be 152
+    #  third_row.location.y.should be 152
+    third_row.location.y.should be 178.8125
     end
   end
 
@@ -137,7 +139,8 @@ describe 'UI Catalog' do
 
     before :all do
       id('TextFieldTitle').click
-      @text_field = first_textfield
+      #@text_field = first_textfield
+      @text_field = find_elements(:class_name,'UIATextField')[1]
     end
 
     after :all do
@@ -212,7 +215,9 @@ describe 'UI Catalog' do
       @slider.value.should eq '50%'
       actions = Appium::TouchAction.new
       actions.press element: @slider, x: 60, y: 3
-      actions.move_to element: @slider, x: 120, y: 3
+#      actions.move_to element: @slider, x: 120, y: 3
+      actions.move_to element: @slider, x: 130, y: 3
+
       actions.release
       actions.perform
       @slider.value.should eq '100%'
