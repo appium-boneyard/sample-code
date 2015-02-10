@@ -2,7 +2,7 @@
 # ---------
 # This test demonstrates the many, many things you can do with Appium.
 #
-# It relies on the setup in simple_test.rb, which is also a good starting 
+# It relies on the setup in simple_test.rb, which is also a good starting
 # point to make sure you can run any tests at all.
 #
 # run using:
@@ -29,8 +29,8 @@ def desired_caps
   {
     caps: {
       platformName: 'iOS',
-      deviceName:  'iPhone Simulator',
-      versionNumber:  '7.1',
+      deviceName:  'iPhone 6',
+      versionNumber:  '8.1',
       app: APP_PATH
     },
     appium_lib: {
