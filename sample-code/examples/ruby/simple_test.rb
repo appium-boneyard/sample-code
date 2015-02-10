@@ -96,8 +96,8 @@ module Calculator
 
     # Window Size is easy to get
     sizes = window_size
-    raise Exception unless sizes.height == 568
-    raise Exception unless sizes.width == 320
+    raise Exception unless sizes.height == 667
+    raise Exception unless sizes.width == 375
 
     # Quit when you're done!
     driver_quit
