@@ -25,7 +25,7 @@ describe 'Notepad' do
   def desired_caps
     {
       caps:       {
-        :'appium-version' => '1.1.0',
+        :'appium-version' => '1.3.4',
         platformName:     'Android',
         platformVersion:  '4.3',
         deviceName:       'Android Emulator',
