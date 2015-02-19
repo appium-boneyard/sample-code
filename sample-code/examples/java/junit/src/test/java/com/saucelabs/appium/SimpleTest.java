@@ -52,9 +52,7 @@ public class SimpleTest {
         File appDir = new File(System.getProperty("user.dir"), "../../../apps/TestApp/build/Release-iphonesimulator");
         File app = new File(appDir, "TestApp.app");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
         capabilities.setCapability("platformVersion", "8.1");
-        capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone 6");
         capabilities.setCapability("app", app.getAbsolutePath());
         driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
