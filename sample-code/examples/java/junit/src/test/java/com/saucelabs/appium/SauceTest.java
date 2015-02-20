@@ -71,10 +71,8 @@ public class SauceTest implements SauceOnDemandSessionIdProvider {
         String sauceUserName = authentication.getUsername();
         String sauceAccessKey = authentication.getAccessKey();
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
         capabilities.setCapability("platformVersion", "7.1");
         capabilities.setCapability("deviceName", "iPhone Simulator");
-        capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("appiumVersion", "1.3.4");
         capabilities.setCapability("app", "https://appium.s3.amazonaws.com/TestApp7.1.app.zip");
 
