@@ -15,8 +15,23 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
+
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenByAllPossible;
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenChaided;
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenSimple;
 import com.saucelabs.appium.page_object.ios.UICatalogScreenSimple;
 
+/**
+ * Please read about Page Object design pattern here:
+ *  https://code.google.com/p/selenium/wiki/PageObjects
+ *  
+ *  Please look at:
+ *  {@link ApiDemosListViewScreenSimple}
+ *  {@link ApiDemosListViewScreenChaided}
+ *  {@link ApiDemosListViewScreenByAllPossible}
+ *  {@link UICatalogScreenSimple}
+ *
+ */
 public class iOSPageObjectTest {
 	
 	private WebDriver driver;
@@ -24,8 +39,9 @@ public class iOSPageObjectTest {
 	
 	@Before
 	public void setUp() throws Exception {
-	    File appDir = new File("src/test/java/io/appium/java_client");
-	    File app = new File(appDir, "TestApp.app.zip");
+        File appDir = new File(System.getProperty("user.dir"), 
+        		"../../../apps/TestApp/build/Release-iphonesimulator");
+        File app = new File(appDir, "TestApp.app");
 	    DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
 	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");

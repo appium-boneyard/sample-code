@@ -11,9 +11,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenByAllPossible;
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenChaided;
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenSimple;
+
 import io.appium.java_client.pagefactory.AndroidFindBys;
 import io.appium.java_client.pagefactory.iOSFindAll;;
 
+/**
+ * 
+ * @author TikhomirovSergey
+ * Here is the common sample shows how to use
+ * Appium annotations against iOS. It is perfectly similar
+ * as {@link ApiDemosListViewScreenSimple}, {@link ApiDemosListViewScreenChaided}
+ * and {@link ApiDemosListViewScreenByAllPossible}
+ * 
+ * About Page Object design pattern read here:
+ * https://code.google.com/p/selenium/wiki/PageObjects
+ *
+ */
 public class UICatalogScreenSimple {
 
 	@FindBy(className = "UIAButton")

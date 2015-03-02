@@ -17,7 +17,21 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 
 import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenByAllPossible;
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenChaided;
+import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenSimple;
+import com.saucelabs.appium.page_object.ios.UICatalogScreenSimple;
 
+/**
+ * Please read about Page Object design pattern here:
+ *  https://code.google.com/p/selenium/wiki/PageObjects
+ *  
+ *  Please look at:
+ *  {@link ApiDemosListViewScreenSimple}
+ *  {@link ApiDemosListViewScreenChaided}
+ *  {@link ApiDemosListViewScreenByAllPossible}
+ *  {@link UICatalogScreenSimple}
+ *
+ */
 public class AndroidPageObjectTest_ByAllPossible {
 
 	private WebDriver driver;
@@ -25,7 +39,8 @@ public class AndroidPageObjectTest_ByAllPossible {
 	
 	@Before
 	public void setUp() throws Exception {
-	    File appDir = new File("src/test/java/io/appium/java_client");
+		File classpathRoot = new File(System.getProperty("user.dir"));
+        File appDir = new File(classpathRoot, "../../../apps/ApiDemos/bin");
 	    File app = new File(appDir, "ApiDemos-debug.apk");
 	    DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
@@ -33,7 +48,6 @@ public class AndroidPageObjectTest_ByAllPossible {
 	    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         
 	    apiDemosPageObject = new ApiDemosListViewScreenByAllPossible();
-	    //This time out is set because test can be run on slow Android SDK emulator
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 5, TimeUnit.SECONDS), 
 				apiDemosPageObject);
 	}

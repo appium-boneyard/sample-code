@@ -10,26 +10,52 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * 
+ * @author TikhomirovSergey
+ * Here is the common sample shows how to use
+ * {@link FindBy}, {@link AndroidFindBy} and {@link iOSFindBy}
+ * annotations.
+ * 
+ * Also it demonstrates how to declare screen elements using Appium
+ * page objects facilities.
+ * 
+ * About Page Object design pattern read here:
+ * https://code.google.com/p/selenium/wiki/PageObjects
+ *
+ */
 public class ApiDemosListViewScreenSimple {
 	
+	//Common Selenium @FindBy annotations are effective 
+	//against browser apps and web views. They can be used against native 
+	//content. But it is useful to know that By.css, By.link, By.partialLinkText
+	//are invalid at this case.
 	@FindBy(className = "android.widget.TextView")
 	public List<WebElement> textVieWs;
 
+	//@AndroidFindBy annotation is designed to be used for Android native content 
+	//description.
 	@AndroidFindBy(className = "android.widget.TextView")
 	public List<WebElement> androidTextViews;
 
 	@iOSFindBy(uiAutomator = ".elements()[0]")
 	public List<WebElement> iosTextViews;
 
-	@iOSFindBy(uiAutomator = ".elements()[0]")
-	@AndroidFindBy(className = "android.widget.TextView")
+	//if it is necessary to use the same Page Object 
+	//in the browser and cross platform mobile app testing
+	//then it is possible to combine different annotations
+	@FindBy(css = "someBrowserCss") //this locator is used when here is browser (desktop or mobile)
+	@iOSFindBy(uiAutomator = ".elements()[0]") //this locator is used when here is iOS native content
+	@AndroidFindBy(className = "android.widget.TextView") //this locator is used when here is Android 
+	//native content
 	public List<WebElement> androidOriOsTextViews;
 
 	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"android:id/text1\")")
 	public List<WebElement> androidUIAutomatorViews;
 
 	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"android:id/text1\")")
-	public List<MobileElement> mobileElementViews;
+	public List<MobileElement> mobileElementViews; //Also with Appium page object tools it is
+	//possible to declare RemoteWebElement or any MobileElement subclass
 
 	@FindBy(className = "android.widget.TextView")
 	public List<MobileElement> mobiletextVieWs;

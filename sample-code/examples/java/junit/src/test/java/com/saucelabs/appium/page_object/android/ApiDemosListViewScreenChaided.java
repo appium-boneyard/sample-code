@@ -1,19 +1,38 @@
 package com.saucelabs.appium.page_object.android;
 
 import io.appium.java_client.android.AndroidElement;
+
 import java.util.List;
+
 import org.openqa.selenium.WebElement;
+
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AndroidFindBys;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSFindBys;
 
+/**
+ * 
+ * @author TikhomirovSergey
+ * Here is the common sample shows how to use
+ * {@link AndroidFindBys} annotation to describe the chain of the 
+ * searching for the target element of a native Android app content.
+ * 
+ * It demonstrates how to declare screen elements using Appium
+ * page objects facilities.
+ * 
+ * About Page Object design pattern read here:
+ * https://code.google.com/p/selenium/wiki/PageObjects
+ *
+ */
 public class ApiDemosListViewScreenChaided {
 	
 
 	@AndroidFindBys({
-		@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"android:id/list\")"),
-		@AndroidFindBy(className = "android.widget.TextView")
+		@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"android:id/list\")"), //the searching
+		//starts here
+		@AndroidFindBy(className = "android.widget.TextView") //this element is nested
+		//and so on
 		})
 	public List<WebElement> chainElementViews;
 
