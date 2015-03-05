@@ -44,7 +44,7 @@ describe("ios webview", function () {
   it("should get the url", function () {
     return driver
       .elementByXPath('//UIATextField[@value=\'Enter URL\']')
-        .sendKeys('https://www.google.com')
+        .sendKeys('www.google.com')
       .elementByName('Go').click()
       .elementByClassName('UIAWebView').click() // dismissing keyboard
       .context('WEBVIEW')
