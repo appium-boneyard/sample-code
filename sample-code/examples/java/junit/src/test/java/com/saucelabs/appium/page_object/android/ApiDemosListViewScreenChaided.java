@@ -13,7 +13,6 @@ import io.appium.java_client.pagefactory.iOSFindBys;
 
 /**
  * 
- * @author TikhomirovSergey
  * Here is the common sample shows how to use
  * {@link AndroidFindBys} annotation to describe the chain of the 
  * searching for the target element of a native Android app content.
@@ -27,6 +26,12 @@ import io.appium.java_client.pagefactory.iOSFindBys;
  */
 public class ApiDemosListViewScreenChaided {
 	
+	/**
+	 * Page Object best practice is to describe interactions with target 
+	 * elements by methods. This methods describe business logic of the page/screen.
+	 * Here lazy instantiated elements are public.
+	 * It was done so just for obviousness
+	 */
 
 	@AndroidFindBys({
 		@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"android:id/list\")"), //the searching

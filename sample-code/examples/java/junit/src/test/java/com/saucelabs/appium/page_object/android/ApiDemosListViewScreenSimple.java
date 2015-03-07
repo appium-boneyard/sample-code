@@ -12,7 +12,6 @@ import org.openqa.selenium.support.FindBy;
 
 /**
  * 
- * @author TikhomirovSergey
  * Here is the common sample shows how to use
  * {@link FindBy}, {@link AndroidFindBy} and {@link iOSFindBy}
  * annotations.
@@ -25,6 +24,13 @@ import org.openqa.selenium.support.FindBy;
  *
  */
 public class ApiDemosListViewScreenSimple {
+	/**
+	 * Page Object best practice is to describe interactions with target 
+	 * elements by methods. This methods describe business logic of the page/screen.
+	 * Here lazy instantiated elements are public.
+	 * It was done so just for obviousness
+	 */
+	
 	
 	//Common Selenium @FindBy annotations are effective 
 	//against browser apps and web views. They can be used against native 

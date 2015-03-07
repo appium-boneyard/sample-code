@@ -10,7 +10,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 /**
  * 
- * @author TikhomirovSergey
  * Here is the common sample shows how to use
  * {@link AndroidFindAll} annotation to describe all possible
  * locators of a target element. This feature should help to
@@ -24,6 +23,13 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
  *
  */
 public class ApiDemosListViewScreenByAllPossible {
+	
+	/**
+	 * Page Object best practice is to describe interactions with target 
+	 * elements by methods. This methods describe business logic of the page/screen.
+	 * Here lazy instantiated elements are public.
+	 * It was done so just for obviousness
+	 */
 	
 	@AndroidFindAll({
 		@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"android:id/Fakecontent\")"),

@@ -21,7 +21,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenByAllPossible;
 import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenChaided;
 import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenSimple;
-import com.saucelabs.appium.page_object.ios.UICatalogScreenSimple;
+import com.saucelabs.appium.page_object.ios.TestAppScreenSimple;
 
 /**
  * Please read about Page Object design pattern here:
@@ -31,8 +31,10 @@ import com.saucelabs.appium.page_object.ios.UICatalogScreenSimple;
  *  {@link ApiDemosListViewScreenSimple}
  *  {@link ApiDemosListViewScreenChaided}
  *  {@link ApiDemosListViewScreenByAllPossible}
- *  {@link UICatalogScreenSimple}
+ *  {@link TestAppScreenSimple}
  *
+ *  This sample shows how to describe the root element and its nested 
+ *  child elements as page/screen object
  */
 public class AndroidPageObjectTest_PageObjectLikeComplexElement {
 
@@ -60,6 +62,13 @@ public class AndroidPageObjectTest_PageObjectLikeComplexElement {
 	public void tearDown() throws Exception {
 		driver.quit();
 	}
+	
+	/**
+	 * Page Object best practice is to describe interactions with target 
+	 * elements by methods. This methods describe business logic of the page/screen.
+	 * Here test interacts with lazy instantiated elements directly.
+	 * It was done so just for obviousness
+	 */
 	
 	@Test
 	public void findByElementsTest() {

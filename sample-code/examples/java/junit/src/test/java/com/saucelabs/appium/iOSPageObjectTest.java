@@ -19,7 +19,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenByAllPossible;
 import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenChaided;
 import com.saucelabs.appium.page_object.android.ApiDemosListViewScreenSimple;
-import com.saucelabs.appium.page_object.ios.UICatalogScreenSimple;
+import com.saucelabs.appium.page_object.ios.TestAppScreenSimple;
 
 /**
  * Please read about Page Object design pattern here:
@@ -29,13 +29,13 @@ import com.saucelabs.appium.page_object.ios.UICatalogScreenSimple;
  *  {@link ApiDemosListViewScreenSimple}
  *  {@link ApiDemosListViewScreenChaided}
  *  {@link ApiDemosListViewScreenByAllPossible}
- *  {@link UICatalogScreenSimple}
+ *  {@link TestAppScreenSimple}
  *
  */
 public class iOSPageObjectTest {
 	
 	private WebDriver driver;
-	private UICatalogScreenSimple uiCatalog;
+	private TestAppScreenSimple uiTestApp;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -48,48 +48,55 @@ public class iOSPageObjectTest {
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
 	    capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 	    
-	    uiCatalog = new UICatalogScreenSimple();
+	    uiTestApp = new TestAppScreenSimple();
 	    driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
-		PageFactory.initElements(new AppiumFieldDecorator(driver), uiCatalog);
+		PageFactory.initElements(new AppiumFieldDecorator(driver), uiTestApp);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		driver.quit();
 	}
+	
+	/**
+	 * Page Object best practice is to describe interactions with target 
+	 * elements by methods. This methods describe business logic of the page/screen.
+	 * Here test interacts with lazy instantiated elements directly.
+	 * It was done so just for obviousness
+	 */
 
 	@Test
 	public void findByElementsTest() {
-		Assert.assertNotEquals(0, uiCatalog.uiButtons.size());
+		Assert.assertNotEquals(0, uiTestApp.uiButtons.size());
 	}
 
 	@Test
 	public void findByElementTest() {
-		Assert.assertNotEquals(null, uiCatalog.uiButton.getText());
+		Assert.assertNotEquals(null, uiTestApp.uiButton.getText());
 	}
 
 
 	@Test
 	public void iOSFindByElementsTest(){
-		Assert.assertNotEquals(0, uiCatalog.iosUIButtons.size());
+		Assert.assertNotEquals(0, uiTestApp.iosUIButtons.size());
 	}
 
 	@Test
 	public void iosFindByElementTest(){
-		Assert.assertNotEquals(null, uiCatalog.iosUIButton.getText());
+		Assert.assertNotEquals(null, uiTestApp.iosUIButton.getText());
 	}
 
 	@Test
 	public void checkThatElementsWereNotFoundByAndroidUIAutomator(){
-		Assert.assertEquals(0, uiCatalog.androidUIAutomatorViews.size());
+		Assert.assertEquals(0, uiTestApp.androidUIAutomatorViews.size());
 	}
 
 	@Test
 	public void checkThatElementWasNotFoundByAndroidUIAutomator(){
 		NoSuchElementException nsee = null;
 		try{
-			uiCatalog.androidUIAutomatorView.getText();
+			uiTestApp.androidUIAutomatorView.getText();
 		}
 		catch (Exception e){
 			nsee = (NoSuchElementException) e;
@@ -99,64 +106,64 @@ public class iOSPageObjectTest {
 
 	@Test
 	public void androidOrIOSFindByElementsTest(){
-		Assert.assertNotEquals(0, uiCatalog.androidOriOsTextViews.size());
+		Assert.assertNotEquals(0, uiTestApp.androidOriOsTextViews.size());
 	}
 
 	@Test
 	public void androidOrIOSFindByElementTest(){
-		Assert.assertNotEquals(null, uiCatalog.androidOriOsTextView.getText());
+		Assert.assertNotEquals(null, uiTestApp.androidOriOsTextView.getText());
 	}
 
 	@Test
 	public void iOSFindByUIAutomatorElementsTest(){
-		Assert.assertNotEquals(0, uiCatalog.iosUIAutomatorButtons.size());
+		Assert.assertNotEquals(0, uiTestApp.iosUIAutomatorButtons.size());
 	}
 
 	@Test
 	public void iOSFindByUIAutomatorElementTest(){
-		Assert.assertNotEquals(null, uiCatalog.iosUIAutomatorButton.getText());
+		Assert.assertNotEquals(null, uiTestApp.iosUIAutomatorButton.getText());
 	}
 
 	@Test
 	public void areMobileElementsTest(){
-		Assert.assertNotEquals(0, uiCatalog.mobileButtons.size());
+		Assert.assertNotEquals(0, uiTestApp.mobileButtons.size());
 	}
 
 	@Test
 	public void isMobileElementTest(){
-		Assert.assertNotEquals(null, uiCatalog.mobileButton.getText());
+		Assert.assertNotEquals(null, uiTestApp.mobileButton.getText());
 	}
 
 	@Test
 	public void areMobileElements_FindByTest(){
-		Assert.assertNotEquals(0, uiCatalog.mobiletFindBy_Buttons.size());
+		Assert.assertNotEquals(0, uiTestApp.mobiletFindBy_Buttons.size());
 	}
 
 	@Test
 	public void isMobileElement_FindByTest(){
-		Assert.assertNotEquals(null, uiCatalog.mobiletFindBy_Button.getText());
+		Assert.assertNotEquals(null, uiTestApp.mobiletFindBy_Button.getText());
 	}
 
 	@Test
 	public void areRemoteElementsTest(){
-		Assert.assertNotEquals(0, uiCatalog.remoteElementViews.size());
+		Assert.assertNotEquals(0, uiTestApp.remoteElementViews.size());
 	}
 
 	@Test
 	public void isRemoteElementTest(){
-		Assert.assertNotEquals(null, uiCatalog.remotetextVieW.getText());
+		Assert.assertNotEquals(null, uiTestApp.remotetextVieW.getText());
 	}
 
 	@Test
 	public void checkThatElementsWereNotFoundByAndroidUIAutomator_Chain(){
-		Assert.assertEquals(0, uiCatalog.chainElementViews.size());
+		Assert.assertEquals(0, uiTestApp.chainElementViews.size());
 	}
 
 	@Test
 	public void checkThatElementWasNotFoundByAndroidUIAutomator_Chain(){
 		NoSuchElementException nsee = null;
 		try{
-			uiCatalog.chainElementView.getText();
+			uiTestApp.chainElementView.getText();
 		}
 		catch (Exception e){
 			nsee = (NoSuchElementException) e;
@@ -166,22 +173,22 @@ public class iOSPageObjectTest {
 	
 	@Test
 	public void isIOSElementTest(){
-		Assert.assertNotEquals(null, uiCatalog.iosButton.getText());
+		Assert.assertNotEquals(null, uiTestApp.iosButton.getText());
 	}
 
 	@Test
 	public void areIOSElements_FindByTest(){
-		Assert.assertNotEquals(0, uiCatalog.iosButtons.size());
+		Assert.assertNotEquals(0, uiTestApp.iosButtons.size());
 	}
 
 	@Test
 	public void findAllElementsTest(){
-		Assert.assertNotEquals(0, uiCatalog.findAllElements.size());
+		Assert.assertNotEquals(0, uiTestApp.findAllElements.size());
 	}
 
 	@Test
 	public void findAllElementTest(){
-		Assert.assertNotEquals(null, uiCatalog.findAllElement.getText());
+		Assert.assertNotEquals(null, uiTestApp.findAllElement.getText());
 	}
 
 }
