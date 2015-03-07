@@ -32,9 +32,7 @@ public class MobileFindJavaTest {
   @Before
   public void setUp() throws Exception {
     final DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
     capabilities.setCapability("deviceName", "Android Emulator");
-    capabilities.setCapability("platformName", "Android");
     capabilities.setCapability("appPackage", "com.android.settings");
     capabilities.setCapability("appActivity", ".Settings");
     driver = new AndroidDriver(new URL(url), capabilities);

@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import io.appium.java_client.ios.IOSDriver;
+
 import java.net.URL;
 
 import static org.junit.Assert.*;
@@ -37,7 +39,7 @@ public class SafariTest {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("platformVersion", "8.1");
         capabilities.setCapability("browserName", "safari");
-        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"),
+        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
                 capabilities);
         //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }

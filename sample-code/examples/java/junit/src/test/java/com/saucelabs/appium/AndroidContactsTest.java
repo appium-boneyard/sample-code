@@ -25,8 +25,6 @@ public class AndroidContactsTest {
         File appDir = new File(classpathRoot, "../../../apps/ContactManager");
         File app = new File(appDir, "ContactManager.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
-        capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName","Android Emulator");
         capabilities.setCapability("platformVersion", "4.4");
         capabilities.setCapability("app", app.getAbsolutePath());
