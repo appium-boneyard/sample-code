@@ -50,6 +50,10 @@ To run the Cucumber examples, you'll need to change directory to the cucumber
 directory (`cd APPIUM-LOCATION/sample-code/examples/ruby/cucumber`) and then, 
 from the commandline, run `cucumber`.
 
+Different running configurations are supported:
+- For iPad Air simulator: run `cucumber -p ipadsim`
+- For iPhone 6 simulator: run `cucumber -p iphonesim`
+
 For more information, check out the comments at the top of the files in the 
 cucumber directory.
 
