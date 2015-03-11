@@ -28,7 +28,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
@@ -37,6 +36,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
  *
  * @author Ross Rowe
  */
+@SuppressWarnings("deprecation")
 public class SimpleTest {
 
     private AppiumDriver driver;
@@ -206,7 +206,8 @@ public class SimpleTest {
     @Test
     public void testSessions() throws Exception {
         HttpGet request = new HttpGet("http://localhost:4723/wd/hub/sessions");
-        HttpClient httpClient = new DefaultHttpClient();
+        @SuppressWarnings("resource")
+		HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = httpClient.execute(request);
         HttpEntity entity = response.getEntity();
         JSONObject jsonObject = (JSONObject) new JSONParser().parse(EntityUtils.toString(entity));
