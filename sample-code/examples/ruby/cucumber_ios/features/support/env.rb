@@ -14,7 +14,13 @@ end
 
 # Load the desired configuration from appium.txt, create a driver then
 # Add the methods to the world
+if ENV['IDEVICENAME']=='ipad simulator'
+	caps = Appium.load_appium_txt file: File.expand_path("./../ipadsim/appium.txt", __FILE__), verbose: true
+elsif ENV['IDEVICENAME']=='iphone simulator'
+	caps = Appium.load_appium_txt file: File.expand_path("./../iphonesim/appium.txt", __FILE__), verbose: true
+else
 caps = Appium.load_appium_txt file: File.expand_path('./', __FILE__), verbose: true
+end
 Appium::Driver.new(caps)
 Appium.promote_appium_methods AppiumWorld
 

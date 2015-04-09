@@ -57,7 +57,7 @@
     secondArg.returnKeyType = UIReturnKeyDone;
     firstArg.delegate = self;
     secondArg.delegate = self;
-    [NSTimer scheduledTimerWithTimeInterval:0.1
+    [NSTimer scheduledTimerWithTimeInterval:0.2
                                      target:self
                                    selector:@selector(logLocationAuthFromTimer:)
                                    userInfo:nil
@@ -69,8 +69,19 @@
     [answerLabel setAccessibilityIdentifier:@"Answer"];
     [locationStatus setAccessibilityIdentifier:@"locationStatus"];
 
+    UISwipeGestureRecognizer * swipe =[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeUp:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipe];
+    [swipe release];
+
     computeSumButton.titleLabel.text = NSLocalizedString(@"main.button.computeSum", @"Compute Sum button");
 }
+
+-(void)swipeUp:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    [secondArg resignFirstResponder];
+}
+
 
 - (void)logLocationAuthFromTimer:(NSTimer *)timer
 {
@@ -80,7 +91,7 @@
 - (void)logLocationAuth
 {
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    if (status == kCLAuthorizationStatusAuthorized) {
+    if (status != kCLAuthorizationStatusRestricted && status != kCLAuthorizationStatusDenied) {
         locationStatus.on = YES;
     } else {
         locationStatus.on = NO;
@@ -170,7 +181,7 @@
 
 - (IBAction)accessLocationAlert:(id)sender {
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    
+
     [locationManager startUpdatingLocation];
     [locationManager stopUpdatingLocation];
 }

@@ -18,7 +18,7 @@ describe("ios simple", function () {
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
-    var desired = _.clone(require("./helpers/caps").ios71);
+    var desired = _.clone(require("./helpers/caps").ios81);
     desired.app = require("./helpers/apps").iosTestApp;
     if (process.env.SAUCE) {
       desired.name = 'ios - simple';
@@ -61,7 +61,7 @@ describe("ios simple", function () {
         return driver.
           elementByAccessibilityId('ComputeSumButton')
             .click().sleep(1000)
-          .elementByIosUIAutomation('elements().withName("Answer");')
+          .elementByIosUIAutomation('.elements().withName("Answer");')
             .text().should.become("" + sum);
       });
   });

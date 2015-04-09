@@ -34,3 +34,27 @@ build/
 .rvmrc
 
 *.xcuserdatad
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# npm
+node_modules
+
+# Python
+__pycache__
+*.pyc

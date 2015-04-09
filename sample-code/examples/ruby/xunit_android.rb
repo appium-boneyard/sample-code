@@ -12,8 +12,12 @@ require 'appium_lib'
 
 class SettingsTest < Test::Unit::TestCase
   def setup
-    caps   = { caps:       { platformName: 'Android', appActivity: '.Settings', appPackage: 'com.android.settings' },
-               appium_lib: { sauce_username: nil, sauce_access_key: nil } }
+    caps   = { caps:       { platformName: 'Android',
+                             deviceName: 'Nexus 7',
+                             appActivity: '.Settings',
+                             appPackage: 'com.android.settings' },
+               appium_lib: { sauce_username: nil,
+                             sauce_access_key: nil } }
     driver = Appium::Driver.new(caps)
     Appium.promote_appium_methods self.class
     driver.start_driver.manage.timeouts.implicit_wait = 20 # seconds
@@ -24,7 +28,9 @@ class SettingsTest < Test::Unit::TestCase
   end
 
   def test_about_phone_version
-    scroll_to('About phone').click
+    # This may be 'About phone' or 'About tablet'
+    # search for About to work on both phones & tablets.
+    scroll_to('About ').click
     android_version = 'Android version'
     scroll_to android_version
 

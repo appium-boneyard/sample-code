@@ -1,0 +1,5 @@
+[caps]
+platformName = "ios"
+deviceName = "iPhone 6"
+platformVersion = "8.1"
+app = "../UICatalog.app.zip"

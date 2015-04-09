@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using OpenQA.Selenium;
 using System.Threading;
 using System.Drawing;
+using OpenQA.Selenium.Appium.Android;
 
 namespace Appium.Samples
 {
@@ -30,7 +31,7 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-			driver = new AppiumDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+            driver = new AndroidDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 

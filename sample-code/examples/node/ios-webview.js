@@ -17,7 +17,7 @@ describe("ios webview", function () {
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
-    var desired = _.clone(require("./helpers/caps").ios71);
+    var desired = _.clone(require("./helpers/caps").ios81);
     desired.app = require("./helpers/apps").iosWebviewApp;
     if (process.env.SAUCE) {
       desired.name = 'ios - webview';
@@ -44,7 +44,7 @@ describe("ios webview", function () {
   it("should get the url", function () {
     return driver
       .elementByXPath('//UIATextField[@value=\'Enter URL\']')
-        .sendKeys('https://www.google.com')
+        .sendKeys('www.google.com')
       .elementByName('Go').click()
       .elementByClassName('UIAWebView').click() // dismissing keyboard
       .context('WEBVIEW')

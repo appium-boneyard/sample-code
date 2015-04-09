@@ -31,8 +31,8 @@ class ComplexIOSTests(unittest.TestCase):
             desired_capabilities={
                 'app': app,
                 'platformName': 'iOS',
-                'platformVersion': '7.1',
-                'deviceName': 'iPhone Simulator'
+                'platformVersion': '8.1',
+                'deviceName': 'iPhone 6'
             })
         self._values = []
 

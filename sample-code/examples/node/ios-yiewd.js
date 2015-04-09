@@ -23,7 +23,7 @@ describe("ios yiewd", function () {
 
   before(function (done) {
     driver.run(function* () {      
-      var desired = _.clone(require("./helpers/caps").ios71);
+      var desired = _.clone(require("./helpers/caps").ios81);
       desired.app = require("./helpers/apps").iosTestApp;
       if (process.env.SAUCE) {
         desired.name = 'ios - simple';

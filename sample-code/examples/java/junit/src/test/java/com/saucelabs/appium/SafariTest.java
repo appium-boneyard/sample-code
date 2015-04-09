@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import io.appium.java_client.ios.IOSDriver;
 
 import java.net.URL;
 
@@ -33,11 +33,11 @@ public class SafariTest {
     @Before
     public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "iPhone Simulator");
+        capabilities.setCapability("deviceName", "iPhone 6");
         capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("platformVersion", "7.1");
+        capabilities.setCapability("platformVersion", "8.1");
         capabilities.setCapability("browserName", "safari");
-        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"),
+        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
                 capabilities);
         //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }

@@ -2,148 +2,123 @@
 
 ## prerequisites
 
-Upgrade Mocha to the latest version before running the tests.
-
-##iOS
-
-### local
+Upgrade Mocha to the latest version:
 
 ```
-./reset.sh --hardcore --ios
-
-mocha sample-code/examples/node/ios-simple.js
-mocha sample-code/examples/node/ios-complex.js
-mocha sample-code/examples/node/ios-webview.js
-mocha sample-code/examples/node/ios-actions.js
-mocha sample-code/examples/node/ios-local-server.js
-mocha sample-code/examples/node/ios-selenium-webdriver-bridge.js
-```
-### dev (run against locally built app)
-
-```
-./reset.sh --hardcore --ios --dev
-
-DEV=1 mocha sample-code/examples/node/ios-simple.js
-DEV=1 mocha sample-code/examples/node/ios-complex.js
-DEV=1 mocha sample-code/examples/node/ios-webview.js
-DEV=1 mocha sample-code/examples/node/ios-actions.js
-DEV=1 mocha sample-code/examples/node/ios-local-server.js
-DEV=1 mocha sample-code/examples/node/ios-selenium-webdriver-bridge.js
+npm install -g -f mocha
 ```
 
-### Sauce Labs
+Install local packages:
 
 ```
-./reset.sh --hardcore --ios
+npm install
+```
+
+### to run tests locally
+
+Install appium and start the appium server for your device, please refer to:
+
+- http://appium.io
+- https://github.com/appium/appium/blob/master/README.md
+
+### to run tests using Sauce Labs cloud
+
+[Sign up here](https://saucelabs.com/signup/trial)
+
+Configure your environment:
+
+```
 export SAUCE_USERNAME=<SAUCE_USERNAME>
 export SAUCE_ACCESS_KEY=<SAUCE_ACCESS_KEY>
-
-SAUCE=1 mocha sample-code/examples/node/ios-simple.js
-SAUCE=1 mocha sample-code/examples/node/ios-complex.js
-SAUCE=1 mocha sample-code/examples/node/ios-webview.js
-SAUCE=1 mocha sample-code/examples/node/ios-actions.js
-SAUCE=1 mocha sample-code/examples/node/ios-selenium-webdriver-bridge.js
 ```
 
-### Sauce Labs + Sauce Connect
+If you also want to use Sauce Connect (secure tunelling):
 
-Install and start Sauce Connect (see [doc here](https://saucelabs.com/docs/connect))
+- [Read the doc here](https://saucelabs.com/docs/connect)
+- Install and start the Sauce Connect client 
 
-```
-./reset.sh --hardcore --ios
-export SAUCE_USERNAME=<SAUCE_USERNAME>
-export SAUCE_ACCESS_KEY=<SAUCE_ACCESS_KEY>
+## running tests
 
-SAUCE=1 mocha sample-code/examples/node/ios-local-server.js
-```
+###iOS
 
-##Android
-
-### local
+####local:
 
 ```
-./reset.sh --hardcore --android
-
-mocha sample-code/examples/node/android-simple.js
-mocha sample-code/examples/node/android-complex.js
-mocha sample-code/examples/node/android-webview.js
-mocha sample-code/examples/node/android-local-server.js
+mocha ios-simple.js
+mocha ios-complex.js
+mocha ios-webview.js
+mocha ios-actions.js
+mocha ios-local-server.js
+mocha ios-selenium-webdriver-bridge.js
 ```
 
-### dev (run against locally built app)
+####using Sauce Labs:
 
 ```
-./reset.sh --hardcore --android --dev
-
-DEV=1 mocha sample-code/examples/node/android-simple.js
-DEV=1 mocha sample-code/examples/node/android-complex.js
-DEV=1 mocha sample-code/examples/node/android-webview.js
-DEV=1 mocha sample-code/examples/node/android-local-server.js
+SAUCE=1 mocha ios-simple.js
+SAUCE=1 mocha ios-complex.js
+SAUCE=1 mocha ios-webview.js
+SAUCE=1 mocha ios-actions.js
+SAUCE=1 mocha ios-selenium-webdriver-bridge.js
 ```
 
-### Sauce Labs
+####using Sauce Labs + Sauce Connect:
 
 ```
-./reset.sh --hardcore --android
-export SAUCE_USERNAME=<SAUCE_USERNAME>
-export SAUCE_ACCESS_KEY=<SAUCE_ACCESS_KEY>
-
-SAUCE=1 mocha sample-code/examples/node/android-simple.js
-SAUCE=1 mocha sample-code/examples/node/android-complex.js
-SAUCE=1 mocha sample-code/examples/node/android-webview.js
+SAUCE=1 mocha ios-local-server.js
 ```
 
-### Sauce Labs + Sauce Connect
+###Android
 
-Install and start Sauce Connect (see [doc here](https://saucelabs.com/docs/connect))
-
-```
-./reset.sh --hardcore --android
-export SAUCE_USERNAME=<SAUCE_USERNAME>
-export SAUCE_ACCESS_KEY=<SAUCE_ACCESS_KEY>
-
-SAUCE=1 mocha sample-code/examples/node/android-local-server.js
-```
-
-##Selendroid
-
-### local
+####local:
 
 ```
-./reset.sh --hardcore --android --selendroid
-
-mocha sample-code/examples/node/selendroid-simple.js
+mocha android-simple.js
+mocha android-complex.js
+mocha android-webview.js
+mocha android-local-server.js
 ```
 
-### Sauce Labs
+####using Sauce Labs:
 
 ```
-./reset.sh --hardcore --android --selendroid
-
-SAUCE=1 mocha sample-code/examples/node/selendroid-simple.js
+SAUCE=1 mocha android-simple.js
+SAUCE=1 mocha android-complex.js
+SAUCE=1 mocha android-webview.js
 ```
 
-##Node.js 0.11 + Generator with Yiewd
-
-### local
-
-switch to node > 0.11
+####using Sauce Labs + Sauce Connect
 
 ```
-./reset.sh --hardcore --ios
-
-mocha --harmony sample-code/examples/node/ios-yiewd.js
+SAUCE=1 mocha android-local-server.js
 ```
 
-### Sauce Labs
+###Selendroid
 
-switch to node > 0.11
+####local:
 
 ```
-./reset.sh --hardcore --ios
-export SAUCE_USERNAME=<SAUCE_USERNAME>
-export SAUCE_ACCESS_KEY=<SAUCE_ACCESS_KEY>
-
-SAUCE=1 mocha --harmony sample-code/examples/node/ios-yiewd.js
+mocha selendroid-simple.js
 ```
 
+####using Sauce Labs:
+
+```
+SAUCE=1 mocha selendroid-simple.js
+```
+
+###Node.js 0.11 + Generator with Yiewd
+
+prerequisite: switch to node > 0.11
+
+####local:
+
+```
+mocha --harmony ios-yiewd.js
+```
+
+####using Sauce Labs:
+
+```
+SAUCE=1 mocha --harmony ios-yiewd.js
+```

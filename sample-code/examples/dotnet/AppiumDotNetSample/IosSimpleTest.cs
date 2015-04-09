@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using OpenQA.Selenium;
 using System.Threading;
 using System.Drawing;
+using OpenQA.Selenium.Appium.iOS;
 
 namespace Appium.Samples
 {
@@ -28,7 +29,7 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-			driver = new AppiumDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+            driver = new IOSDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 
@@ -73,7 +74,7 @@ namespace Appium.Samples
 			// compute and check the sum
 			driver.FindElementByAccessibilityId ("ComputeSumButton").Click ();
 			Thread.Sleep (1000);
-			IWebElement sumEl = driver.FindElementByIosUIAutomation ("elements().withName(\"Answer\");");
+			IWebElement sumEl = ((IOSDriver) driver).FindElementByIosUIAutomation (".elements().withName(\"Answer\")");
 			int sumOut = Convert.ToInt32 (sumEl.Text);
 			Assert.AreEqual (sumIn, sumOut);
 		}
