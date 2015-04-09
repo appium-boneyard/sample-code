@@ -15,20 +15,19 @@
 # https://www.relishapp.com/rspec/rspec-expectations/docs
 Given(/^I have entered ([^"]*) into Email field$/) do |value|
   @driver.find_element(id:'fbemail').send_keys(value)
-  sleep(1)
-  raise 'Text not entered into email' unless @driver.find_element(id:'fbemail').attribute('value').eql?value
+  wait(timeout:2,message:'Text not entered into email').until { @driver.find_element(id:'fbemail').attribute('value').eql?value }
 end
 
 And(/^I have entered ([^"]*) into Comments field$/) do |value|
   @driver.find_element(id:'comments').send_keys(value)
-  raise 'Text not entered into comments' unless @driver.find_element(id:'comments').attribute('value').eql?value
+  wait(timeout:2,message:'Text not entered into comments').until { @driver.find_element(id:'comments').attribute('value').eql?value }
 end
 
 When(/^I click on ([^"]*)$/) do |va|
   element = @driver.find_element(id:va)
   raise 'No link found' unless element.displayed?
   element.click
-  @wait.until { @driver.title.start_with?'I am another page title' }
+  wait.until { @driver.title.start_with?'I am another page title' }
 end
 
 Then(/^I am on other page$/) do
