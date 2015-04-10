@@ -16,7 +16,7 @@ end
 # Load the desired configuration from appium.txt, create a driver then
 # Add the methods to the world
 caps = Appium.load_appium_txt file: File.expand_path('./', __FILE__), verbose: true
-$driver = Appium::Driver.new(caps)
+Appium::Driver.new(caps)
 
 World do
   AppiumWorld.new
@@ -25,7 +25,6 @@ end
 Before {
   @driver = $driver.start_driver
   @driver.get('http://saucelabs.com/test/guinea-pig')
-  @wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
-  @wait.until { @driver.title.start_with?'I am a page title'  }
+  Selenium::WebDriver::Wait.new(timeout:3).until { @driver.title.start_with?'I am a page title'  }
 }
 After { $driver.driver_quit }
