@@ -22,6 +22,8 @@ class ComplexIOSTests(unittest.TestCase):
 
     def setUp(self):
         # set up appium
+        # ** Important Note **
+        # Make sure you have build the UICatalog applcation in your local repository
         app = os.path.join(os.path.dirname(__file__),
                            '../../apps/UICatalog/build/Release-iphonesimulator',
                            'UICatalog.app')
@@ -31,7 +33,7 @@ class ComplexIOSTests(unittest.TestCase):
             desired_capabilities={
                 'app': app,
                 'platformName': 'iOS',
-                'platformVersion': '8.1',
+                'platformVersion': '8.3',
                 'deviceName': 'iPhone 6'
             })
         self._values = []
@@ -55,7 +57,7 @@ class ComplexIOSTests(unittest.TestCase):
         self.assertEqual(18, len(rows))
 
         # is first one about buttons
-        self.assertEqual(rows[0].get_attribute("name"), "Action Sheets, AAPLActionSheetViewController")
+        self.assertEqual(rows[0].get_attribute("name"), "Action Sheets")
 
         # there is nav bar inside the app
         nav_bar = self.driver.find_element_by_class_name("UIANavigationBar")
@@ -72,7 +74,7 @@ class ComplexIOSTests(unittest.TestCase):
 
         # Find the store link
         sleep(4) # let the page load, perhaps
-        logo = self.driver.find_element_by_id('gn-apple')
+        logo = self.driver.find_element_by_xpath('//*/UIATextField[@value="http://apple.com"]')
         self.assertIsNotNone(logo)
 
         # leave the webview
@@ -86,7 +88,7 @@ class ComplexIOSTests(unittest.TestCase):
         # get third row location
         row = self.driver.find_elements_by_class_name("UIATableCell")[2]
         self.assertEqual(row.location['x'], 0)
-        self.assertEqual(row.location['y'], 152)
+        self.assertEqual(row.location['y'], 178.8125)
 
     def test_screenshot(self):
         # make screenshot and get is as base64
@@ -121,7 +123,7 @@ class ComplexIOSTests(unittest.TestCase):
 
     def test_alert_interaction(self):
         # go to the alerts section
-        self.driver.find_element_by_name('Alert Views, AAPLAlertViewController').click()
+        self.driver.find_element_by_name('Alert Views').click()
         triggerOk = self.driver.find_element_by_accessibility_id("Simple")
 
         # TOFIX: Looks like alert object is not proper state
@@ -167,7 +169,7 @@ class ComplexIOSTests(unittest.TestCase):
         # get main view soruce
         source_main = self.driver.page_source
         self.assertIn("UIATableView", source_main)
-        self.assertIn("Text Fields, AAPLTextFieldViewController", source_main)
+        self.assertIn("Text Fields", source_main)
 
         # got to text fields section
         self._open_menu_position(13)

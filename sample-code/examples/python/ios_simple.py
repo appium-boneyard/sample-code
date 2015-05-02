@@ -20,7 +20,7 @@ class SimpleIOSTests(unittest.TestCase):
             desired_capabilities={
                 'app': app,
                 'platformName': 'iOS',
-                'platformVersion': '8.1',
+                'platformVersion': '8.3',
                 'deviceName': 'iPhone 6'
             })
 
@@ -29,7 +29,8 @@ class SimpleIOSTests(unittest.TestCase):
 
     def _populate(self):
         # populate text fields with two random numbers
-        els = self.driver.find_elements_by_ios_uiautomation('elements()')
+        els = [self.driver.find_element_by_name('TextField1'),
+               self.driver.find_element_by_name('TextField2')]
 
         self._sum = 0
         for i in range(2):
@@ -46,7 +47,7 @@ class SimpleIOSTests(unittest.TestCase):
 
         # is sum equal ?
         # sauce does not handle class name, so get fourth element
-        sum = self.driver.find_element_by_ios_uiautomation('elements()[3]').text
+        sum = self.driver.find_element_by_name('Answer').text
         self.assertEqual(int(sum), self._sum)
 
     def test_scroll(self):
@@ -54,10 +55,13 @@ class SimpleIOSTests(unittest.TestCase):
         els[5].click()
 
         sleep(1)
-        el = self.driver.find_element_by_accessibility_id('OK')
-        el.click()
+        try:
+            el = self.driver.find_element_by_accessibility_id('OK')
+            el.click()
+            sleep(1)
+        except:
+            pass
 
-        sleep(1)
         el = self.driver.find_element_by_xpath('//UIAMapView[1]')
 
         location = el.location
