@@ -65,7 +65,7 @@ describe("ios yiewd", function () {
       var computeEl = yield driver.elementByAccessibilityId('ComputeSumButton');
       yield computeEl.click();
       yield driver.sleep(1000);
-      var answerEl = driver.elementByIosUIAutomation('elements().withName("Answer");');
+      var answerEl = driver.elementByIosUIAutomation('.elements().withName("Answer");');
       var answer = yield answerEl.text();
       answer.should.equal("" + sum);
       done();
