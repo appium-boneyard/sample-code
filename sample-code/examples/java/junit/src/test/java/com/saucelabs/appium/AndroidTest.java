@@ -17,7 +17,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class AndroidTest {
 
-    private AppiumDriver driver;
+    private AppiumDriver<WebElement> driver;
 
     @Before
     public void setUp() throws Exception {
@@ -30,7 +30,7 @@ public class AndroidTest {
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("appPackage", "io.appium.android.apis");
         capabilities.setCapability("appActivity", ".ApiDemos");
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
     @After

@@ -39,7 +39,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 @SuppressWarnings("deprecation")
 public class SimpleTest {
 
-    private AppiumDriver driver;
+    private AppiumDriver<WebElement> driver;
 
     private List<Integer> values;
 
@@ -55,7 +55,7 @@ public class SimpleTest {
         capabilities.setCapability("platformVersion", "8.1");
         capabilities.setCapability("deviceName", "iPhone 6");
         capabilities.setCapability("app", app.getAbsolutePath());
-        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         values = new ArrayList<Integer>();
     }
 

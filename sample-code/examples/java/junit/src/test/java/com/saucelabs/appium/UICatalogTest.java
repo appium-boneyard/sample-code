@@ -46,7 +46,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 @SuppressWarnings("deprecation")
 public class UICatalogTest {
 
-    private AppiumDriver driver;
+    private AppiumDriver<MobileElement> driver;
 
     private WebElement row;
 
@@ -60,7 +60,7 @@ public class UICatalogTest {
         capabilities.setCapability("platformVersion", "8.1");
         capabilities.setCapability("deviceName", "iPhone 6");
         capabilities.setCapability("app", app.getAbsolutePath());
-        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new IOSDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
     @After
@@ -88,7 +88,7 @@ public class UICatalogTest {
         MobileElement table = (MobileElement)driver.findElementByClassName("UIATableView");
         assertNotNull(table);
         //is number of cells/rows inside table correct
-        List<WebElement> rows = table.findElementsByClassName("UIATableCell");
+        List<MobileElement> rows = table.findElementsByClassName("UIATableCell");
         assertEquals(12, rows.size());
         //is first one about buttons
         assertEquals("Buttons, Various uses of UIButton", rows.get(0).getAttribute("name"));
@@ -156,7 +156,7 @@ public class UICatalogTest {
         openMenuPosition(10);
 
         //trigger modal alert with cancel & ok buttons
-        List<WebElement> triggerOkCancel = driver.findElementsByAccessibilityId("Show OK-Cancel");
+        List<MobileElement> triggerOkCancel = driver.findElementsByAccessibilityId("Show OK-Cancel");
         triggerOkCancel.get(1).click();
         Alert alert = driver.switchTo().alert();
         //check if title of alert is correct
