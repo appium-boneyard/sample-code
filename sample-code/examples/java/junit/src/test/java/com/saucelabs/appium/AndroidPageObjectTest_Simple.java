@@ -1,5 +1,6 @@
 package com.saucelabs.appium;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -31,7 +32,7 @@ public class AndroidPageObjectTest_Simple {
 	    DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
 	    capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-	    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+	    driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         
 	    apiDemosPageObject = new ApiDemosListViewScreenSimple();
 	    //This time out is set because test can be run on slow Android SDK emulator

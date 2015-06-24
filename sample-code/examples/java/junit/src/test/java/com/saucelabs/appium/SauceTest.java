@@ -37,7 +37,7 @@ import com.saucelabs.junit.SauceOnDemandTestWatcher;
  */
 public class SauceTest implements SauceOnDemandSessionIdProvider {
 
-    private AppiumDriver driver;
+    private AppiumDriver<WebElement> driver;
 
     private List<Integer> values;
 
@@ -74,7 +74,7 @@ public class SauceTest implements SauceOnDemandSessionIdProvider {
         capabilities.setCapability("appiumVersion", "1.3.4");
         capabilities.setCapability("app", "https://appium.s3.amazonaws.com/TestApp7.1.app.zip");
 
-        driver = new IOSDriver(new URL(MessageFormat.format("http://{0}:{1}@ondemand.saucelabs.com:80/wd/hub", sauceUserName, sauceAccessKey)),
+        driver = new IOSDriver<WebElement>(new URL(MessageFormat.format("http://{0}:{1}@ondemand.saucelabs.com:80/wd/hub", sauceUserName, sauceAccessKey)),
                 capabilities);
         this.sessionId = driver.getSessionId().toString();
         values = new ArrayList<Integer>();

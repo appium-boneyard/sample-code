@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class MobileFindJavaTest {
 
-  private AppiumDriver            driver;
+  private AppiumDriver<?>            driver;
   private static final String     url    = "http://127.0.0.1:4723/wd/hub";
 
   @Test
@@ -28,7 +28,7 @@ public class MobileFindJavaTest {
     capabilities.setCapability("deviceName", "Android Emulator");
     capabilities.setCapability("appPackage", "com.android.settings");
     capabilities.setCapability("appActivity", ".Settings");
-    driver = new AndroidDriver(new URL(url), capabilities);
+    driver = new AndroidDriver<>(new URL(url), capabilities);
   }
 
   @After

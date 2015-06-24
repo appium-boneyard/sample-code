@@ -37,7 +37,7 @@ public class SafariTest {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("platformVersion", "8.1");
         capabilities.setCapability("browserName", "safari");
-        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),
+        driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"),
                 capabilities);
         //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
