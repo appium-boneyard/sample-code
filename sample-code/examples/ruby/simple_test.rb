@@ -87,7 +87,7 @@ module Calculator
     wait_true { !exists { tag('UIAAlert') } }
 
     # Alerts can be switched into
-    button('show alert').click # Get a button by its text
+    wait { button('show alert').click } # Get a button by its text
     alert         = driver.switch_to.alert # Get the text of the current alert, using
     # the Selenium::WebDriver directly
     alerting_text = alert.text
