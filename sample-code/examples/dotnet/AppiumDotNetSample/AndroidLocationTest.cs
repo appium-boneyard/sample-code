@@ -5,19 +5,16 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Remote;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Appium.Samples
 {
     [TestFixture()]
-    class AndroidConnectionTest
+    class AndroidLocationTest
     {
-        private AppiumDriver<IWebElement> driver;
+        private AppiumDriver<AndroidElement> driver;
         private bool allPassed = true;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void BeforeAll()
         {
             DesiredCapabilities capabilities = Env.isSauce() ?
@@ -31,38 +28,29 @@ namespace Appium.Samples
                 capabilities.SetCapability("tags", new string[] { "sample" });
             }
             Uri serverUri = Env.isSauce() ? AppiumServers.sauceURI : AppiumServers.localURI;
-            driver = new AndroidDriver<IWebElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);
+            driver = new AndroidDriver<AndroidElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);
             driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
-        }
-
-        [TestFixtureTearDown]
-        public void AfterAll()
-        {
-            try
-            {
-                if (Env.isSauce())
-                    ((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (allPassed ? "passed" : "failed"));
-            }
-            finally
-            {
-                driver.Quit();
-            }
         }
 
         [TearDown]
         public void AfterEach()
         {
             allPassed = allPassed && (TestContext.CurrentContext.Result.State == TestState.Success);
+            if (Env.isSauce())
+                ((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (allPassed ? "passed" : "failed"));
+            driver.Quit();
         }
 
-        [Test]
-        public void ConnectionTest()
+        [Test()]
+        public void setLocationTest()
         {
-            ((AndroidDriver<IWebElement>)driver).ConnectionType = ConnectionType.AirplaneMode;
-            Assert.AreEqual(ConnectionType.AirplaneMode, ((AndroidDriver<IWebElement>)driver).ConnectionType);
-
-            ((AndroidDriver<IWebElement>)driver).ConnectionType = ConnectionType.WifiOnly;
-            Assert.AreEqual(ConnectionType.WifiOnly, ((AndroidDriver<IWebElement>)driver).ConnectionType);
+            ((AndroidDriver<AndroidElement>)driver).ToggleLocationServices();
+            var l = new Location();
+            l.Altitude = 10;
+            l.Longitude = 10;
+            l.Latitude = 10;
+            driver.Location = l;
+            //var l1 = driver.Location;
         }
     }
 }

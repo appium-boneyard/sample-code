@@ -8,13 +8,14 @@ using OpenQA.Selenium;
 using System.Threading;
 using System.Drawing;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.Interfaces;
 
 namespace Appium.Samples
 {
 	[TestFixture ()]
 	public class AndroidWebviewTest
 	{
-		private AppiumDriver driver;
+		private IWebDriver driver;
 		private bool allPassed = true;
 
 		[TestFixtureSetUp]
@@ -29,7 +30,7 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-            driver = new AndroidDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+            driver = new AndroidDriver<IWebElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 
@@ -54,11 +55,11 @@ namespace Appium.Samples
 		[Test ()]
 		public void FindElementTestCase ()
 		{
-			driver.FindElementByName ("buttonStartWebviewCD").Click ();
+			driver.FindElement(By.Name("buttonStartWebviewCD")).Click ();
 			Thread.Sleep (5000);
 			if (!Env.isSauce ()) {
 				// Contexts don't work in android 4.3.3
-				var contexts = driver.Contexts;
+				var contexts = ((IContextAware) driver).Contexts;
 				string webviewContext = null;
 				for (int i = 0; i < contexts.Count; i++) {
 					Console.WriteLine (contexts [i]);
@@ -67,8 +68,8 @@ namespace Appium.Samples
 					}
 				}
 				Assert.IsNotNull (webviewContext);
-				driver.Context = webviewContext;
-				var el = driver.FindElementById ("name_input");
+                ((IContextAware) driver).Context = webviewContext;
+				var el = driver.FindElement(By.Id ("name_input"));
                 el.Click();
 				el.Clear ();
 				el.SendKeys ("Appium User");

@@ -14,7 +14,7 @@ namespace Appium.Samples
 	[TestFixture ()]
 	public class AndroidLocalServerTest
 	{
-		private AppiumDriver driver;
+		private AppiumDriver<IWebElement> driver;
 		private bool allPassed = true;
 		LocalServer server = new LocalServer (3001);
 
@@ -31,7 +31,7 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-            driver = new AndroidDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+            driver = new AndroidDriver<IWebElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 
