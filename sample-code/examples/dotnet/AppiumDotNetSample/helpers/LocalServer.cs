@@ -9,6 +9,7 @@ namespace Appium.Samples.Helpers
 {
 	public class LocalServer
 	{
+		private string rootDirectory = Env.ASSETS_ROOT_DIR;
 		private Thread listenThread;
 		private HttpListener httpListener;
 		private bool listening;
@@ -40,11 +41,7 @@ namespace Appium.Samples.Helpers
 			filename = filename.Substring(1);
 			if (string.IsNullOrEmpty(filename))
 				filename = "index.html";
-			if(filename == "index.html") {
-				filename = Path.Combine(Env.ASSETS_ROOT_DIR, filename);
-			} else {
-				filename = Path.Combine(Env.APPIUM_ASSETS_ROOT_DIR, filename);
-			}
+			filename = Path.Combine(rootDirectory, filename);
 
 			try {
 				Stream input = new FileStream(filename, FileMode.Open);

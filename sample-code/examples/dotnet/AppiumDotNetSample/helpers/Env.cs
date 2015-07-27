@@ -13,11 +13,8 @@ namespace Appium.Samples.Helpers
 	{
 		public static TimeSpan INIT_TIMEOUT_SEC = TimeSpan.FromSeconds(180);
 		public static TimeSpan IMPLICIT_TIMEOUT_SEC = TimeSpan.FromSeconds(5);
-		public static string ASSETS_ROOT_DIR = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + 
-			"../../../assets");
-		public static string APPIUM_ASSETS_ROOT_DIR = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + 
-			"../../../../../../assets");
-			
+		public static string ASSETS_ROOT_DIR = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "../../assets");
+
 		private static Dictionary<string, string> env;
 		private static bool initialized = false;
 		private static void Init() {

@@ -19,7 +19,7 @@ namespace Appium.Samples
 	[TestFixture ()]
 	public class AndroidComplexTest
 	{
-		private AppiumDriver driver;
+		private AndroidDriver<AppiumWebElement> driver;
 		private bool allPassed = true;
 
 		[SetUp]
@@ -34,7 +34,7 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-			driver = new AndroidDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+            driver = new AndroidDriver<AppiumWebElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 
@@ -52,31 +52,31 @@ namespace Appium.Samples
 			driver.FindElementByXPath ("//android.widget.TextView[@text='Animation']");
 			Assert.AreEqual( driver.FindElementByXPath ("//android.widget.TextView").Text,
 				"API Demos");
-			IList<IWebElement> els = driver.FindElementsByXPath ("//android.widget.TextView[contains(@text, 'Animat')]");
-			els = Filters.FilterDisplayed (els);
+			IList<AppiumWebElement> els = driver.FindElementsByXPath ("//android.widget.TextView[contains(@text, 'Animat')]");
+            var elsres = Filters.FilterDisplayed<AppiumWebElement>(els);
 			if (!Env.isSauce ()) {
-				Assert.AreEqual (els [0].Text, "Animation");
+				Assert.AreEqual (elsres [0].Text, "Animation");
 			}
 			driver.FindElementByName ("App").Click();
 			Thread.Sleep (3000);
-			els = ((AndroidDriver) driver).FindElementsByAndroidUIAutomator ("new UiSelector().clickable(true)");
+            els = driver.FindElementsByAndroidUIAutomator("new UiSelector().clickable(true)");
 			Assert.GreaterOrEqual (els.Count, 10);
 			Assert.IsNotNull (
 				driver.FindElementByXPath("//android.widget.TextView[@text='Action Bar']"));
 			els = driver.FindElementsByXPath ("//android.widget.TextView");
-			els = Filters.FilterDisplayed (els);
-			Assert.AreEqual (els[0].Text, "API Demos");
+            elsres = Filters.FilterDisplayed<AppiumWebElement>(els);
+            Assert.AreEqual(elsres[0].Text, "API Demos");
 			driver.Navigate ().Back ();
 		}
 
 		[Test]
 		public void StartActivityInThisAppTestCase()
 		{
-            ((AndroidDriver) driver).StartActivity("io.appium.android.apis", ".ApiDemos");
+            driver.StartActivity("io.appium.android.apis", ".ApiDemos");
 
 			_AssertActivityNameContains("Demos");
 
-            ((AndroidDriver) driver).StartActivity("io.appium.android.apis", ".accessibility.AccessibilityNodeProviderActivity");
+            driver.StartActivity("io.appium.android.apis", ".accessibility.AccessibilityNodeProviderActivity");
 
 			_AssertActivityNameContains("Node");
 		}
@@ -84,11 +84,11 @@ namespace Appium.Samples
 		[Test]
 		public void StartActivityInNewAppTestCase()
 		{
-            ((AndroidDriver) driver).StartActivity("io.appium.android.apis", ".ApiDemos");
+            driver.StartActivity("io.appium.android.apis", ".ApiDemos");
 
 			_AssertActivityNameContains("Demos");
 
-            ((AndroidDriver) driver).StartActivity("com.android.contacts", ".ContactsListActivity");
+            driver.StartActivity("com.android.contacts", ".ContactsListActivity");
 
 			_AssertActivityNameContains("Contact");
 		}
@@ -97,7 +97,7 @@ namespace Appium.Samples
 		{
 			Contract.Requires(!String.IsNullOrWhiteSpace(activityName));
 
-            String activity = ((AndroidDriver) driver).CurrentActivity;
+            String activity = driver.CurrentActivity;
 			Debug.WriteLine (activity);
 
 			Assert.IsNotNullOrEmpty(activity);
@@ -108,7 +108,7 @@ namespace Appium.Samples
 		public void ScrollTestCase ()
 		{
 			driver.FindElementByXPath (".//android.widget.TextView[@text='Animation']");
-			IList<IWebElement> els = driver.FindElementsByXPath (".//android.widget.TextView");
+			IList<AppiumWebElement> els = driver.FindElementsByXPath (".//android.widget.TextView");
 			var loc1 = els [7].Location;
 			var loc2 = els [3].Location;
 			var swipe = Actions.Swipe (driver, loc1.X, loc1.Y, loc2.X, loc2.Y, 800);
@@ -212,6 +212,14 @@ namespace Appium.Samples
 			Thread.Sleep (1000);
             driver.GetScreenshot();
 		}
+
+        [Test()]
+        public void HideKeyBoardTestCase()
+        {
+            driver.StartActivity("io.appium.android.apis", ".app.CustomTitle");
+            driver.FindElement(By.Id("io.appium.android.apis:id/left_text_edit")).Clear();
+            driver.HideKeyboard();
+        }
 	}
 }
 

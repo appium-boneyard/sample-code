@@ -14,7 +14,7 @@ namespace Appium.Samples
 	[TestFixture ()]
 	public class AndroidSimpleTest
 	{
-		private AppiumDriver driver;
+		private AndroidDriver<AndroidElement> driver;
 		private bool allPassed = true;
 
 		[TestFixtureSetUp]
@@ -29,7 +29,7 @@ namespace Appium.Samples
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
 			Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.localURI;
-            driver = new AndroidDriver(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
+            driver = new AndroidDriver<AndroidElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 
@@ -54,13 +54,24 @@ namespace Appium.Samples
 		[Test ()]
 		public void FindElementTestCase ()
 		{
-			driver.FindElementByAccessibilityId ("Graphics").Click ();
+            By byAccessibilityId = new ByAccessibilityId("Graphics");
+            Assert.AreNotEqual(driver.FindElement(byAccessibilityId).Text, null);
+            Assert.GreaterOrEqual(driver.FindElements(byAccessibilityId).Count, 1);
+			
+            driver.FindElementByAccessibilityId ("Graphics").Click ();
 			Assert.IsNotNull (driver.FindElementByAccessibilityId ("Arcs"));
 			driver.Navigate ().Back ();
-			Assert.IsNotNull (driver.FindElementByName ("App"));
-			var els = ((AndroidDriver) driver).FindElementsByAndroidUIAutomator ("new UiSelector().clickable(true)");
-            Assert.GreaterOrEqual(els.Count, 12);
-            els = ((AndroidDriver)driver).FindElementsByAndroidUIAutomator("new UiSelector().enabled(true)");
+
+            Assert.IsNotNull(driver.FindElementByName("App"));
+            
+            Assert.IsNotNull(driver.FindElement(new ByAndroidUIAutomator("new UiSelector().clickable(true)")).Text);
+			var els = driver.FindElementsByAndroidUIAutomator ("new UiSelector().clickable(true)");
+            Assert.GreaterOrEqual(els.Count, 12); 
+
+            var els2 = driver.FindElements(new ByAndroidUIAutomator("new UiSelector().enabled(true)"));
+            Assert.GreaterOrEqual(els2.Count, 20);
+
+            els = driver.FindElementsByAndroidUIAutomator("new UiSelector().enabled(true)");
 			Assert.GreaterOrEqual (els.Count, 20);
 			Assert.IsNotNull (driver.FindElementByXPath ("//android.widget.TextView[@text='API Demos']"));
 		}
