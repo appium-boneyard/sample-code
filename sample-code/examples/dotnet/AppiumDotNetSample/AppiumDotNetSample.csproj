@@ -28,10 +28,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="appium-dotnet-driver">
-      <HintPath>..\packages\Appium.WebDriver.1.3.0.1\lib\net40\appium-dotnet-driver.dll</HintPath>
+      <HintPath>..\packages\Appium.WebDriver.1.4.0.2\lib\net40\appium-dotnet-driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net40-client\Castle.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
@@ -40,15 +46,18 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.2.46.0\lib\net40\WebDriver.dll</HintPath>
+      <HintPath>..\packages\Selenium.WebDriver.2.47.0\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.2.46.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <HintPath>..\packages\Selenium.Support.2.47.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidComplexTest.cs" />
     <Compile Include="AndroidConnectionTest.cs" />
+    <Compile Include="AndroidGestureTest.cs" />
     <Compile Include="AndroidLocalServerTest.cs" />
     <Compile Include="AndroidLocationTest.cs" />
     <Compile Include="AndroidOrientationTest.cs" />
@@ -63,15 +72,35 @@
     <Compile Include="helpers\LocalServer.cs" />
     <Compile Include="IosActionsTest.cs" />
     <Compile Include="IosComplexTest.cs" />
+    <Compile Include="IosGestureTest.cs" />
     <Compile Include="IosLocalServerTest.cs" />
     <Compile Include="IOSLocationTest.cs" />
     <Compile Include="IosOrientationTest.cs" />
     <Compile Include="IosSimpleTest.cs" />
     <Compile Include="IosWebviewTest.cs" />
+    <Compile Include="PageObjects\AndroidPageObjectChecksAttributeMixOnNativeApp1.cs" />
+    <Compile Include="PageObjects\AndroidPageObjectChecksAttributeMixOnNativeApp2.cs" />
+    <Compile Include="PageObjects\AndroidPageObjectChecksAttributesForNativeAndroidApp.cs" />
+    <Compile Include="PageObjects\AndroidPageObjectChecksSelendroidModeOnNativeApp.cs" />
+    <Compile Include="PageObjects\AndroidPageObjectChecksSeleniumFindsByCompatibility.cs" />
+    <Compile Include="PageObjects\AndroidWebView.cs" />
+    <Compile Include="PageObjects\IOSPageObjectChecksAttributeMixOnNativeApp.cs" />
+    <Compile Include="PageObjects\IOSPageObjectChecksAttributesForNativeIOSApp.cs" />
+    <Compile Include="PageObjectTests\Android\AndroidNativeAppAttributesTest.cs" />
+    <Compile Include="PageObjectTests\Android\AndroidTestThatChecksAttributeMix1.cs" />
+    <Compile Include="PageObjectTests\Android\AndroidTestThatChecksAttributeMix2.cs" />
+    <Compile Include="PageObjectTests\Android\AndroidTestThatChecksAttributeMix3SelendroidMode.cs" />
+    <Compile Include="PageObjectTests\Android\AndroidWebViewTest.cs" />
+    <Compile Include="PageObjectTests\Android\SeleniumAttributesCompatipilityTest.cs" />
+    <Compile Include="PageObjectTests\DesktopBrowserCompatibility\DesctopBrowserCompatibilityTest.cs" />
+    <Compile Include="PageObjectTests\IOS\IOSNativeAppAttributesTest.cs" />
+    <Compile Include="PageObjectTests\IOS\IOSTestThatChecksAttributeMix.cs" />
+    <Compile Include="PageObjectTests\TimeOutManagement\TimeOutManagementTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="AppiumDotNetSample.csproj" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
 </Project>
