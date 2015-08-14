@@ -12,7 +12,7 @@ class SimpleIOSTests(unittest.TestCase):
     def setUp(self):
         # set up appium
         app = os.path.join(os.path.dirname(__file__),
-                           '../../apps/TestApp/build/Release-iphonesimulator',
+                           '../../apps/TestApp/build/release-iphonesimulator',
                            'TestApp.app')
         app = os.path.abspath(app)
         self.driver = webdriver.Remote(

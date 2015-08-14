@@ -55,7 +55,7 @@ public class UICatalogTest {
     public void setUp() throws Exception {
         // set up appium
         File classpathRoot = new File(System.getProperty("user.dir"));
-        File appDir = new File(classpathRoot, "../../../apps/UICatalog/build/Release-iphonesimulator");
+        File appDir = new File(classpathRoot, "../../../apps/UICatalog/build/release-iphonesimulator");
         File app = new File(appDir, "UICatalog.app");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformVersion", "8.1");

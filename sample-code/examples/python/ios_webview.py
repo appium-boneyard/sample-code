@@ -14,7 +14,7 @@ class WebViewIOSTests(unittest.TestCase):
     def setUp(self):
         # set up appium
         app = os.path.join(os.path.dirname(__file__),
-                           '../../apps/WebViewApp/build/Release-iphonesimulator',
+                           '../../apps/WebViewApp/build/release-iphonesimulator',
                            'WebViewApp.app')
         app = os.path.abspath(app)
         self.driver = webdriver.Remote(

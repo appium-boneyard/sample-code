@@ -1,7 +1,7 @@
 if (process.env.DEV) {
-  exports.iosTestApp = "sample-code/apps/TestApp/build/Release-iphonesimulator/TestApp.app";
-  exports.iosWebviewApp = "sample-code/apps/WebViewApp/build/Release-iphonesimulator/WebViewApp.app";
-  exports.iosUICatalogApp = "sample-code/apps/UICatalog/build/Release-iphonesimulator/UICatalog.app";
+  exports.iosTestApp = "sample-code/apps/TestApp/build/release-iphonesimulator/TestApp.app";
+  exports.iosWebviewApp = "sample-code/apps/WebViewApp/build/release-iphonesimulator/WebViewApp.app";
+  exports.iosUICatalogApp = "sample-code/apps/UICatalog/build/release-iphonesimulator/UICatalog.app";
   exports.androidApiDemos = "sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk";
   exports.selendroidTestApp = "sample-code/apps/selendroid-test-app.apk";
 } else {

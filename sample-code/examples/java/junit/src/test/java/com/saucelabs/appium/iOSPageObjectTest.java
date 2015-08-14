@@ -41,7 +41,7 @@ public class iOSPageObjectTest {
 	@Before
 	public void setUp() throws Exception {
         File appDir = new File(System.getProperty("user.dir"), 
-        		"../../../apps/TestApp/build/Release-iphonesimulator");
+        		"../../../apps/TestApp/build/release-iphonesimulator");
         File app = new File(appDir, "TestApp.app");
 	    DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
