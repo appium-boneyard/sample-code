@@ -66,7 +66,7 @@ public class AndroidPageObjectTest_PageObjectLikeComplexElement {
 	
 	/**
 	 * Page Object best practice is to describe interactions with target 
-	 * elements by methods. This methods describe business logic of the page/screen.
+	 * elements by methods. These methods describe business logic of the page/screen.
 	 * Here test interacts with lazy instantiated elements directly.
 	 * It was done so just for obviousness
 	 */
