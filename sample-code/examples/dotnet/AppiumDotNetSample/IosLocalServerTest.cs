@@ -3,12 +3,8 @@ using System;
 using Appium.Samples.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Remote;
-using System.Collections.Generic;
 using OpenQA.Selenium;
 using System.Threading;
-using System.Drawing;
-using OpenQA.Selenium.Appium.Interfaces;
-using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Appium.iOS;
 
 namespace Appium.Samples

@@ -6,10 +6,6 @@ using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 using OpenQA.Selenium;
 using System.Threading;
-using System.Drawing;
-using OpenQA.Selenium.Appium.Interfaces;
-using OpenQA.Selenium.Appium.MultiTouch;
-using System.Collections.ObjectModel;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Appium.iOS.Enums;
 
