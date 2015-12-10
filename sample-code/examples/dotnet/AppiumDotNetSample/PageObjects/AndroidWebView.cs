@@ -3,9 +3,6 @@ using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Appium.Samples.PageObjects
 {

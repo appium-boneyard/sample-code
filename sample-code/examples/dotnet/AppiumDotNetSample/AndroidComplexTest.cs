@@ -6,8 +6,6 @@ using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 using OpenQA.Selenium;
 using System.Threading;
-using System.Drawing;
-using System.Collections;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Appium.Interfaces;
@@ -135,11 +133,11 @@ namespace Appium.Samples
 			var el = FindTouchPaint ();
 			el.Click ();
 			Thread.Sleep (5000);
-			ITouchAction a1 = new TouchAction ();
+			ITouchAction a1 = new TouchAction (driver);
 			a1.Press (140, 100).Release ();
-			ITouchAction a2 = new TouchAction ();
+			ITouchAction a2 = new TouchAction (driver);
 			a2.Press (250, 100).Release ();
-			ITouchAction smile = new TouchAction ();
+			ITouchAction smile = new TouchAction (driver);
 			smile
 				.Press (110, 200)
 				.MoveTo(1, 1)

@@ -3,10 +3,7 @@ using System;
 using Appium.Samples.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Remote;
-using System.Collections.Generic;
 using OpenQA.Selenium;
-using System.Threading;
-using System.Drawing;
 using OpenQA.Selenium.Appium.Android;
 
 namespace Appium.Samples
