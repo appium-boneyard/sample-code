@@ -2,6 +2,7 @@ package com.saucelabs.appium.page_object.widgets;
 
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -28,6 +29,7 @@ public class HtmlOverrideWidgetTest implements WidgetTest{
     public static void beforeClass() throws Exception {
 
         if (Platform.getCurrent().is(Platform.WINDOWS)) {
+            FileUtils.copyFile(new File("../../../apps/chromedriverWin"), new File("../../../apps/chromedriver.exe"));
             System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY,
                     new File("../../../apps/chromedriver.exe").getAbsolutePath());
         }
