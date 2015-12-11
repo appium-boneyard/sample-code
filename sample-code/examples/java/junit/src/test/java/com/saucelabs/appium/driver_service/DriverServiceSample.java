@@ -65,7 +65,7 @@ public class DriverServiceSample {
 
     @Test
     public void checkTheAbilityToStartADriverWithTheDefaultServerAndNotDefaultNode(){
-        System.setProperty(AppiumServiceBuilder.APPIUM_NODE_PROPERTY, findCustomNode().getAbsolutePath());
+        System.setProperty(AppiumServiceBuilder.APPIUM_PATH, findCustomNode().getAbsolutePath());
 
         File classpathRoot = new File(System.getProperty("user.dir"));
         File appDir = new File(classpathRoot, "../../../apps/ApiDemos/bin");
@@ -79,7 +79,7 @@ public class DriverServiceSample {
             new AndroidDriver<MobileElement>(capabilities).quit();
         }
         finally {
-            System.clearProperty(AppiumServiceBuilder.APPIUM_NODE_PROPERTY);
+            System.clearProperty(AppiumServiceBuilder.APPIUM_PATH);
         }
 
     }
