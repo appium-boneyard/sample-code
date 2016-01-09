@@ -1,36 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Appium.Samples.Helpers
 {
-	public class Apps
-	{
-		static Dictionary<string, string> DEV = new Dictionary<string, string> {
-			{ "iosTestApp", "sample-code/apps/TestApp/build/release-iphonesimulator/TestApp.app" },
-			{ "iosWebviewApp", "sample-code/apps/WebViewApp/build/release-iphonesimulator/WebViewApp.app" },
-			{ "iosUICatalogApp", "sample-code/apps/UICatalog/build/release-iphonesimulator/UICatalog.app" },
-			{ "androidApiDemos", "sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk" },
-			{ "selendroidTestApp", "sample-code/apps/selendroid-test-app.apk" },
-			{ "iosWebviewAppLocal", "sample-code/apps/WebViewApp/build/release-iphonesimulator/WebViewApp.app" },
-			{ "androidApiDemosLocal", "sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk" }
-		};
+    public class Apps
+    {
+        private static bool isInited;
+        private static Dictionary<string, string> Appz;
 
-		static Dictionary<string, string> DEFAULT = new Dictionary<string, string> {
-			{ "iosTestApp", "http://appium.github.io/appium/assets/TestApp7.1.app.zip" },
-			{ "iosWebviewApp", "http://appium.github.io/appium/assets/WebViewApp7.1.app.zip" },
-			{ "iosUICatalogApp", "http://appium.github.io/appium/assets/UICatalog7.1.app.zip" },
-			{ "androidApiDemos", "http://appium.github.io/appium/assets/ApiDemos-debug.apk" },
-			{ "selendroidTestApp", "http://appium.github.io/appium/assets/selendroid-test-app-0.10.0.apk" },
-			{ "iosWebviewAppLocal", "http://localhost:3000/WebViewApp7.1.app.zip" },
-			{ "androidApiDemosLocal", "http://localhost:3001/ApiDemos-debug.apk" }
-		};
-			
-		public static string get(string appKey) {
-			if (Env.isDev()) {
-				return DEV[appKey];
-			} else {
-				return DEFAULT[appKey];			
-			}
-		}
-	}
+        private static void Init()
+        {
+            if (!isInited)
+            {
+                if (Env.isSauce())
+                {
+                    Appz = new Dictionary<string, string> {
+                        { "iosTestApp", "http://appium.github.io/appium/assets/TestApp7.1.app.zip" },
+                        { "iosWebviewApp", "http://appium.github.io/appium/assets/WebViewApp7.1.app.zip" },
+                        { "iosUICatalogApp", "http://appium.github.io/appium/assets/UICatalog7.1.app.zip" },
+                        { "androidApiDemos", "http://appium.github.io/appium/assets/ApiDemos-debug.apk" },
+                        { "selendroidTestApp", "http://appium.github.io/appium/assets/selendroid-test-app-0.10.0.apk" }
+                    };
+                }
+                else
+                {
+                    File.WriteAllBytes("ApiDemos-debug.apk", AppiumDotNetSample.Properties.Resources.ApiDemos_debug);
+                    File.WriteAllBytes("selendroid-test-app-0.10.0.apk", AppiumDotNetSample.Properties.Resources.selendroid_test_app_0_10_0);
+                    File.WriteAllBytes("TestApp7.1.app.zip", AppiumDotNetSample.Properties.Resources.TestApp7_1_app);
+                    File.WriteAllBytes("WebViewApp7.1.app.zip", AppiumDotNetSample.Properties.Resources.WebViewApp7_1_app);
+                    File.WriteAllBytes("UICatalog7.1.app.zip", AppiumDotNetSample.Properties.Resources.UICatalog);
+
+                    Appz = new Dictionary<string, string> {
+                        { "iosTestApp", new FileInfo("TestApp7.1.app.zip").FullName },
+                        { "iosWebviewApp", new FileInfo("WebViewApp7.1.app.zip").FullName },
+                        { "iosUICatalogApp", new FileInfo("UICatalog7.1.app.zip").FullName },
+                        { "androidApiDemos", new FileInfo("ApiDemos-debug.apk").FullName },
+                        { "selendroidTestApp", new FileInfo("selendroid-test-app-0.10.0.apk").FullName }
+                    };
+                }
+                isInited = true;
+            }
+        }
+
+        public static string get(string appKey)
+        {
+            Init();
+            return Appz[appKey];
+        }
+    }
 }
