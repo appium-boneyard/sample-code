@@ -22,7 +22,7 @@ namespace Appium.Samples.PageObjectTests.Android
         public void BeforeAll()
         {
             DesiredCapabilities capabilities = Env.isSauce() ?
-                Caps.getAndroid18Caps(Apps.get("selendroidTestApp")) :
+                Caps.getAndroid501Caps(Apps.get("selendroidTestApp")) :
                 Caps.getAndroid19Caps(Apps.get("selendroidTestApp"));
             if (Env.isSauce())
             {
@@ -31,7 +31,7 @@ namespace Appium.Samples.PageObjectTests.Android
                 capabilities.SetCapability("name", "android - webview");
                 capabilities.SetCapability("tags", new string[] { "sample" });
             }
-            Uri serverUri = Env.isSauce() ? AppiumServers.sauceURI : AppiumServers.localURI;
+            Uri serverUri = Env.isSauce() ? AppiumServers.sauceURI : AppiumServers.LocalServiceURIAndroid;
             driver = new AndroidDriver<AppiumWebElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);
             TimeOutDuration timeSpan = new TimeOutDuration(new TimeSpan(0, 0, 0, 5, 0));
             pageObject = new AndroidWebView();
