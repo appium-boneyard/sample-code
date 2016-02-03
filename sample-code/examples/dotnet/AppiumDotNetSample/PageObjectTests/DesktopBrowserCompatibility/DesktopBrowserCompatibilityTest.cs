@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace Appium.Samples.PageObjectTests.DesktopBrowserCompatibility
 {
     [TestFixture()]
-    public class DesctopBrowserCompatibilityTest
+    public class DesktopBrowserCompatibilityTest
     {
         private IWebDriver driver;
         private bool allPassed = true;
