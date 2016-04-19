@@ -1,3 +1,11 @@
+exports.ios92 = {
+  browserName: '',
+  'appium-version': '1.3',
+  platformName: 'iOS',
+  platformVersion: '9.2',
+  deviceName: 'iPhone 5s',
+  app: undefined // will be set later
+};
 
 exports.ios81 = {
   browserName: '',
