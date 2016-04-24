@@ -60,7 +60,7 @@ describe("android complex", function () {
         if (!process.env.SAUCE) {
           return el.text().should.become('Animation');
         }
-      }).elementByName('App').click()
+        }).elementByXPath('//android.widget.TextView[@text=\'App\']').click()
         .sleep(3000)
       .elementsByAndroidUIAutomator('new UiSelector().clickable(true)')
         .should.eventually.have.length.above(10)
@@ -106,14 +106,14 @@ describe("android complex", function () {
               duration: 800
             });
           });
-        }).elementByName('Touch Paint')
+        }).elementByXPath('//android.widget.TextView[@text=\'Touch Paint\']')
         .catch(function () {
           return findTouchPaint();
         });
     }
 
     return driver
-      .elementByName('Graphics').click()
+      .elementByXPath('//android.widget.TextView[@text=\'Graphics\']').click()
       .then(findTouchPaint)
       .click()
       .sleep(5000)
