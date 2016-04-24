@@ -24,10 +24,7 @@ class ComplexIOSTests(unittest.TestCase):
         # set up appium
         # ** Important Note **
         # Make sure you have build the UICatalog applcation in your local repository
-        app = os.path.join(os.path.dirname(__file__),
-                           '../../apps/UICatalog/build/release-iphonesimulator',
-                           'UICatalog.app')
-        app = os.path.abspath(app)
+        app = os.path.abspath('../../apps/UICatalog/build/release-iphonesimulator/UICatalog.app')
         self.driver = webdriver.Remote(
             command_executor='http://127.0.0.1:4723/wd/hub',
             desired_capabilities={
