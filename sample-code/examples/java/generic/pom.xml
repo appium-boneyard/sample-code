@@ -25,7 +25,7 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>2.1.0</version>
+            <version>3.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.saucelabs</groupId>
