@@ -3,17 +3,16 @@ package com.saucelabs.appium;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
+import java.net.URL;
+import java.util.List;
 
 public class AndroidContactsTest {
     private AppiumDriver<AndroidElement> driver;
@@ -40,13 +39,13 @@ public class AndroidContactsTest {
 
     @Test
     public void addContact(){
-        WebElement el = driver.findElement(By.name("Add Contact"));
+        WebElement el = driver.findElement(By.xpath(".//*[@text='Add Contact']"));
         el.click();
         List<AndroidElement> textFieldsList = driver.findElementsByClassName("android.widget.EditText");
         textFieldsList.get(0).sendKeys("Some Name");
         textFieldsList.get(2).sendKeys("Some@example.com");
         driver.swipe(100, 500, 100, 100, 2);
-        driver.findElementByName("Save").click();
+        driver.findElementByXPath(".//*[@text='Save']").click();
     }
 
 }

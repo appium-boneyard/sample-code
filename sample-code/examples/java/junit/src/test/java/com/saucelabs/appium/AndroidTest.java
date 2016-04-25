@@ -1,19 +1,19 @@
 package com.saucelabs.appium;
 
-import static org.junit.Assert.assertEquals;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class AndroidTest {
 
@@ -40,11 +40,11 @@ public class AndroidTest {
 
     @Test
     public void apiDemo(){
-        WebElement el = driver.findElement(By.name("Animation"));
+        WebElement el = driver.findElement(By.xpath(".//*[@text=Animation]"));
         assertEquals("Animation", el.getText());
         el = driver.findElementByClassName("android.widget.TextView");
         assertEquals("API Demos", el.getText());
-        el = driver.findElement(By.name("App"));
+        el = driver.findElement(By.xpath(".//*[@text='App']"));
         el.click();
         List<WebElement> els = driver.findElementsByClassName("android.widget.TextView");
         assertEquals("Activity", els.get(2).getText());
