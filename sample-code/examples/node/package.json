@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Appium Sample Code",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/appium/sample-code.git"
@@ -26,8 +23,26 @@
     "chai-as-promised": "^5.0.0",
     "colors": "^1.0.3",
     "express": "^4.12.3",
+    "mocha": "^2.4.5",
     "q": "^2.0.2",
     "underscore": "^1.8.3",
     "wd": "^0.3.11"
+  },
+  "config": {
+    "sauce":""
+  },
+    "scripts": {
+    "ios-simple": "SAUCE=$npm_package_config_sauce mocha ios-simple.js",
+    "ios-complex": "SAUCE=$npm_package_config_sauce mocha ios-complex.js",
+    "ios-webview": "SAUCE=$npm_package_config_sauce mocha ios-webview.js",
+    "ios-actions": "SAUCE=$npm_package_config_sauce mocha ios-actions.js",
+    "ios-local-server": "SAUCE=$npm_package_config_sauce mocha ios-local-server.js",
+    "ios-selenium-webdriver-bridge": "SAUCE=$npm_package_config_sauce mocha ios-selenium-webdriver-bridge.js",
+    "ios-yiewd": "SAUCE=$npm_package_config_sauce mocha ios-yiewd.js",
+    "android-simple": "SAUCE=$npm_package_config_sauce mocha android-simple.js",
+    "android-complex": "SAUCE=$npm_package_config_sauce mocha android-complex.js",
+    "android-webview": "SAUCE=$npm_package_config_sauce mocha android-webview.js",
+    "android-actions": "SAUCE=$npm_package_config_sauce mocha android-actions.js",
+    "selendroid-simple": "SAUCE=$npm_package_config_sauce mocha selendroid-simple.js"
   }
 }
