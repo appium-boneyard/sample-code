@@ -17,16 +17,16 @@ describe("android complex", function () {
   var allPassed = true;
 
   before(function () {
-    var serverConfig = process.env.SAUCE ?
+    var serverConfig = process.env.npm_package_config_sauce ?
       serverConfigs.sauce : serverConfigs.local;
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
-    var desired = process.env.SAUCE ?
+    var desired = process.env.npm_package_config_sauce ?
       _.clone(require("./helpers/caps").android18) :
       _.clone(require("./helpers/caps").android19);
     desired.app = require("./helpers/apps").androidApiDemos;
-    if (process.env.SAUCE) {
+    if (process.env.npm_package_config_sauce) {
       desired.name = 'android - complex';
       desired.tags = ['sample'];
     }
@@ -39,7 +39,7 @@ describe("android complex", function () {
     return driver
       .quit()
       .finally(function () {
-        if (process.env.SAUCE) {
+        if (process.env.npm_package_config_sauce) {
           return driver.sauceJobStatus(allPassed);
         }
       });
@@ -57,7 +57,7 @@ describe("android complex", function () {
       .elementsByXPath('//android.widget.TextView[contains(@text, "Animat")]')
         .then(_p.filterDisplayed).first()
       .then(function (el) {
-        if (!process.env.SAUCE) {
+        if (!process.env.npm_package_config_sauce) {
           return el.text().should.become('Animation');
         }
         }).elementByXPath('//android.widget.TextView[@text=\'App\']').click()

@@ -28,21 +28,18 @@
     "underscore": "^1.8.3",
     "wd": "^0.3.11"
   },
-  "config": {
-    "sauce":""
-  },
     "scripts": {
-    "ios-simple": "SAUCE=$npm_package_config_sauce mocha ios-simple.js",
-    "ios-complex": "SAUCE=$npm_package_config_sauce mocha ios-complex.js",
-    "ios-webview": "SAUCE=$npm_package_config_sauce mocha ios-webview.js",
-    "ios-actions": "SAUCE=$npm_package_config_sauce mocha ios-actions.js",
-    "ios-local-server": "SAUCE=$npm_package_config_sauce mocha ios-local-server.js",
-    "ios-selenium-webdriver-bridge": "SAUCE=$npm_package_config_sauce mocha ios-selenium-webdriver-bridge.js",
-    "ios-yiewd": "SAUCE=$npm_package_config_sauce mocha ios-yiewd.js",
-    "android-simple": "SAUCE=$npm_package_config_sauce mocha android-simple.js",
-    "android-complex": "SAUCE=$npm_package_config_sauce mocha android-complex.js",
-    "android-webview": "SAUCE=$npm_package_config_sauce mocha android-webview.js",
-    "android-actions": "SAUCE=$npm_package_config_sauce mocha android-actions.js",
-    "selendroid-simple": "SAUCE=$npm_package_config_sauce mocha selendroid-simple.js"
+    "ios-simple": "mocha ios-simple.js",
+    "ios-complex": "mocha ios-complex.js",
+    "ios-webview": "mocha ios-webview.js",
+    "ios-actions": "mocha ios-actions.js",
+    "ios-local-server": "mocha ios-local-server.js",
+    "ios-selenium-webdriver-bridge": "mocha ios-selenium-webdriver-bridge.js",
+    "ios-yiewd": "mocha --harmony ios-yiewd.js",
+    "android-simple": "mocha android-simple.js",
+    "android-complex": "mocha android-complex.js",
+    "android-webview": "mocha android-webview.js",
+    "android-actions": "mocha android-actions.js",
+    "selendroid-simple": "mocha selendroid-simple.js"
   }
 }

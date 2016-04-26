@@ -12,16 +12,16 @@ describe("android simple", function () {
   var allPassed = true;
 
   before(function () {
-    var serverConfig = process.env.SAUCE ?
+    var serverConfig = process.env.npm_package_config_sauce ?
       serverConfigs.sauce : serverConfigs.local;
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
-    var desired = process.env.SAUCE ?
+    var desired = process.env.npm_package_config_sauce ?
       _.clone(require("./helpers/caps").android18) :
       _.clone(require("./helpers/caps").android19);
     desired.app = require("./helpers/apps").androidApiDemos;
-    if (process.env.SAUCE) {
+    if (process.env.npm_package_config_sauce) {
       desired.name = 'android - simple';
       desired.tags = ['sample'];
     }
@@ -34,7 +34,7 @@ describe("android simple", function () {
     return driver
       .quit()
       .finally(function () {
-        if (process.env.SAUCE) {
+        if (process.env.npm_package_config_sauce) {
           return driver.sauceJobStatus(allPassed);
         }
       });
