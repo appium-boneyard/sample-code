@@ -34,8 +34,8 @@ describe("ios selenium webdriver bridge", function () {
     });
     caps.set('app', require("./helpers/apps").iosTestApp);
     if (process.env.npm_package_config_sauce) {
-      caps.set('username', process.env.npm_package_config_username);
-      caps.set('accessKey', process.env.npm_package_config_key);
+      caps.set('username', process.env.npm_package_config_sauce_username);
+      caps.set('accessKey', process.env.npm_package_config_sauce_access_key);
       caps.set('name', 'ios - selenium-webdriver bridge');
       caps.set('tags', ['sample']);
       builder = new webdriver.Builder()
