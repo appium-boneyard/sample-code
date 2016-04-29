@@ -12,14 +12,14 @@ describe("ios safari", function () {
   var allPassed = true;
 
   before(function () {
-    var serverConfig = process.env.SAUCE ?
+    var serverConfig = process.env.npm_package_config_sauce ?
       serverConfigs.sauce : serverConfigs.local;
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
     var desired = _.clone(require("./helpers/caps").ios81);
     desired.browserName = 'safari';
-    if (process.env.SAUCE) {
+    if (process.env.npm_package_config_sauce) {
       desired.name = 'ios - safari';
       desired.tags = ['sample'];
     }
@@ -30,7 +30,7 @@ describe("ios safari", function () {
     return driver
       .quit()
       .finally(function () {
-        if (process.env.SAUCE) {
+        if (process.env.npm_package_config_sauce) {
           return driver.sauceJobStatus(allPassed);
         }
       });

@@ -14,14 +14,14 @@ describe("ios local server", function () {
 
   before(function () {
     localServer.start();
-    var serverConfig = process.env.SAUCE ?
+    var serverConfig = process.env.npm_package_config_sauce ?
       serverConfigs.sauce : serverConfigs.local;
     driver = wd.promiseChainRemote(serverConfig);
     require("./helpers/logging").configure(driver);
 
     var desired = _.clone(require("./helpers/caps").ios81);
     desired.app = require("./helpers/apps").iosWebviewAppLocal;
-    if (process.env.SAUCE) {
+    if (process.env.npm_package_config_sauce) {
       desired.name = 'ios - local server';
       desired.tags = ['sample'];
     }
@@ -33,7 +33,7 @@ describe("ios local server", function () {
     return driver
       .quit()
       .finally(function () {
-        if (process.env.SAUCE) {
+        if (process.env.npm_package_config_sauce) {
           return driver.sauceJobStatus(allPassed);
         }
       });

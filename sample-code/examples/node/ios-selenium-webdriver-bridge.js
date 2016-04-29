@@ -33,9 +33,9 @@ describe("ios selenium webdriver bridge", function () {
       caps.set(key, val);
     });
     caps.set('app', require("./helpers/apps").iosTestApp);
-    if (process.env.SAUCE) {
-      caps.set('username', process.env.SAUCE_USERNAME);
-      caps.set('accessKey', process.env.SAUCE_ACCESS_KEY);
+    if (process.env.npm_package_config_sauce) {
+      caps.set('username', process.env.npm_package_config_username);
+      caps.set('accessKey', process.env.npm_package_config_key);
       caps.set('name', 'ios - selenium-webdriver bridge');
       caps.set('tags', ['sample']);
       builder = new webdriver.Builder()
@@ -59,7 +59,7 @@ describe("ios selenium webdriver bridge", function () {
     return new Q(driver
       .quit())
       .finally(function () {
-        if (process.env.SAUCE) {
+        if (process.env.npm_package_config_sauce) {
           return wdDriver.sauceJobStatus(allPassed);
         }
       });

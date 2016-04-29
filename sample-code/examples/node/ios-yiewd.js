@@ -15,7 +15,7 @@ describe("ios yiewd", function () {
   var driver;
   var allPassed = true;
 
-  var serverConfig = process.env.SAUCE ?
+  var serverConfig = process.env.npm_package_config_sauce ?
     serverConfigs.sauce : serverConfigs.local;
   driver = wd.remote(serverConfig.host,serverConfig.port, 
     serverConfig.username, serverConfig.password);
@@ -25,7 +25,7 @@ describe("ios yiewd", function () {
     driver.run(function* () {      
       var desired = _.clone(require("./helpers/caps").ios81);
       desired.app = require("./helpers/apps").iosTestApp;
-      if (process.env.SAUCE) {
+      if (process.env.npm_package_config_sauce) {
         desired.name = 'ios - simple';
         desired.tags = ['sample'];
       }
@@ -39,7 +39,7 @@ describe("ios yiewd", function () {
       try {
         yield driver.quit();
       } catch (ign) {
-        if (process.env.SAUCE) {
+        if (process.env.npm_package_config_sauce) {
           yield driver.sauceJobStatus(allPassed);
         }      
       }
