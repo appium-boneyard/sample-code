@@ -25,9 +25,9 @@ Or set the config parameters directly in package.json :
 
 ...
 "config":{
-  sauce:"1",
-  sauce_username:"<SAUCE_USERNAME>",
-  sauce_access_key:"<SAUCE_ACCESS_KEY>"
+  "sauce":"1",
+  "sauce_username":"<SAUCE_USERNAME>",
+  "sauce_access_key":"<SAUCE_ACCESS_KEY>"
 },
 ...
 ```
