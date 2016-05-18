@@ -4,6 +4,8 @@
 + Run locally --> Done after 2 days (Day 1: To connect appium and cucumber and phone)
 Day 2: Fix Appium Inspector (by reinstall appium after deleting the old one)
 + Run on CI: how to set it up???
+Fork the project on Github (to make it your project). Then clone into your machine. Then make change and push the code.
+Travis CI support open Git hub project, and the setting up is pretty easy
 + Run on Saucelab
 + Choose different test tags to run on different environment
 
