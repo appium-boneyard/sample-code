@@ -1,0 +1,27 @@
+require 'cucumber/rake/task'
+
+task :unit_test => [:compile] do
+  puts "Perform Unit Test"
+end
+
+task :integration_test => [:unit_test] do
+  puts "Perform Integration Test"
+end
+
+task :compile do
+  puts "Clean up previous compilation"
+  puts "Perform compiling source code"
+end
+
+task :package => [:unit_test, :integration_test, :acceptance_test] do
+  puts "Generate final TestApp.app package"
+end
+
+Cucumber::Rake::Task.new(task_name = "appium_test", desc = "Run End to End automation suite") do |t|
+  t.cucumber_opts = "--tags ~@ignore --format pretty ./features/."
+end
+
+task :acceptance_test => [:unit_test, :integration_test] do
+  puts "Perform user acceptance test"
+  Rake::Task["appium_test"].invoke
+end
