@@ -1,0 +1,9 @@
+source 'https://www.rubygems.org'
+
+# go to rubygems to see what are the latest updates and add the version here
+
+gem 'appium_lib',         '~> 8.0.2'
+gem 'rspec-expectations', '~> 3.4.0'
+gem 'cucumber',           '~> 2.3.3'
+gem 'page-object',        '~> 1.1.1'
+gem 'test-unit',          '~> 3.1.8' # required for bundle exec ruby xunit_android.rb

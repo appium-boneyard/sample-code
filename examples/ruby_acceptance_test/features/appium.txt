@@ -1,0 +1,6 @@
+[caps]
+platformName = 'ios'
+browserNme = 'ios'
+deviceName = 'iOS Simulator'
+platformVersion = '8.1'
+app = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
