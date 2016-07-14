@@ -35,7 +35,7 @@ public class SafariTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "iPhone 6");
         capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("platformVersion", "8.1");
+        capabilities.setCapability("platformVersion", "9.3");
         capabilities.setCapability("browserName", "safari");
         driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"),
                 capabilities);

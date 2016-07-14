@@ -40,7 +40,7 @@ public class AndroidTest {
 
     @Test
     public void apiDemo(){
-        WebElement el = driver.findElement(By.xpath(".//*[@text=Animation]"));
+        WebElement el = driver.findElement(By.xpath(".//*[@text='Animation']"));
         assertEquals("Animation", el.getText());
         el = driver.findElementByClassName("android.widget.TextView");
         assertEquals("API Demos", el.getText());
