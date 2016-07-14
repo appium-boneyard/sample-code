@@ -63,6 +63,7 @@ public class DriverServiceSample {
         new AndroidDriver<MobileElement>(capabilities).quit();
     }
 
+    //Eclipse Workaround Refer To - https://github.com/appium/java-client/issues/416
     @Test
     public void checkTheAbilityToStartADriverWithTheDefaultServerAndNotDefaultNode(){
         System.setProperty(AppiumServiceBuilder.APPIUM_PATH, findCustomNode().getAbsolutePath());
@@ -91,8 +92,11 @@ public class DriverServiceSample {
         File appDir = new File(classpathRoot, "../../../apps/ApiDemos/bin");
         File app = new File(appDir, "ApiDemos-debug.apk");
 
-        AppiumServiceBuilder builder = new AppiumServiceBuilder().withAppiumJS(findCustomNode()).withArgument(GeneralServerFlag.APP,
-                app.getAbsolutePath()).withArgument(GeneralServerFlag.LOG_LEVEL, "info").usingAnyFreePort() /*and so on*/;
+        AppiumServiceBuilder builder = new AppiumServiceBuilder().
+        		          withAppiumJS(findCustomNode()).
+        		          //withArgument(GeneralServerFlag.APP,app.getAbsolutePath()).
+        		          withArgument(GeneralServerFlag.LOG_LEVEL, "info").
+        		          usingAnyFreePort() /*and so on*/;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
@@ -109,8 +113,11 @@ public class DriverServiceSample {
         File appDir = new File(classpathRoot, "../../../apps/ApiDemos/bin");
         File app = new File(appDir, "ApiDemos-debug.apk");
 
-        AppiumServiceBuilder builder = new AppiumServiceBuilder().withAppiumJS(findCustomNode()).withArgument(GeneralServerFlag.APP,
-                app.getAbsolutePath()).withArgument(GeneralServerFlag.LOG_LEVEL, "info").usingAnyFreePort() /*and so on*/;
+        AppiumServiceBuilder builder = new AppiumServiceBuilder().
+        		withAppiumJS(findCustomNode()).
+        		//withArgument(GeneralServerFlag.APP,app.getAbsolutePath()).
+        		withArgument(GeneralServerFlag.LOG_LEVEL, "info").
+        		usingAnyFreePort() /*and so on*/;
         AppiumDriverLocalService service = builder.build();
 
         DesiredCapabilities capabilities = new DesiredCapabilities();

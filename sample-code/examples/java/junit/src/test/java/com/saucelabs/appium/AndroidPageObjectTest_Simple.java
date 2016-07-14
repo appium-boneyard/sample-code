@@ -27,7 +27,8 @@ public class AndroidPageObjectTest_Simple {
 	
 	@Before
 	public void setUp() throws Exception {
-	    File appDir = new File("src/test/java/io/appium/java_client");
+	    File classpathRoot = new File(System.getProperty("user.dir"));
+        File appDir = new File(classpathRoot, "../../../apps/ApiDemos/bin");
 	    File app = new File(appDir, "ApiDemos-debug.apk");
 	    DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
@@ -73,14 +74,14 @@ public class AndroidPageObjectTest_Simple {
 
 	@Test
 	public void checkThatElementWasNotFoundByIOSUIAutomator(){
-		NoSuchElementException nsee = null;
+		String nsee = null;
 		try{
 			apiDemosPageObject.iosTextView.getAttribute("text");
 		}
 		catch (Exception e){
-			nsee = (NoSuchElementException) e;
+			nsee =  e.getClass().getName();
 		}
-		Assert.assertNotNull(nsee);
+		Assert.assertEquals(nsee,"org.openqa.selenium.NoSuchElementException");
 	}
 
 	@Test

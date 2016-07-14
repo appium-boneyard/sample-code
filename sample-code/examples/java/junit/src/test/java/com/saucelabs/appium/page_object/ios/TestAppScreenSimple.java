@@ -108,13 +108,13 @@ public class TestAppScreenSimple {
 	
 	@iOSFindAll({
 		@iOSFindBy(xpath = "ComputeSumButton_Test"),	
-		@iOSFindBy(name = "ComputeSumButton")	//it is real locator
+		@iOSFindBy(accessibility = "ComputeSumButton")	//it is real locator
 	})
 	public WebElement findAllElement;
 	
 	@iOSFindAll({
 		@iOSFindBy(xpath = "ComputeSumButton_Test"),	
-		@iOSFindBy(name = "ComputeSumButton")	//it is real locator
+		@iOSFindBy(accessibility = "ComputeSumButton")	//it is real locator
 	})
 	public List<WebElement> findAllElements;
 

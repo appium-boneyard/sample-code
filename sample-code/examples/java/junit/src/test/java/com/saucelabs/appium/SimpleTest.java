@@ -18,8 +18,11 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +55,7 @@ public class SimpleTest {
         File appDir = new File(System.getProperty("user.dir"), "../../../apps/TestApp/build/release-iphonesimulator");
         File app = new File(appDir, "TestApp.app");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformVersion", "8.1");
+        capabilities.setCapability("platformVersion", "9.3");
         capabilities.setCapability("deviceName", "iPhone 6");
         capabilities.setCapability("app", app.getAbsolutePath());
         driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
@@ -116,7 +119,7 @@ public class SimpleTest {
     @Test
     public void testBasicButton() throws Exception {
         WebElement button = driver.findElement(By.xpath("//UIAButton[1]"));
-        assertEquals("ComputeSumButton", button.getText());
+        assertEquals("Compute Sum", button.getText());
     }
 
     @Test
@@ -168,16 +171,17 @@ public class SimpleTest {
       assertEquals(String.valueOf(number), sumLabel.getText());
     }
 
+    //Fix for Simulator https://github.com/appium/appium/issues/6315
     @Test
     public void testAttribute() throws Exception {
-        Random random = new Random();
+    	Random random = new Random();
 
         WebElement text = driver.findElement(By.xpath("//UIATextField[1]"));
 
         int number = random.nextInt(MAXIMUM - MINIMUM + 1) + MINIMUM;
         text.sendKeys(String.valueOf(number));
 
-        assertEquals("TextField1", text.getAttribute("name"));
+        assertEquals("IntegerA", text.getAttribute("name"));
         assertEquals("TextField1", text.getAttribute("label"));
         assertEquals(String.valueOf(number), text.getAttribute("value"));
     }
@@ -199,10 +203,12 @@ public class SimpleTest {
 
         Point location = button.getLocation();
 
-        assertEquals(94, location.getX());
-        assertEquals(122, location.getY());
+        assertEquals(110, location.getX());
+        assertEquals(143, location.getY());
     }
 
+    //https://jsonformatter.curiousconcept.com/
+    
     @Test
     public void testSessions() throws Exception {
         HttpGet request = new HttpGet("http://localhost:4723/wd/hub/sessions");
@@ -210,10 +216,13 @@ public class SimpleTest {
 		HttpClient httpClient = new DefaultHttpClient();
         HttpResponse response = httpClient.execute(request);
         HttpEntity entity = response.getEntity();
+        
         JSONObject jsonObject = (JSONObject) new JSONParser().parse(EntityUtils.toString(entity));
-
+        JSONArray lang= (JSONArray) jsonObject.get("value");
+        JSONObject innerObj = (JSONObject) lang.iterator().next();
+        
         String sessionId = driver.getSessionId().toString();
-        assertEquals(jsonObject.get("sessionId"), sessionId);
+        assertEquals(innerObj.get("id"), sessionId);
     }
 
     @Test
