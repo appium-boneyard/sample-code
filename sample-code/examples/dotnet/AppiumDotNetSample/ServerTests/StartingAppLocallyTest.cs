@@ -38,13 +38,14 @@ namespace Appium.Samples.ServerTests
         [Test]
         public void StartingAndroidAppWithCapabilitiesAndServiceTest()
         {
-            string app = Apps.get("androidApiDemos");
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.SetCapability(MobileCapabilityType.DeviceName, "Android Emulator");
+            DesiredCapabilities capabilities = Env.isSauce() ?
+                Caps.getAndroid501Caps(Apps.get("androidApiDemos")) :
+                Caps.getAndroid19Caps(Apps.get("androidApiDemos"));
 
-            OptionCollector argCollector = new OptionCollector().AddArguments(GeneralOptionList.App(app))
-                .AddArguments(GeneralOptionList.AutomationName(AutomationName.Appium));
+
+            OptionCollector argCollector = new OptionCollector()
+                .AddArguments(GeneralOptionList.OverrideSession()).AddArguments(GeneralOptionList.StrictCaps());
             AppiumServiceBuilder builder = new AppiumServiceBuilder().WithArguments(argCollector);
 
             AndroidDriver<AppiumWebElement> driver = null;
@@ -62,12 +63,44 @@ namespace Appium.Samples.ServerTests
             }
         }
 
+
+        [Test]
+        public void StartingAndroidAppWithCapabilitiesOnTheServerSideTest()
+        {
+            string app = Apps.get("androidApiDemos");
+
+            DesiredCapabilities serverCapabilities = Env.isSauce() ?
+                Caps.getAndroid501Caps(Apps.get("androidApiDemos")) :
+                Caps.getAndroid19Caps(Apps.get("androidApiDemos"));
+
+            DesiredCapabilities clientCapabilities = new DesiredCapabilities();
+            clientCapabilities.SetCapability(AndroidMobileCapabilityType.AppPackage, "io.appium.android.apis");
+            clientCapabilities.SetCapability(AndroidMobileCapabilityType.AppActivity, ".view.WebView1");
+
+            OptionCollector argCollector = new OptionCollector().AddCapabilities(serverCapabilities);
+            AppiumServiceBuilder builder = new AppiumServiceBuilder().WithArguments(argCollector);
+
+            AndroidDriver<AppiumWebElement> driver = null;
+            try
+            {
+                driver = new AndroidDriver<AppiumWebElement>(builder, clientCapabilities);
+                driver.CloseApp();
+            }
+            finally
+            {
+                if (driver != null)
+                {
+                    driver.Quit();
+                }
+            }
+        }
+
         [Test]
         public void StartingIOSAppWithCapabilitiesOnlyTest()
         {
             string app = Apps.get("iosTestApp");
             DesiredCapabilities capabilities =
-                Caps.getIos82Caps(app);
+                Caps.getIos92Caps(app);
 
             IOSDriver<AppiumWebElement> driver = null;
             try
@@ -88,13 +121,11 @@ namespace Appium.Samples.ServerTests
         public void StartingIOSAppWithCapabilitiesAndServiseTest()
         {
             string app = Apps.get("iosTestApp");
+            DesiredCapabilities capabilities =
+                Caps.getIos92Caps(app);
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.SetCapability(MobileCapabilityType.DeviceName, "iPhone Simulator");
-
-            OptionCollector argCollector = new OptionCollector().AddArguments(GeneralOptionList.App(app))
-                .AddArguments(GeneralOptionList.AutomationName(AutomationName.Appium)).
-                AddArguments(GeneralOptionList.PlatformVersion("8.2"));
+            OptionCollector argCollector = new OptionCollector()
+                .AddArguments(GeneralOptionList.OverrideSession()).AddArguments(GeneralOptionList.StrictCaps());
 
             AppiumServiceBuilder builder = new AppiumServiceBuilder().WithArguments(argCollector);
             IOSDriver<AppiumWebElement> driver = null;
@@ -115,16 +146,13 @@ namespace Appium.Samples.ServerTests
         [Test]
         public void CheckThatServiseIsNotRunWhenTheCreatingOfANewSessionIsFailed()
         {
-            string app = Apps.get("androidApiDemos");
-
-            DesiredCapabilities capabilities = new DesiredCapabilities();
+            DesiredCapabilities capabilities = Env.isSauce() ?   //it will be a cause of error
+                Caps.getAndroid501Caps(Apps.get("androidApiDemos")) :
+                Caps.getAndroid19Caps(Apps.get("androidApiDemos"));
             capabilities.SetCapability(MobileCapabilityType.DeviceName, "iPhone Simulator");
+            capabilities.SetCapability(MobileCapabilityType.PlatformName, MobilePlatform.IOS);
 
-            OptionCollector argCollector = new OptionCollector().AddArguments(GeneralOptionList.App(app)) //it will be a cause of error
-                //that is expected
-                .AddArguments(GeneralOptionList.AutomationName(AutomationName.Appium)).AddArguments(GeneralOptionList.PlatformName("Android"));
-
-            AppiumServiceBuilder builder = new AppiumServiceBuilder().WithArguments(argCollector);
+            AppiumServiceBuilder builder = new AppiumServiceBuilder();
             AppiumLocalService service = builder.Build();
             service.Start();
 

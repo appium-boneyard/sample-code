@@ -29,6 +29,12 @@ namespace Appium.Samples.Android
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
 		}
 
+        [SetUp]
+        public void SetUp()
+        {
+            driver.StartActivity("io.appium.android.apis", ".ApiDemos");
+        }
+
 		[TestFixtureTearDown]
 		public void AfterAll(){
             if (driver != null)
@@ -64,6 +70,17 @@ namespace Appium.Samples.Android
             Assert.IsNotNull(driver.FindElementByXPath(byXPath).Text);
             Assert.AreEqual(driver.FindElementsByXPath(byXPath).Count, 1);
         }
-	}
+
+        [Test]
+        public void FindScrollable()
+        {
+            driver.FindElementByAccessibilityId("Views").Click();
+            AndroidElement radioGroup = driver
+                    .FindElementByAndroidUIAutomator("new UiScrollable(new UiSelector()"
+                    + ".resourceId(\"android:id/list\")).scrollIntoView("
+                    + "new UiSelector().text(\"Radio Group\"));");
+            Assert.NotNull(radioGroup.Location);
+        }
+    }
 }
 

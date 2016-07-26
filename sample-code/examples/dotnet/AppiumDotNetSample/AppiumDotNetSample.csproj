@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -7,6 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>AppiumDotNetSample</RootNamespace>
     <AssemblyName>AppiumDotNetSample</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -17,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -25,18 +28,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="appium-dotnet-driver, Version=1.5.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Appium.WebDriver.1.5.0.1\lib\net40\appium-dotnet-driver.dll</HintPath>
+    <Reference Include="appium-dotnet-driver, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Appium.WebDriver.2.0.0.1\lib\net45\appium-dotnet-driver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.3.3\lib\net40-client\Castle.Core.dll</HintPath>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,27 +49,33 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="WebDriver, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.48.2\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.53.1\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.2.48.2\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.53.1\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Android\AndroidActivityTest.cs" />
+    <Compile Include="Android\AndroidAppStringsTest.cs" />
     <Compile Include="Android\AndroidConnectionTest.cs" />
     <Compile Include="Android\AndroidElementTest.cs" />
+    <Compile Include="Android\AndroidEmulatorDeviceTime.cs" />
     <Compile Include="Android\AndroidGestureTest.cs" />
+    <Compile Include="Android\AndroidKeyPressTest.cs" />
     <Compile Include="Android\AndroidLocationTest.cs" />
+    <Compile Include="Android\AndroidLockDeviceTest.cs" />
     <Compile Include="Android\AndroidOrientationTest.cs" />
-    <Compile Include="Android\AndroidScrollTest.cs" />
     <Compile Include="Android\AndroidSearchingTest.cs" />
+    <Compile Include="Android\AndroidSessionTest.cs" />
     <Compile Include="Android\AndroidTouchActionTest.cs" />
     <Compile Include="Android\AndroidWebviewTest.cs" />
+    <Compile Include="Android\FileInteractionTest.cs" />
     <Compile Include="Android\HideKeyboardTestCase.cs" />
+    <Compile Include="Android\IntentAndroidTest.cs" />
     <Compile Include="helpers\AppiumServers.cs" />
     <Compile Include="helpers\Apps.cs" />
     <Compile Include="helpers\Caps.cs" />
@@ -75,7 +85,7 @@
     <Compile Include="iOS\IosGestureTest.cs" />
     <Compile Include="iOS\IOSLocationTest.cs" />
     <Compile Include="iOS\IosOrientationTest.cs" />
-    <Compile Include="iOS\iOSScrollTest.cs" />
+    <Compile Include="iOS\IOSScrollingSearchingTest.cs" />
     <Compile Include="iOS\iOSSearchingTest.cs" />
     <Compile Include="iOS\iOSTouchActionTest.cs" />
     <Compile Include="iOS\IosWebviewTest.cs" />
@@ -93,7 +103,7 @@
     <Compile Include="PageObjectTests\Android\AndroidTestThatChecksAttributeMix3SelendroidMode.cs" />
     <Compile Include="PageObjectTests\Android\AndroidWebViewTest.cs" />
     <Compile Include="PageObjectTests\Android\SeleniumAttributesCompatipilityTest.cs" />
-    <Compile Include="PageObjectTests\DesktopBrowserCompatibility\DesctopBrowserCompatibilityTest.cs" />
+    <Compile Include="PageObjectTests\DesktopBrowserCompatibility\DesktopBrowserCompatibilityTest.cs" />
     <Compile Include="PageObjectTests\IOS\IOSNativeAppAttributesTest.cs" />
     <Compile Include="PageObjectTests\IOS\IOSTestThatChecksAttributeMix.cs" />
     <Compile Include="PageObjectTests\TimeOutManagement\TimeOutManagementTest.cs" />
@@ -110,6 +120,7 @@
     <None Include="AppiumDotNetSample.csproj" />
     <None Include="packages.config" />
     <None Include="Resources\ApiDemos-debug.apk" />
+    <None Include="Resources\IntentExample.apk" />
     <None Include="Resources\PathToLinuxNode" />
     <None Include="Resources\PathToMacOSNode" />
     <None Include="Resources\PathToWindowsNode" />

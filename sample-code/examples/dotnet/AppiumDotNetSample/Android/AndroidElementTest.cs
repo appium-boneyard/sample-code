@@ -28,25 +28,12 @@ namespace Appium.Samples.Android
             Uri serverUri = Env.isSauce() ? AppiumServers.sauceURI : AppiumServers.LocalServiceURIAndroid;
             driver = new AndroidDriver<AndroidElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);
             driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
-            driver.CloseApp();
         }
 
         [SetUp]
         public void SetUp()
         {
-            if (driver != null)
-            {
-                driver.LaunchApp();
-            }
-        }
-
-        [TearDown]
-        public void TearDowwn()
-        {
-            if (driver != null)
-            {
-                driver.CloseApp();
-            }
+            driver.StartActivity("io.appium.android.apis", ".ApiDemos");
         }
 
         [Test()]
@@ -68,8 +55,8 @@ namespace Appium.Samples.Android
         [Test]
         public void ReplaceValueTest()
         {
-            String originalValue = "original value";
-            String replacedValue = "replaced value";
+            string originalValue = "original value";
+            string replacedValue = "replaced value";
 
             driver.StartActivity("io.appium.android.apis", ".view.Controls1");
 
@@ -82,6 +69,31 @@ namespace Appium.Samples.Android
             editElement.ReplaceValue(replacedValue);
 
             Assert.AreEqual(replacedValue, editElement.Text);
+        }
+
+        [Test]
+        public void SetImmediateValueTest()
+        {
+            string value = "new value";
+
+            driver.StartActivity("io.appium.android.apis", ".view.Controls1");
+
+            AndroidElement editElement = driver.FindElementByAndroidUIAutomator("resourceId(\"io.appium.android.apis:id/edit\")");
+
+            editElement.SetImmediateValue(value);
+
+            Assert.AreEqual(value, editElement.Text);
+        }
+
+        [Test]
+        public void ScrollingToSubElement()
+        {
+            driver.FindElementByAccessibilityId("Views").Click();
+            AndroidElement list = driver.FindElement(By.Id("android:id/list"));
+            var locator = new ByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("
+                            + "new UiSelector().text(\"Radio Group\"));");
+            AppiumWebElement radioGroup = list.FindElement(locator);
+            Assert.NotNull(radioGroup.Location);
         }
 
         [TestFixtureTearDown]

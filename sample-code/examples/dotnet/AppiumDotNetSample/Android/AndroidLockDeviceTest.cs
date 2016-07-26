@@ -1,17 +1,16 @@
 ﻿using Appium.Samples.Helpers;
 using NUnit.Framework;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Remote;
 using System;
 
 namespace Appium.Samples.Android
 {
-    public class AndroidScrollTest
+    class AndroidLockDeviceTest
     {
         private AndroidDriver<AndroidElement> driver;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void BeforeAll()
         {
             DesiredCapabilities capabilities = Env.isSauce() ?
@@ -29,8 +28,8 @@ namespace Appium.Samples.Android
             driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
         }
 
-        [TestFixtureTearDown]
-        public void AfterAll()
+        [TearDown]
+        public void AfterEach()
         {
             if (driver != null)
             {
@@ -43,27 +42,12 @@ namespace Appium.Samples.Android
         }
 
         [Test()]
-        public void ScrollToTestCase()
+        public void LockTest()
         {
-            Assert.NotNull(driver.ScrollTo("View"));
-        }
-
-        [Test()]
-        public void ScrollToExactTestCase()
-        {
-            Assert.NotNull(driver.ScrollToExact("Views"));
-        }
-
-        [Test()]
-        public void ScrollToUsingResourceIdTestCase()
-        {
-            Assert.NotNull(driver.ScrollTo("View", "android: id / list"));
-        }
-
-        [Test()]
-        public void ScrollToExactUsingResourceIdTestCase()
-        {
-            Assert.NotNull(driver.ScrollToExact("Views", "android:id/list"));
+            driver.Lock();
+            Assert.AreEqual(true, driver.IsLocked());
+            driver.Unlock();
+            Assert.AreEqual(false, driver.IsLocked());
         }
     }
 }

@@ -26,8 +26,8 @@ namespace Appium.Samples.Android
 				capabilities.SetCapability("name", "android - webview");
 				capabilities.SetCapability("tags", new string[]{"sample"});
 			}
-            capabilities.SetCapability(MobileCapabilityType.AppPackage, "io.selendroid.testapp");
-            capabilities.SetCapability(MobileCapabilityType.AppActivity, ".WebViewActivity");
+            capabilities.SetCapability(AndroidMobileCapabilityType.AppPackage, "io.selendroid.testapp");
+            capabilities.SetCapability(AndroidMobileCapabilityType.AppActivity, ".WebViewActivity");
             Uri serverUri = Env.isSauce () ? AppiumServers.sauceURI : AppiumServers.LocalServiceURIAndroid;
             driver = new AndroidDriver<IWebElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);	
 			driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);

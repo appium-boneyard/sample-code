@@ -1,30 +1,31 @@
-﻿using Appium.Samples.Helpers;
+﻿using Appium.Integration.Tests.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Remote;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Appium.Samples.iOS
+namespace Appium.Integration.Tests.iOS
 {
-    class iOSSearchingTest
+    class iOSLockDeviceTest
     {
-        private IOSDriver<IOSElement> driver;
+        private IOSDriver<IWebElement> driver;
 
         [TestFixtureSetUp]
         public void BeforeAll()
         {
-            DesiredCapabilities capabilities = Caps.getIos92Caps(Apps.get("iosTestApp"));
+            DesiredCapabilities capabilities = Caps.getIos92Caps(Apps.get("iosWebviewApp"));
             if (Env.isSauce())
             {
                 capabilities.SetCapability("username", Env.getEnvVar("SAUCE_USERNAME"));
                 capabilities.SetCapability("accessKey", Env.getEnvVar("SAUCE_ACCESS_KEY"));
-                capabilities.SetCapability("name", "ios - simple");
                 capabilities.SetCapability("tags", new string[] { "sample" });
             }
             Uri serverUri = Env.isSauce() ? AppiumServers.sauceURI : AppiumServers.LocalServiceURIForIOS;
-            driver = new IOSDriver<IOSElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);
+            driver = new IOSDriver<IWebElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);
             driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
         }
 
@@ -42,19 +43,9 @@ namespace Appium.Samples.iOS
         }
 
         [Test()]
-        public void FindByAccessibilityIdTest()
+        public void LockTest()
         {
-            By byAccessibilityId = new ByAccessibilityId("ComputeSumButton");
-            Assert.AreNotEqual(driver.FindElement(byAccessibilityId).Text, null);
-            Assert.GreaterOrEqual(driver.FindElements(byAccessibilityId).Count, 1);
-        }
-
-        [Test]
-        public void FindByByIosUIAutomationTest()
-        {
-            By byIosUIAutomation = new ByIosUIAutomation(".elements().withName(\"Answer\")");
-            Assert.IsNotNull(driver.FindElement(byIosUIAutomation).Text);
-            Assert.GreaterOrEqual(driver.FindElements(byIosUIAutomation).Count, 1);
+            driver.Lock(20);
         }
     }
 }

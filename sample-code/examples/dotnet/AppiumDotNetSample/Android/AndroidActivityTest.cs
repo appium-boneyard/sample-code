@@ -4,8 +4,6 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Remote;
 using System;
-using System.Diagnostics;
-using System.Diagnostics.Contracts;
 
 namespace Appium.Samples.Android
 {
@@ -86,7 +84,7 @@ namespace Appium.Samples.Android
             driver.StartActivity("com.android.contacts", ".ContactsListActivity");
 
             Assert.AreEqual(driver.CurrentActivity, ".ContactsListActivity");
-            driver.KeyEvent(AndroidKeyCode.Back);
+            driver.PressKeyCode(AndroidKeyCode.Back);
             Assert.AreEqual(driver.CurrentActivity, ".ContactsListActivity");
         }
 
@@ -100,7 +98,7 @@ namespace Appium.Samples.Android
             driver.StartActivity("com.android.contacts", ".ContactsListActivity", "com.android.contacts", ".ContactsListActivity", false);
 
             Assert.AreEqual(driver.CurrentActivity, ".ContactsListActivity");
-            driver.KeyEvent(AndroidKeyCode.Back);
+            driver.PressKeyCode(AndroidKeyCode.Back);
             Assert.AreEqual(driver.CurrentActivity, ".accessibility.AccessibilityNodeProviderActivity");
 
         }

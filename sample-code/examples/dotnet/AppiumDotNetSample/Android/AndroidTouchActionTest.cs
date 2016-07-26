@@ -6,7 +6,6 @@ using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
-using OpenQA.Selenium.Appium.Interfaces;
 using System.Threading;
 
 namespace Appium.Samples.Android

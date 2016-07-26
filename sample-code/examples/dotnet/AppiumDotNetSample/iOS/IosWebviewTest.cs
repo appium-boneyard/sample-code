@@ -16,7 +16,7 @@ namespace Appium.Samples.iOS
 
 		[TestFixtureSetUp]
 		public void BeforeAll(){
-			DesiredCapabilities capabilities = Caps.getIos82Caps (Apps.get("iosWebviewApp")); 
+			DesiredCapabilities capabilities = Caps.getIos92Caps (Apps.get("iosWebviewApp")); 
 			if (Env.isSauce ()) {
 				capabilities.SetCapability("username", Env.getEnvVar("SAUCE_USERNAME")); 
 				capabilities.SetCapability("accessKey", Env.getEnvVar("SAUCE_ACCESS_KEY"));
@@ -45,12 +45,12 @@ namespace Appium.Samples.iOS
 		{
 			driver.FindElementByXPath("//UIATextField[@value='Enter URL']")
 				.SendKeys("www.google.com");
-			driver.FindElementByName ("Go").Click ();
+			driver.FindElementByClassName ("UIAButton").Click ();
 			driver.FindElementByClassName ("UIAWebView").Click (); // dismissing keyboard
 			Thread.Sleep(10000);
 			driver.Context = "WEBVIEW";
 			Thread.Sleep (3000);
-			var el = driver.FindElementByName ("q");
+			var el = driver.FindElementByClassName ("gsfi");
 			el.SendKeys ("Appium");
 			el.SendKeys(Keys.Return);
 			Thread.Sleep (1000);
