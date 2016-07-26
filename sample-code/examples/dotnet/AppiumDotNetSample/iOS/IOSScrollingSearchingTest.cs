@@ -7,14 +7,14 @@ using System;
 
 namespace Appium.Samples.iOS
 {
-    public class iOSScrollTest
+    public class IOSScrollingSearchingTest
     {
         private IOSDriver<AppiumWebElement> driver;
 
         [TestFixtureSetUp]
         public void beforeAll()
         {
-            DesiredCapabilities capabilities = Caps.getIos82Caps(Apps.get("iosUICatalogApp"));
+            DesiredCapabilities capabilities = Caps.getIos92Caps(Apps.get("iosUICatalogApp"));
             if (Env.isSauce())
             {
                 capabilities.SetCapability("username", Env.getEnvVar("SAUCE_USERNAME"));
@@ -43,13 +43,19 @@ namespace Appium.Samples.iOS
         [Test()]
         public void ScrollToTestCase()
         {
-            Assert.AreEqual(driver.ScrollTo("Slider").GetAttribute("name"), "Sliders");
+            AppiumWebElement slider = driver
+                .FindElement(new ByIosUIAutomation(".tableViews()[0]"
+                                + ".scrollToElementWithPredicate(\"name CONTAINS 'Slider'\")"));
+            Assert.AreEqual(slider.GetAttribute("name"), "Sliders");
         }
 
         [Test()]
         public void ScrollToExactTestCase()
         {
-            Assert.NotNull(driver.ScrollToExact("Sliders"));
+            AppiumWebElement table = driver.FindElement(new ByIosUIAutomation(".tableViews()[0]"));
+            AppiumWebElement slider = table.FindElement(
+                new ByIosUIAutomation(".scrollToElementWithPredicate(\"name CONTAINS 'Slider'\")"));
+            Assert.AreEqual(slider.GetAttribute("name"), "Sliders");
         }
     }
 }

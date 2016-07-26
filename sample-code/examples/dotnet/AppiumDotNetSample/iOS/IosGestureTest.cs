@@ -16,14 +16,14 @@ namespace Appium.Samples.iOS
         [TestFixtureSetUp]
         public void BeforeAll()
         {
-			DesiredCapabilities capabilities = Caps.getIos82Caps(Apps.get("iosTestApp"));
-            if (Env.isSauce())
-            {
-                capabilities.SetCapability("username", Env.getEnvVar("SAUCE_USERNAME"));
-                capabilities.SetCapability("accessKey", Env.getEnvVar("SAUCE_ACCESS_KEY"));
-                capabilities.SetCapability("name", "ios - complex");
-                capabilities.SetCapability("tags", new string[] { "sample" });
-            }
+			DesiredCapabilities capabilities = Caps.getIos92Caps(Apps.get("iosTestApp"));
+			if (Env.isSauce ())
+			{
+				capabilities.SetCapability ("username", Env.getEnvVar ("SAUCE_USERNAME"));
+				capabilities.SetCapability ("accessKey", Env.getEnvVar ("SAUCE_ACCESS_KEY"));
+				capabilities.SetCapability ("name", "ios - complex");
+				capabilities.SetCapability ("tags", new string[] { "sample" });
+			}
             Uri serverUri = Env.isSauce() ? AppiumServers.sauceURI : AppiumServers.LocalServiceURIForIOS;
             driver = new IOSDriver<IOSElement>(serverUri, capabilities, Env.INIT_TIMEOUT_SEC);
             driver.Manage().Timeouts().ImplicitlyWait(Env.IMPLICIT_TIMEOUT_SEC);
@@ -46,8 +46,8 @@ namespace Appium.Samples.iOS
 		public void TapTest()
 		{
 
-			driver.FindElementById ("TextField1").SendKeys ("2");
-			driver.FindElementById ("TextField2").SendKeys ("4");
+			driver.FindElementById ("IntegerA").SendKeys("2");
+			driver.FindElementById ("IntegerB").SendKeys("4");
 
 			IOSElement e = driver.FindElementByAccessibilityId("ComputeSumButton");
 			driver.Tap(2, e, 2000);
@@ -58,14 +58,14 @@ namespace Appium.Samples.iOS
 		[Test()]
 		public void ZoomTest()
 		{
-			IOSElement e = driver.FindElementByName("TextField1");
+			IOSElement e = driver.FindElementById ("IntegerA");
 			driver.Zoom(e);
 		}
 
         [Test()]
         public void PinchTest()
         {
-            IOSElement e = driver.FindElementByName("TextField1");
+			IOSElement e = driver.FindElementById ("IntegerA");
             driver.Pinch(e);
         }
 

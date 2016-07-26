@@ -28,14 +28,16 @@ namespace Appium.Samples.Helpers
                     File.WriteAllBytes("selendroid-test-app-0.10.0.apk", AppiumDotNetSample.Properties.Resources.selendroid_test_app_0_10_0);
                     File.WriteAllBytes("TestApp7.1.app.zip", AppiumDotNetSample.Properties.Resources.TestApp7_1_app);
                     File.WriteAllBytes("WebViewApp7.1.app.zip", AppiumDotNetSample.Properties.Resources.WebViewApp7_1_app);
-                    File.WriteAllBytes("UICatalog7.1.app.zip", AppiumDotNetSample.Properties.Resources.UICatalog);
+                    File.WriteAllBytes("UICatalog7.1.app.zip", AppiumDotNetSample.Properties.Resources.UICatalog7_1_app);
+                    File.WriteAllBytes("IntentExample.apk", AppiumDotNetSample.Properties.Resources.IntentExample);
 
                     Appz = new Dictionary<string, string> {
                         { "iosTestApp", new FileInfo("TestApp7.1.app.zip").FullName },
                         { "iosWebviewApp", new FileInfo("WebViewApp7.1.app.zip").FullName },
                         { "iosUICatalogApp", new FileInfo("UICatalog7.1.app.zip").FullName },
                         { "androidApiDemos", new FileInfo("ApiDemos-debug.apk").FullName },
-                        { "selendroidTestApp", new FileInfo("selendroid-test-app-0.10.0.apk").FullName }
+                        { "selendroidTestApp", new FileInfo("selendroid-test-app-0.10.0.apk").FullName },
+                        { "intentApp", new FileInfo("IntentExample.apk").FullName }
                     };
                 }
                 isInited = true;

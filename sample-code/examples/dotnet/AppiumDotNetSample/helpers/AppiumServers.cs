@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium.Appium.Service;
+﻿using OpenQA.Selenium.Appium.Enums;
+using OpenQA.Selenium.Appium.Service;
 using OpenQA.Selenium.Appium.Service.Options;
+using OpenQA.Selenium.Remote;
 using System;
 
 namespace Appium.Samples.Helpers
@@ -36,8 +38,9 @@ namespace Appium.Samples.Helpers
                 if (LocalService == null)
                 {
                     AppiumServiceBuilder builder = new AppiumServiceBuilder();
-                    OptionCollector collector = new OptionCollector().
-                        AddArguments(IOSOptionList.LaunchTimeout(Convert.ToString(Env.INIT_TIMEOUT_SEC.TotalMilliseconds))).
+                    DesiredCapabilities capabilities = new DesiredCapabilities();
+                    capabilities.SetCapability(IOSMobileCapabilityType.LaunchTimeout, Env.INIT_TIMEOUT_SEC.TotalMilliseconds);
+                    OptionCollector collector = new OptionCollector().AddCapabilities(capabilities).
                         //I use MAC OS X VMWare image. Sometimes it is very slow. 
                         AddArguments(IOSOptionList.BackEndRetries("5"));
                     LocalService = builder.WithArguments(collector).Build();

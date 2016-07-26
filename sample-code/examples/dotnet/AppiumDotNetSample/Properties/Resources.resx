@@ -53,7 +53,6 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
-
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -121,18 +120,6 @@
   <data name="ApiDemos_debug" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ApiDemos-debug.apk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="selendroid_test_app_0_10_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\selendroid-test-app-0.10.0.apk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TestApp7_1_app" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TestApp7.1.app.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="UICatalog" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UICatalog.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="WebViewApp7_1_app" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WebViewApp7.1.app.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="PathToLinuxNode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PathToLinuxNode;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -141,5 +128,20 @@
   </data>
   <data name="PathToWindowsNode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PathToWindowsNode;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="selendroid_test_app_0_10_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selendroid-test-app-0.10.0.apk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TestApp7_1_app" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TestApp7.1.app.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UICatalog7_1_app" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UICatalog.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WebViewApp7_1_app" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WebViewApp7.1.app.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IntentExample" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IntentExample.apk;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
