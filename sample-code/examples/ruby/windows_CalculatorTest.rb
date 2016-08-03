@@ -38,6 +38,9 @@ class CalculatorTest < Test::Unit::TestCase
     def setup
         $CalculatorSession = Selenium::WebDriver.for(:remote, :url => "http://127.0.0.1:4723/wd/hub", :desired_capabilities => caps )
         
+        $CalculatorSession.find_elements(:xpath, "//Button[starts-with(@Name, \"Menu\")]")[0].click;
+        $CalculatorSession.find_elements(:xpath, "//ListItem[@Name=\"Standard Calculator\"]")[0].click;
+
         $CalculatorSession.find_elements(:name, "Clear")[0].click;
         $CalculatorSession.find_elements(:name, "Seven")[0].click;
         $CalculatorResult = $CalculatorSession.find_elements(:name, "Display is  7 ")[0];

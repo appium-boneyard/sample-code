@@ -38,6 +38,9 @@ public class CalculatorTest {
             CalculatorSession = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             CalculatorSession.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
+            CalculatorSession.findElementByXPath("//Button[starts-with(@Name, \"Menu\")]").click();
+            CalculatorSession.findElementByXPath("//ListItem[@Name=\"Standard Calculator\"]").click();
+
             CalculatorSession.findElementByName("Clear").click();
             CalculatorSession.findElementByName("Seven").click();
             CalculatorResult = CalculatorSession.findElementByName("Display is  7 ");
