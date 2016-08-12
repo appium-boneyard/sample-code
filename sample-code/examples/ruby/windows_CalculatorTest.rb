@@ -1,23 +1,19 @@
 # ******************************************************************************
 #
-# Copyright (c) 2016 Microsoft Corporation. All rights reserved.
+#Licensed to you under the Apache License, Version 2.0 (the
+#"License"); you may not use this file except in compliance
+#with the License.  You may obtain a copy of the License at
+#http://www.apache.org/licenses/LICENSE-2.0 
 #
-# This code is licensed under the MIT License (MIT).
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License.
 #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
 #
 #******************************************************************************
-
-# Recommend checking  out more Ruby examples for Appium, including setup instructions here
-# https://github.com/appium/sample-code/tree/master/sample-code/examples/ruby
-
-# TODO: Once we have better Appium integration update this test to use the Appium gem
 require 'selenium-webdriver'
 require "test/unit"
 
@@ -48,14 +44,6 @@ class CalculatorTest < Test::Unit::TestCase
         $CalculatorSession.find_elements(:name, "Clear")[0].click;
     end
 
-    def test_addition
-        $CalculatorSession.find_elements(:name, "One")[0].click;
-        $CalculatorSession.find_elements(:name, "Plus")[0].click;
-        $CalculatorSession.find_elements(:name, "Seven")[0].click;
-        $CalculatorSession.find_elements(:name, "Equals")[0].click;
-        assert{$CalculatorResult.text == "Display is  8 "};
-    end
-
     def test_combination
         $CalculatorSession.find_elements(:name, "Seven")[0].click;
         $CalculatorSession.find_elements(:name, "Multiply by")[0].click;
@@ -65,16 +53,6 @@ class CalculatorTest < Test::Unit::TestCase
         $CalculatorSession.find_elements(:name, "Equals")[0].click;
         $CalculatorSession.find_elements(:name, "Divide by")[0].click;
         $CalculatorSession.find_elements(:name, "Eight")[0].click;
-        $CalculatorSession.find_elements(:name, "Equals")[0].click;
-        assert{$CalculatorResult.text == "Display is  8 "};
-    end
-
-    def test_division
-        $CalculatorSession.find_elements(:name, "Eight")[0].click;
-        $CalculatorSession.find_elements(:name, "Eight")[0].click;
-        $CalculatorSession.find_elements(:name, "Divide by")[0].click;
-        $CalculatorSession.find_elements(:name, "One")[0].click;
-        $CalculatorSession.find_elements(:name, "One")[0].click;
         $CalculatorSession.find_elements(:name, "Equals")[0].click;
         assert{$CalculatorResult.text == "Display is  8 "};
     end
