@@ -61,7 +61,7 @@ describe("ios simple", function () {
         return driver.
           elementByAccessibilityId('ComputeSumButton')
             .click().sleep(1000)
-          .elementByIosUIAutomation('.elements().withName("Answer");')
+          .elementByAccessibilityId('Answer')
             .text().should.become("" + sum);
       });
   });

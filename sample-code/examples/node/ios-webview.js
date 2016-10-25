@@ -46,7 +46,10 @@ describe("ios webview", function () {
       .elementByXPath('//UIATextField[@value=\'Enter URL\']')
         .sendKeys('www.google.com')
       .elementByName('Go').click()
+      .sleep(20000)
+      .source().then(console.log)
       .elementByClassName('UIAWebView').click() // dismissing keyboard
+      .sleep(10000)
       .context('WEBVIEW')
       .sleep(1000)
       .waitForElementByName('q', 5000)

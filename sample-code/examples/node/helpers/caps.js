@@ -1,24 +1,24 @@
 exports.ios92 = {
   browserName: '',
-  appiumVersion: '1.5.3',
+  'appium-version': '1.6',
   platformName: 'iOS',
-  platformVersion: '9.2',
+  platformVersion: '10.1',
   deviceName: 'iPhone 5s',
   app: undefined // will be set later
 };
 
 exports.ios81 = {
   browserName: '',
-  appiumVersion: '1.5.3',
+  'appium-version': '1.6',
   platformName: 'iOS',
-  platformVersion: '8.1',
+  platformVersion: '10.1',
   deviceName: 'iPhone Simulator',
   app: undefined // will be set later
 };
 
 exports.android18 = {
   browserName: '',
-  appiumVersion: '1.5.3',
+  'appium-version': '1.6',
   platformName: 'Android',
   platformVersion: '5.1',
   deviceName: 'Android Emulator',
@@ -27,7 +27,7 @@ exports.android18 = {
 
 exports.android19 = {
   browserName: '',
-  appiumVersion: '1.5.3',
+  'appium-version': '1.6',
   platformName: 'Android',
   platformVersion: '5.1',
   deviceName: 'Android Emulator',
@@ -36,7 +36,7 @@ exports.android19 = {
 
 exports.selendroid16 = {
   browserName: '',
-  appiumVersion: '1.5.3',
+  'appium-version': '1.6',
   platformName: 'Android',
   platformVersion: '5.1',
   automationName: 'selendroid',

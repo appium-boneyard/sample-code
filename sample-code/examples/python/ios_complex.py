@@ -25,15 +25,14 @@ class ComplexIOSTests(unittest.TestCase):
         # ** Important Note **
         # Make sure you have build the UICatalog applcation in your local repository
         app = os.path.join(os.path.dirname(__file__),
-                           '../../apps/UICatalog/build/release-iphonesimulator',
-                           'UICatalog.app')
+                           '../../apps/UICatalog.zip')
         app = os.path.abspath(app)
         self.driver = webdriver.Remote(
             command_executor='http://127.0.0.1:4723/wd/hub',
             desired_capabilities={
                 'app': app,
                 'platformName': 'iOS',
-                'platformVersion': '8.3',
+                'platformVersion': '10.0',
                 'deviceName': 'iPhone 6'
             })
         self._values = []
@@ -43,24 +42,24 @@ class ComplexIOSTests(unittest.TestCase):
 
     def _open_menu_position(self, index):
         # Opens up the menu at position [index] : starts at 0.
-        table = self.driver.find_element_by_class_name("UIATableView")
-        self._row = table.find_elements_by_class_name("UIATableCell")[index]
+        table = self.driver.find_element_by_class_name("XCUIElementTypeTable")
+        self._row = table.find_elements_by_class_name("XCUIElementTypeTableCell")[index]
         self._row.click()
 
     def test_find_element(self):
         # first view in UICatalog is a table
-        table = self.driver.find_element_by_class_name("UIATableView")
+        table = self.driver.find_element_by_class_name("XCUIElementTypeTable")
         self.assertIsNotNone(table)
 
         # is number of cells/rows inside table correct
-        rows = table.find_elements_by_class_name("UIATableCell")
+        rows = table.find_elements_by_class_name("XCUIElementTypeTableCell")
         self.assertEqual(18, len(rows))
 
         # is first one about buttons
         self.assertEqual(rows[0].get_attribute("name"), "Action Sheets")
 
         # there is nav bar inside the app
-        nav_bar = self.driver.find_element_by_class_name("UIANavigationBar")
+        nav_bar = self.driver.find_element_by_class_name("XCUIElementTypeNavigationBar")
         self.assertTrue(nav_bar)
 
     def test_frames(self):
@@ -81,12 +80,12 @@ class ComplexIOSTests(unittest.TestCase):
         self.driver.switch_to.context(contexts[0])
 
         # Verify we are out of the webview
-        scroll_after = self.driver.find_element_by_class_name("UIAScrollView")
+        scroll_after = self.driver.find_element_by_class_name("XCUIElementTypeScrollView")
         self.assertTrue(scroll_after)
 
     def test_location(self):
         # get third row location
-        row = self.driver.find_elements_by_class_name("UIATableCell")[2]
+        row = self.driver.find_elements_by_class_name("XCUIElementTypeTableCell")[2]
         self.assertEqual(row.location['x'], 0)
         self.assertEqual(row.location['y'], 178.8125)
 
@@ -107,7 +106,7 @@ class ComplexIOSTests(unittest.TestCase):
         # go to the text fields section
         self._open_menu_position(13)
 
-        text_field = self.driver.find_elements_by_class_name("UIATextField")[0]
+        text_field = self.driver.find_elements_by_class_name("XCUIElementTypeTextField")[0]
 
         # get default/empty text
         default_val = text_field.get_attribute("value")
@@ -149,7 +148,7 @@ class ComplexIOSTests(unittest.TestCase):
         self._open_menu_position(10)
 
         # get the slider
-        slider = self.driver.find_element_by_class_name("UIASlider")
+        slider = self.driver.find_element_by_class_name("XCUIElementTypeSlider")
         self.assertEqual(slider.get_attribute("value"), "42%")
 
         slider.set_value(0)
@@ -160,22 +159,22 @@ class ComplexIOSTests(unittest.TestCase):
         self.assertEqual(self.driver.session_id, data['sessionId'])
 
     def test_size(self):
-        table = self.driver.find_element_by_class_name("UIATableView").size
-        row = self.driver.find_elements_by_class_name("UIATableCell")[0].size
+        table = self.driver.find_element_by_class_name("XCUIElementTypeTable").size
+        row = self.driver.find_elements_by_class_name("XCUIElementTypeTableCell")[0].size
         self.assertEqual(table['width'], row['width'])
         self.assertNotEqual(table['height'], row['height'])
 
     def test_source(self):
         # get main view soruce
         source_main = self.driver.page_source
-        self.assertIn("UIATableView", source_main)
+        self.assertIn("XCUIElementTypeTable", source_main)
         self.assertIn("Text Fields", source_main)
 
         # got to text fields section
         self._open_menu_position(13)
         sleep(10)
         source_textfields = self.driver.page_source
-        self.assertIn("UIAStaticText", source_textfields)
+        self.assertIn("XCUIElementTypeStaticText", source_textfields)
         self.assertIn("Text Fields", source_textfields)
 
         self.assertNotEqual(source_main, source_textfields)
@@ -183,3 +182,4 @@ class ComplexIOSTests(unittest.TestCase):
 
 suite = unittest.TestLoader().loadTestsFromTestCase(ComplexIOSTests)
 unittest.TextTestRunner(verbosity=2).run(suite)
+ 

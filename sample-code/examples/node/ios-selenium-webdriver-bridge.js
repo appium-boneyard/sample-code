@@ -46,6 +46,7 @@ describe("ios selenium webdriver bridge", function () {
         .usingServer('http://localhost:4723/wd/hub')
         .withCapabilities(caps);
     }
+
     driver = builder.build();
     return wdBridge
       .initFromSeleniumWebdriver(builder, driver)
@@ -101,7 +102,7 @@ describe("ios selenium webdriver bridge", function () {
             .click().sleep(1000);
       }).then(function () {
         return wdDriver
-          .elementByIosUIAutomation('elements().withName("Answer");')
+          .elementByName('Answer')
           .then(function (el) {
             // converting from wd el
             return wdDriver.swEl(el).getText();

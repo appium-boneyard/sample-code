@@ -45,6 +45,9 @@ build/
 *.iml
 *.iws
 
+# VSCode
+.vscode/
+
 # Mac
 .DS_Store
 
