@@ -26,8 +26,8 @@ class SimpleIOSTests(unittest.TestCase):
 
     def _populate(self):
         # populate text fields with two random numbers
-        els = [self.driver.find_element_by_name('TextField1'),
-               self.driver.find_element_by_name('TextField2')]
+        els = [self.driver.find_element_by_xpath('//UIAApplication[1]/UIAWindow[1]/UIATextField[1]')
+               self.driver.find_element_by_xpath('//UIAApplication[1]/UIAWindow[1]/UIATextField[2]')]
 
         self._sum = 0
         for i in range(2):
