@@ -26,8 +26,8 @@ class SimpleIOSTests(unittest.TestCase):
 
     def _populate(self):
         # populate text fields with two random numbers
-        els = [self.driver.find_element_by_name('TextField1'),
-               self.driver.find_element_by_name('TextField2')]
+        els = [self.driver.find_element_by_accessibility_id('TextField1'),
+               self.driver.find_element_by_accessibility_id('TextField2')]
 
         self._sum = 0
         for i in range(2):
@@ -44,7 +44,7 @@ class SimpleIOSTests(unittest.TestCase):
 
         # is sum equal ?
         # sauce does not handle class name, so get fourth element
-        sum = self.driver.find_element_by_name('Answer').text
+        sum = self.driver.find_element_by_accessibility_id('Answer').text
         self.assertEqual(int(sum), self._sum)
 
     def test_scroll(self):
