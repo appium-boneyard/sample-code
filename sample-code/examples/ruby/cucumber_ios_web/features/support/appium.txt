@@ -1,0 +1,10 @@
+[caps]
+platformName = "ios"
+deviceName = "iPhone Simulator"
+platformVersion = "7.1"
+browserName = "Safari"
+custom_url = "http://localhost:4723/wd/hub"
+
+[appium_lib]
+sauce_username = false
+sauce_access_key = false
