@@ -15,7 +15,8 @@ npm install
 Then when running the tests, add your Sauce Labs credentials as npm config parameters, example :
 
 ```
-npm run ios-simple appium-sample-code:sauce=1 appium-sample-code:sauce_username=<SAUCE_USERNAME> appium-sample-code:sauce_access_key=<SAUCE_ACCESS_KEY>
+npm run ios-simple --appium-sample-code:sauce=1 --appium-sample-code:username=<SAUCE_USERNAME> --appium-sample-code:key=<SAUCE_ACCESS_KEY>
+
 ```
 
 Or set the config parameters directly in package.json :
