@@ -1,5 +1,8 @@
 "use strict";
 
+console.log('process.env.npm_package_config_sauce');
+console.log(process.env.npm_package_config_sauce);
+
 require("./helpers/setup");
 
 var wd = require("wd"),
