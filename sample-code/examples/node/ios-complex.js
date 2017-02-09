@@ -48,60 +48,73 @@ describe("ios complex", function () {
       .elementByName(name)
       .catch(function () {
         return driver
-          .elementByClassName('UIATableView')
-          .elementsByClassName('>','UIATableCell')
+          .elementByClassName('XCUIElementTypeTable')
+          .elementsByClassName('>','XCUIElementTypeCell')
           .then(_p.filterWithName(name)).first();
       }).click();
   }
 
+  function goBack() {
+    return driver
+      .elementByName('Back')
+      .click();
+  }
+
   it("should print every menu item", function () {
     return driver
-      .elementByClassName('UIATableView')
-      .elementsByClassName('>','UIATableCell')
+      .elementByClassName('XCUIElementTypeTable')
+      .elementsByClassName('>','XCUIElementTypeCell')
       .then(_p.printNames);
   });
 
   it("should find an element", function () {
     return driver
       // first view in UICatalog is a table
-      .elementByClassName('UIATableView')
+      .elementByClassName('XCUIElementTypeTable')
         .should.eventually.exist
       // check the number of cells/rows inside the  table
-      .elementsByClassName('UIATableCell')
+      .elementsByClassName('XCUIElementTypeCell')
         .then(_p.filterDisplayed)
       .then(function (els) {
         els.should.have.length.above(6);
         return els;
       })
+      .first()
+      .elementsByClassName('>', 'XCUIElementTypeStaticText')
       // various checks
-      .first().getAttribute('name')
+      .first().getAttribute('value')
         .should.become('Action Sheets')
-      .waitForElementByClassName('UIANavigationBar')
+      .waitForElementByClassName('XCUIElementTypeNavigationBar')
         .should.eventually.exist;
   });
 
   it("should switch context", function () {
     return clickMenuItem('Web View')
       .sleep(1000)
-      // get the contexts and switch to webview
-      .contexts().should.eventually.deep.equal(
-        ['NATIVE_APP','WEBVIEW_1']
-      ).context('WEBVIEW_1')
-      // find the store link
+
+      // get the contexts
+      .contexts()
+      .then(function(contexts){
+        // switch to webview
+        return driver.context(contexts[1]);          
+      })
       .sleep(1000)
-      .waitForElementById('gn-apple')
+      
+      // Wait for an element from apple.com homepage to be present
+      .waitForElementById('ac-globalnav')
         .should.eventually.exist
-      // leave the webview
+
+      // leave the webview  
       .context('NATIVE_APP').sleep(1000)
+      
       //Verify we are out of the webview
-      .waitForElementByClassName('UIAScrollView')
+      .waitForElementByClassName('XCUIElementTypeWindow')
         .should.eventually.exist
-      // back to main menu
-      .back();
+      .then(goBack)
   });
 
   it("should get an element location", function () {
-    return driver.elementsByClassName("UIATableCell")
+    return driver.elementsByClassName("XCUIElementTypeCell")
       .then(_p.filterDisplayed)
       .at(2)
       .getLocation()
@@ -134,7 +147,7 @@ describe("ios complex", function () {
     var el, defaultValue;
     return clickMenuItem('Text Fields')
       // get the field and the default/empty text
-      .elementByClassName('UIATextField')
+      .elementByClassName('XCUIElementTypeTextField')
         .then(function (_el) {
           el = _el;
           return el.getValue(); })
@@ -150,7 +163,7 @@ describe("ios complex", function () {
       .then(function () { return el.clear(); })
       .then(function () { el.getValue().should.become(defaultValue); })
       // back to main menu
-      .back();
+      .then(goBack);
   });
 
   it("should trigger/accept/dismiss an alert", function () {
@@ -160,14 +173,18 @@ describe("ios complex", function () {
       .alertText().should.eventually.include('A Short Title Is Best')
       .dismissAlert()
       // trigger modal alert with cancel & ok buttons
+      .sleep(1000)
       .elementByName('Okay / Cancel').click()
       .alertText().should.eventually.include('A Short Title Is Best')
       .acceptAlert()
+      .sleep(1000)
       // back to main menu
-      .back();
+      .then(goBack);
   });
 
-  it("should set a slider value", function () {
+  // TODO: Waiting to hear back from Facebook to see if WebDriverAgent supports programatically setting sliders.
+  // (see issue: https://github.com/facebook/WebDriverAgent/issues/339)
+  /*it("should set a slider value", function () {
     var slider;
     return clickMenuItem('Sliders')
       // retrieve slider, check initial value
@@ -177,13 +194,13 @@ describe("ios complex", function () {
         return slider.getValue().should.become('42%');
       })
       // change value
-      .then(function () { return slider.setImmediateValue("0%"); })
+      .then(function () { return slider.sendKeys("0%"); })
       .then(function () {
         return slider.getValue().should.become('0%');
       })
       // back to main menu
-      .back();
-  });
+      .then(goBack);
+  });*/
 
   if (!process.env.npm_package_config_sauce) {
     it("should retrieve the session list", function () {
@@ -196,8 +213,8 @@ describe("ios complex", function () {
 
   it("should retrieve an element size", function () {
     return Q.all([
-      driver.elementByClassName('UIATableView').getSize(),
-      driver.elementByClassName('UIATableCell').getSize(),
+      driver.elementByClassName('XCUIElementTypeTable').getSize(),
+      driver.elementByClassName('XCUIElementTypeCell').getSize(),
     ]).then(function (sizes) {
       sizes[0].width.should.equal(sizes[1].width);
       sizes[0].height.should.not.equal(sizes[1].height);
@@ -210,18 +227,17 @@ describe("ios complex", function () {
     return driver
       .source().then(function (source) {
         mainMenuSource = source;
-        mainMenuSource.should.include('UIAStaticText');
+        mainMenuSource.should.include('XCUIElementTypeStaticText');
         mainMenuSource.should.include('Text Fields');
       })
       // text fields section source
       .then(function () {
         return clickMenuItem("Text Fields");
-      }).source(function (textFieldSectionSource) {
-        textFieldSectionSource.should.include('UIAStaticText');
+      }).source().then(function (textFieldSectionSource) {
+        textFieldSectionSource.should.include('XCUIElementTypeStaticText');
         textFieldSectionSource.should.include('Text Fields');
-        textFieldSectionSource.should.not.equal(textFieldSectionSource);
       })
       // back to main menu
-      .back();
+      .then(goBack);
   });
 });

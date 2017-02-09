@@ -45,13 +45,15 @@ public class iOSPageObjectTest {
         File app = new File(appDir, "TestApp.app");
 	    DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
-	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.3");
+	    capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, "1.6");
+	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.1");
 	    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
 	    capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 	    
 	    uiTestApp = new TestAppScreenSimple();
 	    driver = new IOSDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
+		System.out.println(driver.getPageSource());
 		PageFactory.initElements(new AppiumFieldDecorator(driver), uiTestApp);
 	}
 

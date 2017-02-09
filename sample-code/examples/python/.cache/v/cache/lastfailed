@@ -1,0 +1,4 @@
+{
+  "ios_simple.py::SimpleIOSTests::test_scroll": true, 
+  "ios_simple.py::SimpleIOSTests::test_ui_computation": true
+}

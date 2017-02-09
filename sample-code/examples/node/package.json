@@ -28,7 +28,7 @@
     "underscore": "^1.8.3",
     "wd": "^0.3.11"
   },
-    "scripts": {
+  "scripts": {
     "ios-simple": "mocha ios-simple.js",
     "ios-complex": "mocha ios-complex.js",
     "ios-webview": "mocha ios-webview.js",
@@ -41,5 +41,10 @@
     "android-webview": "mocha android-webview.js",
     "android-actions": "mocha android-actions.js",
     "selendroid-simple": "mocha selendroid-simple.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^3.0.0-beta-3",
+    "wd-bridge": "0.0.2",
+    "yiewd": "^0.6.0"
   }
 }
