@@ -7,15 +7,15 @@ var express = require('express'),
 app.use(express.static(__dirname + '/static'));
 
 app.get('/index.html', function (req, res) {
-  res.sendfile(path.resolve(__dirname, '../assets/index.html'));
+  res.sendFile(path.resolve(__dirname, '../assets/index.html'));
 });
 
 app.get('/WebViewApp7.1.app.zip', function (req, res) {
-  res.sendfile(path.resolve(__dirname, '../../../../assets/WebViewApp7.1.app.zip'));
+  res.sendFile(path.resolve(__dirname, '../dotnet/AppiumDotNetSample/Resources/WebViewApp7.1.app.zip'));
 });
 
 app.get('/ApiDemos-debug.apk', function (req, res) {
-  res.sendfile(path.resolve(__dirname, '../../../../assets/ApiDemos-debug.apk'));
+  res.sendFile(path.resolve(__dirname, '../../../apps/ApiDemos/bin/ApiDemos-debug.apk'));
 });
 
 var server;

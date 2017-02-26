@@ -39,7 +39,7 @@
     "android-simple": "mocha android-simple.js",
     "android-complex": "mocha android-complex.js",
     "android-webview": "mocha android-webview.js",
-    "android-actions": "mocha android-actions.js",
+    "android-local-server": "mocha android-local-server.js",
     "selendroid-simple": "mocha selendroid-simple.js"
   },
   "dependencies": {
