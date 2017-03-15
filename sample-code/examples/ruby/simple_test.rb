@@ -36,9 +36,10 @@ APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
 desired_caps = {
   caps:       {
     platformName:  'iOS',
-    versionNumber: '8.1',
+    versionNumber: '10.2',
     deviceName:    'iPhone 6',
     app:           APP_PATH,
+    automationName: "XCUITest"
   },
   appium_lib: {
     sauce_username:   nil, # don't run on Sauce
