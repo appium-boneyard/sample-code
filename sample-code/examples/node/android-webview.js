@@ -46,7 +46,7 @@ describe("android webview", function () {
 
   it("should switch to webview", function () {
     return driver
-      .elementByName('buttonStartWebviewCD')
+      .elementById('buttonStartWebviewCD')
         .click()
       .sleep(5000)
       .contexts()
