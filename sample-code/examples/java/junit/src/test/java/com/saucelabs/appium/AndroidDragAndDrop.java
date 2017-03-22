@@ -14,6 +14,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
 import java.net.URL;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by saikrisv on 26/04/16.
  */
@@ -27,6 +29,6 @@ public class AndroidDragAndDrop extends BaseDriver {
         WebElement destination = driver.findElementById("io.appium.android.apis:id/drag_dot_2");
         touchAction.longPress(calc).waitAction(6000).moveTo(destination).perform().release();
         Thread.sleep(5000);
-        Assert.assertEquals(driver.findElementById("io.appium.android.apis:id/drag_result_text").getText(), "Dropped!");
+        assertEquals(driver.findElementById("io.appium.android.apis:id/drag_result_text").getText(), "Dropped!");
     }
 }
