@@ -17,8 +17,8 @@ public class MobileFindJavaTest {
 
   @Test
   public void apiDemo() throws Exception {
-    driver.scrollTo("about phone");
-    driver.scrollTo("bluetooth");
+    //driver.scrollTo("about phone");
+    //driver.scrollTo("bluetooth");
   }
 
 
