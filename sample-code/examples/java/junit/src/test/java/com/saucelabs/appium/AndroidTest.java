@@ -1,42 +1,15 @@
 package com.saucelabs.appium;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.File;
-import java.net.URL;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class AndroidTest {
+public class AndroidTest extends BaseDriver{
 
-    private AppiumDriver<WebElement> driver;
-
-    @Before
-    public void setUp() throws Exception {
-        File classpathRoot = new File(System.getProperty("user.dir"));
-        File appDir = new File(classpathRoot, "../../../apps/ApiDemos/bin");
-        File app = new File(appDir, "ApiDemos-debug.apk");
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Android Emulator");
-        capabilities.setCapability("platformVersion", "4.4");
-        capabilities.setCapability("app", app.getAbsolutePath());
-        capabilities.setCapability("appPackage", "io.appium.android.apis");
-        capabilities.setCapability("appActivity", ".ApiDemos");
-        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
 
     @Test
     public void apiDemo(){
