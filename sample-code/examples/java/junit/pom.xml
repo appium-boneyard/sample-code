@@ -17,19 +17,7 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>5.0.0-BETA4</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-java</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>3.0.0</version>
+            <version>5.0.0-BETA6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
