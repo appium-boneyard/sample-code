@@ -4,7 +4,7 @@ Python Pytest samples
 Tested on Python 3.5
 pip install -r requirements.txt
 
-#Run Syntax:
+# Run Syntax:
 py.test test_android_simple.py -v
 
 Output will be in the format:
