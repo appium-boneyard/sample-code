@@ -1,4 +1,4 @@
-#Node.js samples
+# Node.js samples
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ Install appium and start the appium server for your device, please refer to:
 
 ## Running tests
 
-###iOS
+### iOS
 
 ```
 npm run ios-simple
@@ -59,7 +59,7 @@ npm run ios-local-server
 npm run ios-selenium-webdriver-bridge
 ```
 
-###Android
+### Android
 
 ```
 npm run android-simple
@@ -68,13 +68,13 @@ npm run android-webview
 npm run android-local-server
 ```
 
-###Selendroid
+### Selendroid
 
 ```
 npm run selendroid-simple
 ```
 
-###Node.js 0.11 + Generator with Yiewd
+### Node.js 0.11 + Generator with Yiewd
 
 prerequisite: switch to node > 0.11
 
