@@ -12,7 +12,7 @@
 # The '$driver' object is the appium_lib driver, set up in the cucumber/support/env.rb
 # file, which is a convenient place to put it as we're likely to use it often.
 # This is a different use to most of the examples;  Cucumber steps are instances
-# of `Object`, and extending Object with Appium methods (through 
+# of `Object`, and extending Object with Appium methods (through
 # `promote_appium_methods`) is a bad idea.
 #
 # For more on step definitions, check out the documentation at
@@ -43,5 +43,5 @@ end
 
 Then /^the result should be displayed as (\d+)$/ do |expected|
   # You can get just the first of a class of elements
-  first_text.value.should eq expected
+  expect(first_text.value).to eq expected
 end

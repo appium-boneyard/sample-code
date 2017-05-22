@@ -36,7 +36,7 @@ APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
 desired_caps = {
   caps:       {
     platformName:  'iOS',
-    versionNumber: '10.2',
+    platformVersion: '10.2',
     deviceName:    'iPhone 6',
     app:           APP_PATH,
     automationName: "XCUITest"
@@ -82,7 +82,7 @@ module Calculator
     wait { text 'this alert is so cool' }
 
     # Or by find
-    find('Cancel').click
+    find_exact('Cancel').click
 
     # Waits until alert doesn't exist
     wait_true { !exists { tag('UIAAlert') } }
