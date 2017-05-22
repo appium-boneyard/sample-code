@@ -21,7 +21,7 @@ A sanity check and simple example of driving a calculator app.  Run this to see
 the bare minimum you need to get a test running for Appium.
 
 Run the test by making sure Appium is running in another terminal, then from
-the terminal you opened above, running `rspec simple_test.rb`
+the terminal you opened above, running `bundle exec rspec simple_test.rb`
 
 For more information, check out the comments at the top of
 [simple_test.rb](simple_test.rb#L1)
@@ -34,7 +34,7 @@ need a recipe for a specific task, or just to see how simple and powerful iOS
 testing can be.
 
 Run the test by making sure Appium is running in another terminal, then from
-the terminal you opened above, running `rspec u_i_catalog.rb`
+the terminal you opened above, running `bundle exec rspec u_i_catalog.rb`
 
 For more information, check out the comments at the top of [u_i_catalog.rb](u_i_catalog.rb#L1)
 
@@ -46,15 +46,15 @@ It lets you describe test actions in a clean, concise, English-like manner.
 This example also demonstrates the use of appium.txt, appium_lib's file-based
 configuration option.
 
-To run the Cucumber examples, you'll need to change directory to the cucumber 
-directory (`cd APPIUM-LOCATION/sample-code/examples/ruby/cucumber`) and then, 
-from the commandline, run `cucumber`.
+To run the Cucumber examples, you'll need to change directory to the cucumber
+directory (`cd APPIUM-LOCATION/sample-code/examples/ruby/cucumber`) and then,
+from the commandline, run `bundle exec cucumber`.
 
 Different running configurations are supported:
-- For iPad Air simulator: run `cucumber -p ipadsim`
-- For iPhone 6 simulator: run `cucumber -p iphonesim`
+- For iPad Air simulator: run `bundle exec cucumber -p ipadsim`
+- For iPhone 6 simulator: run `bundle exec cucumber -p iphonesim`
 
-For more information, check out the comments at the top of the files in the 
+For more information, check out the comments at the top of the files in the
 cucumber directory.
 
 ## [Sauce Example](sauce_example.rb)
