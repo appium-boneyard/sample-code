@@ -1,0 +1,7 @@
+{
+	"os" : "Android",
+	"devices": ["moto-x", "Galaxy-s3"],
+	"emulators" : ["5.0.1", "4.4.4" ],
+	"testDirectory" : "./tests",
+	"testCommand" : "mvn test"
+}
