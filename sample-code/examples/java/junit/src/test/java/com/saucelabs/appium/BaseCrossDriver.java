@@ -15,9 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Created by saikrisv on 01/06/17.
- */
+
 public class BaseCrossDriver {
     public AppiumDriver driver;
     private static AppiumDriverLocalService service;
@@ -31,7 +29,11 @@ public class BaseCrossDriver {
             throw new AppiumServerHasNotBeenStartedLocallyException(
                     "An appium server node is not started!");
         }
-        iOSCaps();
+        if (System.getProperty("platform").equalsIgnoreCase("ios")) {
+            iOSCaps();
+        } else if (System.getProperty("platform").equalsIgnoreCase("android")) {
+            androidCaps();
+        }
     }
 
     private void androidCaps() throws IOException {
@@ -39,7 +41,7 @@ public class BaseCrossDriver {
         File appDir = new File(classpathRoot, "../../../apps/");
         File app = new File(appDir.getCanonicalPath(), "VodQA.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Android");
+        capabilities.setCapability("deviceName", "Android");
         capabilities.setCapability("app", app.getAbsolutePath());
         driver = new AndroidDriver<>(service.getUrl(), capabilities);
     }
@@ -67,7 +69,7 @@ public class BaseCrossDriver {
     }
 
     public void login() {
-        new WebDriverWait(driver,30).until(ExpectedConditions.
+        new WebDriverWait(driver, 30).until(ExpectedConditions.
                 elementToBeClickable(MobileBy.AccessibilityId("login"))).click();
     }
 }
