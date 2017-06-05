@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class BaseCrossDriver {
+public class BaseCrossPlatformDriver {
     public AppiumDriver driver;
     private static AppiumDriverLocalService service;
 

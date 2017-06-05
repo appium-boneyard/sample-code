@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
-public class AndroidDragAndDrop extends BaseCrossDriver {
+public class AndroidDragAndDrop extends BaseCrossPlatformDriver {
     @Test
     public void testDragAndDrop() throws InterruptedException {
         login();
