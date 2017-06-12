@@ -1,22 +1,25 @@
 package com.saucelabs.appium;
 
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
-public class AndroidDragAndDrop extends BaseDriver {
+public class AndroidDragAndDrop extends BaseCrossPlatformDriver {
     @Test
     public void testDragAndDrop() throws InterruptedException {
-        scrollTo("Views").click();
-       scrollTo("Drag and Drop").click();
-        MobileElement calc = (MobileElement) driver.findElementById("io.appium.android.apis:id/drag_dot_1");
-        TouchAction touchAction = new TouchAction(driver);
-        WebElement destination = driver.findElementById("io.appium.android.apis:id/drag_dot_2");
-        touchAction.longPress(calc).waitAction(6000).moveTo(destination).perform().release();
-        Thread.sleep(5000);
-        assertEquals(driver.findElementById("io.appium.android.apis:id/drag_result_text").getText(), "Dropped!");
+        login();
+        driver.findElementByAccessibilityId("dragAndDrop").click();
+        MobileElement dragMe = (MobileElement) new WebDriverWait(driver, 30)
+                .until(ExpectedConditions
+                        .elementToBeClickable(MobileBy.AccessibilityId("dragMe")));
+        new TouchAction(driver).press(dragMe).waitAction(3000)
+                .moveTo(driver.findElementByAccessibilityId("dropzone")).release().perform();
+        String expected = driver.findElementByAccessibilityId("success").getText();
+        assertEquals(expected,"Circle dropped");
     }
 }
