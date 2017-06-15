@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 public class GestureTest extends BaseCrossPlatformDriver{
 
-
+    @Test
     public void horizontalSwipingTest() throws Exception {
         login();
         driver.findElementByAccessibilityId("slider1").click();
@@ -26,7 +26,7 @@ public class GestureTest extends BaseCrossPlatformDriver{
         swipe.perform();
     }
 
-    //Will work only on XCUI mode as doubleTap is not supported by IOS/Android
+    @Test //Will work only on XCUI mode as doubleTap is not supported by IOS/Android
     public void doubleTap() throws InterruptedException {
         login();
         driver.findElementByAccessibilityId("doubleTap").click();
