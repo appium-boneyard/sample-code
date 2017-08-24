@@ -45,7 +45,7 @@ class SimpleCalculatorTests(unittest.TestCase):
         self.driver.find_element_by_name("Seven").click()
 
         result = self.driver.find_element_by_accessibility_id("CalculatorResults")
-        self.assertEqual(str(result.text),"Display is  7 ")
+        self.assertEqual(str(result.text),"Display is 7")
 
     def test_addition(self):
         self.driver.find_element_by_name("One").click()
@@ -54,7 +54,7 @@ class SimpleCalculatorTests(unittest.TestCase):
         self.driver.find_element_by_name("Equals").click()
 
         result = self.driver.find_element_by_accessibility_id("CalculatorResults")
-        self.assertEqual(str(result.text), "Display is  8 ")
+        self.assertEqual(str(result.text), "Display is 8")
 
     def test_combination(self):
         self.driver.find_element_by_name("Seven").click()
@@ -68,7 +68,7 @@ class SimpleCalculatorTests(unittest.TestCase):
         self.driver.find_element_by_name("Equals").click()
 
         result = self.driver.find_element_by_accessibility_id("CalculatorResults")
-        self.assertEqual(str(result.text), "Display is  8 ")
+        self.assertEqual(str(result.text), "Display is 8")
 
     def test_division(self):
         self.driver.find_element_by_name("Eight").click()
@@ -79,7 +79,7 @@ class SimpleCalculatorTests(unittest.TestCase):
         self.driver.find_element_by_name("Equals").click()
         
         result = self.driver.find_element_by_accessibility_id("CalculatorResults")
-        self.assertEqual(str(result.text), "Display is  8 ")
+        self.assertEqual(str(result.text), "Display is 8")
 
     def test_multiplication(self):
         self.driver.find_element_by_name("Nine").click()
@@ -88,7 +88,7 @@ class SimpleCalculatorTests(unittest.TestCase):
         self.driver.find_element_by_name("Equals").click()
 
         result = self.driver.find_element_by_accessibility_id("CalculatorResults")
-        self.assertEqual(str(result.text), "Display is  81 ")
+        self.assertEqual(str(result.text), "Display is 81")
 
     def test_subtraction(self):
         self.driver.find_element_by_name("Nine").click()
@@ -97,7 +97,7 @@ class SimpleCalculatorTests(unittest.TestCase):
         self.driver.find_element_by_name("Equals").click()
 
         result = self.driver.find_element_by_accessibility_id("CalculatorResults")
-        self.assertEqual(str(result.text), "Display is  8 ")
+        self.assertEqual(str(result.text), "Display is 8")
 
 
 
