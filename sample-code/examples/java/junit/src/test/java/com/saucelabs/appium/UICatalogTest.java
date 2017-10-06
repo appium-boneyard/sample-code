@@ -1,20 +1,11 @@
 package com.saucelabs.appium;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-
-import org.apache.commons.lang.RandomStringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -27,27 +18,26 @@ import org.json.simple.parser.JSONParser;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
+import java.net.URL;
+import java.time.Duration;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
 /**
  * <a href="https://github.com/appium/appium">Appium</a> test which runs against a local Appium instance deployed
-  * with the 'UICatalog' iPhone project which is included in the Appium source distribution.
+ * with the 'UICatalog' iPhone project which is included in the Appium source distribution.
  *
  * @author Ross Rowe
- * 
- * Running below Test Cases on Simulator needs few steps as below
- * Unzip UICatalog.zip and build for simulator per below blog
- * http://samwize.com/2015/03/11/xcode-commands-to-build-app-and-run-on-simulator/
+ *         <p>
+ *         Running below Test Cases on Simulator needs few steps as below
+ *         Unzip UICatalog.zip and build for simulator per below blog
+ *         http://samwize.com/2015/03/11/xcode-commands-to-build-app-and-run-on-simulator/
  */
 @SuppressWarnings("deprecation")
 public class UICatalogTest {
@@ -63,8 +53,8 @@ public class UICatalogTest {
         File appDir = new File(classpathRoot, "../../../apps/UICatalog/build/release-iphonesimulator");
         File app = new File(appDir, "UICatalog.app");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformVersion", "9.3");
-        capabilities.setCapability("deviceName", "iPhone 6");
+        capabilities.setCapability("platformVersion", "11.0");
+        capabilities.setCapability("deviceName", "iPhone 7");
         capabilities.setCapability("app", app.getAbsolutePath());
         driver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
@@ -76,16 +66,16 @@ public class UICatalogTest {
 
     private void openMenuPosition(int index) {
         //populate text fields with two random number
-        MobileElement table = (MobileElement)driver.findElementByClassName("UIATableView");
+        MobileElement table = (MobileElement) driver.findElementByClassName("UIATableView");
         row = table.findElementsByClassName("UIATableCell").get(index);
         row.click();
     }
 
     private Point getCenter(WebElement element) {
 
-      Point upperLeft = element.getLocation();
-      Dimension dimensions = element.getSize();
-      return new Point(upperLeft.getX() + dimensions.getWidth()/2, upperLeft.getY() + dimensions.getHeight()/2);
+        Point upperLeft = element.getLocation();
+        Dimension dimensions = element.getSize();
+        return new Point(upperLeft.getX() + dimensions.getWidth() / 2, upperLeft.getY() + dimensions.getHeight() / 2);
     }
 
     @Test
@@ -148,46 +138,53 @@ public class UICatalogTest {
     }
 
     @Test
-    public void testScroll() {
-        //scroll menu
-        //get initial third row location
-        row = driver.findElementsByClassName("UIATableCell").get(2);
-        Point location1 = row.getLocation();
-        Point center = getCenter(row);
-        //perform swipe gesture
-        driver.swipe(center.getX(), center.getY(), center.getX(), center.getY()-20, 1);
-        //get new row coordinates
-        Point location2 = row.getLocation();
-        assertEquals(location1.getX(), location2.getX());
-        assertNotSame(location1.getY(), location2.getY());
+    public void scrollByDriver() {
+        MobileElement slider = driver
+                .findElement(MobileBy
+                        .IosUIAutomation(".tableViews()[0]"
+                                + ".scrollToElementWithPredicate(\"name CONTAINS 'Slider'\")"));
+        assertEquals(slider.getAttribute("name"), "Sliders");
+    }
+
+    @Test
+    public void scrollByElement() {
+        MobileElement table = driver.findElement(MobileBy
+                .IosUIAutomation(".tableViews()[0]"));
+        MobileElement slider = table.findElement(MobileBy
+                .IosUIAutomation(".scrollToElementWithPredicate(\"name CONTAINS 'Slider'\")"));
+        assertEquals(slider.getAttribute("name"), "Sliders");
     }
 
     @Test
     public void testSlider() {
-      //go to controls
-      openMenuPosition(10);
-      //get the slider
-      WebElement slider = driver.findElementByClassName("UIASlider");
-      assertEquals("42%", slider.getAttribute("value"));
-      Point sliderLocation = getCenter(slider);
-      driver.swipe(sliderLocation.getX(), sliderLocation.getY(), sliderLocation.getX()-sliderLocation.getX(), sliderLocation.getY(), 1);
-      assertEquals("0%", slider.getAttribute("value"));
+        //go to controls
+        openMenuPosition(10);
+        //get the slider
+        WebElement slider = driver.findElementByClassName("UIASlider");
+        assertEquals("42%", slider.getAttribute("value"));
+        Dimension size = slider.getSize();
+
+        TouchAction swipe = new TouchAction(driver).press(slider, 0, size.height / 2)
+                .waitAction(Duration.ofSeconds(2))
+                .moveTo(slider, size.width / 2, size.height / 2).release();
+        swipe.perform();
+        assertEquals("0%", slider.getAttribute("value"));
     }
 
     @Test
     public void testSessions() throws Exception {
-      HttpGet request = new HttpGet("http://localhost:4723/wd/hub/sessions");
-      @SuppressWarnings("resource")
-	  HttpClient httpClient = new DefaultHttpClient();
-      HttpResponse response = httpClient.execute(request);
-      HttpEntity entity = response.getEntity();
-      JSONObject jsonObject = (JSONObject) new JSONParser().parse(EntityUtils.toString(entity));
+        HttpGet request = new HttpGet("http://localhost:4723/wd/hub/sessions");
+        @SuppressWarnings("resource")
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpResponse response = httpClient.execute(request);
+        HttpEntity entity = response.getEntity();
+        JSONObject jsonObject = (JSONObject) new JSONParser().parse(EntityUtils.toString(entity));
 
-      JSONArray lang= (JSONArray) jsonObject.get("value");
-      JSONObject innerObj = (JSONObject) lang.iterator().next();
-      
-      String sessionId = driver.getSessionId().toString();
-      assertEquals(innerObj.get("id"), sessionId);
+        JSONArray lang = (JSONArray) jsonObject.get("value");
+        JSONObject innerObj = (JSONObject) lang.iterator().next();
+
+        String sessionId = driver.getSessionId().toString();
+        assertEquals(innerObj.get("id"), sessionId);
     }
 
     @Test

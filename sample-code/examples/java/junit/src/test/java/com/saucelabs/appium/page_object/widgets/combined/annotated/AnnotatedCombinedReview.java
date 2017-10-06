@@ -11,8 +11,8 @@ import org.openqa.selenium.support.FindBy;
 
 @FindBy(id = "main_container")
 @SelendroidFindBy(className = "android.widget.RelativeLayout")
-@AndroidFindBys({@AndroidFindBy(id = "android:id/content"),
-        @AndroidFindBy(className = "android.widget.RelativeLayout")})
+@AndroidFindBy(id = "android:id/content")
+        @AndroidFindBy(className = "android.widget.RelativeLayout")
 public class AnnotatedCombinedReview extends CombinedReview {
     protected AnnotatedCombinedReview(WebElement element) {
         super(element);
