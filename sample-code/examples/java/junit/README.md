@@ -16,8 +16,7 @@ To compile and run all tests, run:
 To run a single test, run:
 
     mvn -Dtest=com.saucelabs.appium.SimpleTest test
-    
+ 
 To run a single test on specific platform(android/ios)
     
     mvn clean -Dtest=AndroidDragAndDrop test -Dplatform=android
-

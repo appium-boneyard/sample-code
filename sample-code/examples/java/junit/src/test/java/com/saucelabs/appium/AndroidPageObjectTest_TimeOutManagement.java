@@ -94,9 +94,9 @@ public class AndroidPageObjectTest_TimeOutManagement {
 
     @Test
     public void test() {
-        checkTimeDifference(AppiumFieldDecorator.DEFAULT_IMPLICITLY_WAIT_TIMEOUT, AppiumFieldDecorator.DEFAULT_TIMEUNIT,
+        checkTimeDifference(AppiumFieldDecorator.DEFAULT_TIMEOUT, AppiumFieldDecorator.DEFAULT_TIMEUNIT,
                 getBenchMark(pageObjectWithCustomizedTimeOuts.stubElements));
-        System.out.println(String.valueOf(AppiumFieldDecorator.DEFAULT_IMPLICITLY_WAIT_TIMEOUT)
+        System.out.println(String.valueOf(AppiumFieldDecorator.DEFAULT_TIMEOUT)
                 + " " + AppiumFieldDecorator.DEFAULT_TIMEUNIT.toString() + ": Fine");
 
         timeOutDuration.setTime(15500000, TimeUnit.MICROSECONDS);
@@ -112,9 +112,9 @@ public class AndroidPageObjectTest_TimeOutManagement {
 
     @Test
     public void test2() {
-        checkTimeDifference(AppiumFieldDecorator.DEFAULT_IMPLICITLY_WAIT_TIMEOUT, AppiumFieldDecorator.DEFAULT_TIMEUNIT,
+        checkTimeDifference(AppiumFieldDecorator.DEFAULT_TIMEOUT, AppiumFieldDecorator.DEFAULT_TIMEUNIT,
                 getBenchMark(pageObjectWithCustomizedTimeOuts.stubElements));
-        System.out.println(String.valueOf(AppiumFieldDecorator.DEFAULT_IMPLICITLY_WAIT_TIMEOUT)
+        System.out.println(String.valueOf(AppiumFieldDecorator.DEFAULT_TIMEOUT)
                 + " " + AppiumFieldDecorator.DEFAULT_TIMEUNIT.toString() + ": Fine");
 
         checkTimeDifference(5, TimeUnit.SECONDS,

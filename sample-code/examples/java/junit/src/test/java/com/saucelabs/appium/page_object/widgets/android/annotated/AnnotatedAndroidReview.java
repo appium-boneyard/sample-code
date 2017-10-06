@@ -5,8 +5,8 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AndroidFindBys;
 import org.openqa.selenium.WebElement;
 
-@AndroidFindBys({@AndroidFindBy(id = "android:id/content"),
-        @AndroidFindBy(className = "android.widget.RelativeLayout")})
+@AndroidFindBy(id = "android:id/content")
+        @AndroidFindBy(className = "android.widget.RelativeLayout")
 public class AnnotatedAndroidReview extends AndroidReview {
 
     protected AnnotatedAndroidReview(WebElement element) {
