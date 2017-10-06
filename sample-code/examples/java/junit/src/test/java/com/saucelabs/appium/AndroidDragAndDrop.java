@@ -6,12 +6,11 @@ import io.appium.java_client.TouchAction;
 import org.junit.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class AndroidDragAndDrop extends BaseCrossDriver {
+public class AndroidDragAndDrop extends BaseCrossPlatformDriver {
     @Test
     public void testDragAndDrop() throws InterruptedException {
         login();

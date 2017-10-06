@@ -1,0 +1,70 @@
+*** Settings ***
+Library           AppiumLibrary
+
+Test Setup        Open Application  ${REMOTE_URL}  platformName=Windows  deviceName=WindowsPC  app=${APP}  automationName=appium
+Test Teardown    Close Application
+
+*** Variables ***
+${REMOTE_URL}     http://localhost:4723/wd/hub
+${APP}             Microsoft.WindowsCalculator_8wekyb3d8bbwe!App
+
+
+*** Test Cases ***
+Initialize
+    [Documentation]    (based on https://github.com/appium/sample-code/blob/master/sample-code/examples/python/windows_calculatortest.py)
+    #Make sure we're in standard mode
+    Click Element    xpath=//Button[starts-with(@Name,'Menu')]
+    Click Element    xpath=//ListItem[contains(@Name,'Standard Calculator')]
+    Click Element    name=Clear
+    Click Element    name=Seven
+    Element Should Contain Text    accessibility_id=CalculatorResults    Display is 7
+    Click Element    name=Clear
+
+Addition
+    Capture Page Screenshot
+    Click Element    name=One
+    Click Element    name=Plus
+    Click Element    name=Seven
+    Click Element    name=Equals
+    Get Text    accessibility_id=CalculatorResults
+    Element Should Contain Text    accessibility_id=CalculatorResults    Display is 8
+    Capture Page Screenshot
+
+Combination
+    Click Element    name=Seven
+    Click Element    name=Multiply by
+    Click Element    name=Nine
+    Click Element    name=Plus
+    Click Element    name=One
+    Click Element    name=Equals
+    Click Element    name=Divide by
+    Click Element    name=Eight
+    Click Element    name=Equals
+    Element Should Contain Text    accessibility_id=CalculatorResults    Display is 8
+    Capture Page Screenshot
+
+Division
+    Click Element    name=Eight
+    Click Element    name=Eight
+    Click Element    name=Divide by
+    Click Element    name=One
+    Click Element    name=One
+    Click Element    name=Equals
+    Element Should Contain Text    accessibility_id=CalculatorResults    Display is 8
+    Capture Page Screenshot
+
+Multiplication
+    Click Element    name=Nine
+    Click Element    name=Multiply by
+    Click Element    name=Nine
+    Click Element    name=Equals
+    Element Should Contain Text    accessibility_id=CalculatorResults    Display is 81
+    Capture Page Screenshot
+
+Subtraction
+    Click Element    name=Nine
+    Click Element    name=Minus
+    Click Element    name=One
+    Click Element    name=Equals
+    Element Should Contain Text    accessibility_id=CalculatorResults    Display is 8
+    Capture Page Screenshot
