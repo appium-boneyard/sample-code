@@ -22,8 +22,8 @@ public class RottenTomatoesApp {
     @AndroidFindBy(id = "com.codepath.example.rottentomatoes:id/lvMovies")
     private AndroidMovies simpleMovies;
 
-    @AndroidFindBys({@AndroidFindBy(id = "android:id/content"),
-            @AndroidFindBy(className = "android.widget.RelativeLayout")})
+    @AndroidFindBy(id = "android:id/content")
+            @AndroidFindBy(className = "android.widget.RelativeLayout")
     private AndroidReview simpleReview;
 
     private AnnotatedAndroidMovies annotatedAndroidMovies;

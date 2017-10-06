@@ -10,12 +10,12 @@ import org.openqa.selenium.WebElement;
 //className = UIAWindow
 public class IOSReview extends Review {
 
-    @iOSFindBys({@iOSFindBy(className = "UIANavigationBar"),
-            @iOSFindBy(className = "UIAStaticText")})
+    @iOSFindBy(className = "UIANavigationBar")
+            @iOSFindBy(className = "UIAStaticText")
     private IOSElement title;
 
-    @iOSFindBys({@iOSFindBy(className = "UIAScrollView"),
-    @iOSFindBy(className = "UIAStaticText")})
+    @iOSFindBy(className = "UIAScrollView")
+    @iOSFindBy(className = "UIAStaticText")
     private IOSElement synopsis;
 
     @iOSFindBy(className = "UIAImage")

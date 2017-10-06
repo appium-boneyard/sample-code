@@ -42,8 +42,8 @@ public class RottenTomatoes {
     private Movies simpleMovies;
 
 
-    @AndroidFindBys({@AndroidFindBy(id = "android:id/content"),
-            @AndroidFindBy(className = "android.widget.RelativeLayout")})
+    @AndroidFindBy(id = "android:id/content")
+            @AndroidFindBy(className = "android.widget.RelativeLayout")
     @FindBy(id = "main_container")
     @SelendroidFindBy(className = "android.widget.RelativeLayout")
     @iOSFindBy(className = "UIAWindow")
@@ -101,7 +101,6 @@ public class RottenTomatoes {
         assertTrue(simpleReview.getPoster() != null);
     }
 
-    /////////////////////////////////////////////////////////
     public int getAnnotatedMovieCount(){
         return annotatedMovies.getMovieCount();
     }
@@ -116,7 +115,6 @@ public class RottenTomatoes {
         assertTrue(!StringUtils.isBlank(annotatedReview.info()));
         assertTrue(annotatedReview.getPoster() != null);
     }
-    /////////////////////////////////////////////////////////
 
     public int getExtendeddMovieCount(){
         return extendedMovies.getMovieCount();
@@ -132,8 +130,6 @@ public class RottenTomatoes {
         assertTrue(!StringUtils.isBlank(extendedReview.info()));
         assertTrue(extendedReview.getPoster() != null);
     }
-
-    /////////////////////////////////////////////////////////
 
     public int getFakedMovieCount(){
         return fakeMovies.getMovieCount();

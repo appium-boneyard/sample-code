@@ -2,6 +2,7 @@ package com.saucelabs.appium.page_object.widgets.ios.simple;
 
 import com.saucelabs.appium.page_object.widgets.Movie;
 import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.ios.IOSTouchAction;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -32,6 +33,6 @@ public class IOSMovie extends Movie {
 
     @Override
     public void goToReview() {
-        ((IOSElement) getWrappedElement()).tap(1, 1500);
+        ((IOSTouchAction) getWrappedElement()).tap(1, 1500);
     }
 }

@@ -26,8 +26,8 @@ public class RottenTomatoesAppWithCombinedWidgets {
     @FindBy(id = "movies-collection")
     private CombinedMovies simpleMovies;
 
-    @AndroidFindBys({@AndroidFindBy(id = "android:id/content"),
-            @AndroidFindBy(className = "android.widget.RelativeLayout")})
+    @AndroidFindBy(id = "android:id/content")
+            @AndroidFindBy(className = "android.widget.RelativeLayout")
     @FindBy(id = "main_container")
     @SelendroidFindBy(className = "android.widget.RelativeLayout")
     private CombinedReview simpleReview;

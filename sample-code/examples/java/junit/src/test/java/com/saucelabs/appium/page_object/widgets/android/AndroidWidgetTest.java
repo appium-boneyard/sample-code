@@ -2,6 +2,7 @@ package com.saucelabs.appium.page_object.widgets.android;
 
 import com.saucelabs.appium.page_object.widgets.Movie;
 import com.saucelabs.appium.page_object.widgets.WidgetTest;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
@@ -42,8 +43,9 @@ public class AndroidWidgetTest implements WidgetTest {
 
     @Before
     public void setUp() throws Exception {
+        Activity activity = new Activity("com.codepath.example.rottentomatoes", "BoxOfficeActivity");
         if (driver != null)
-            driver.startActivity("com.codepath.example.rottentomatoes", "BoxOfficeActivity");
+            driver.startActivity(activity);
     }
 
     @AfterClass
