@@ -1,2 +1,15 @@
 Appium Sample Code (https://github.com/appium/sample-code)
-Copyright 2013-2014 Appium Contributors
+
+Cross Platform Application for Android/iOS
+https://github.com/saikrishna321/VodQAReactNative
+
+vodQA - Sample cross platform app built using reactNative.
+Reason for building the cross platform app using reactNative is to get over the obstacles of automating apps
+built using react native and to write a single script to automate cross platform apps using Appium.
+vodQA app code is open sourced here and same was used for various appium workshops conducted by ThoughtWorks.
+
+Same is available for all community activities without any license required/ involved.
+
+Application holds all possible gestures like slide, swipe, longpress, doubletap, DragAndDrop and also webview.
+
+Copyright 2016-2017 Appium Contributors
