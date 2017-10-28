@@ -34,21 +34,22 @@ require 'appium_lib'
 APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
 
 desired_caps = {
-  caps:       {
+  caps: {
     platformName:  'iOS',
-    platformVersion: '10.2',
+    platformVersion: '10.3',
     deviceName:    'iPhone 6',
     app:           APP_PATH,
-    automationName: "XCUITest"
+    automationName: 'XCUITest',
   },
   appium_lib: {
     sauce_username:   nil, # don't run on Sauce
-    sauce_access_key: nil
+    sauce_access_key: nil,
+    wait: 60
   }
 }
 
 # Start the driver
-Appium::Driver.new(desired_caps).start_driver
+Appium::Driver.new(desired_caps, true).start_driver
 
 module Calculator
   module IOS
