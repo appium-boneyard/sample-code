@@ -36,7 +36,7 @@ APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
 desired_caps = {
   caps: {
     platformName:  'iOS',
-    platformVersion: '10.3',
+    platformVersion: '11.0',
     deviceName:    'iPhone 6',
     app:           APP_PATH,
     automationName: 'XCUITest',
