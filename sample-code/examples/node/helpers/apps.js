@@ -1,5 +1,5 @@
 if (process.env.DEV) {
-  exports.iosTestApp = "sample-code/apps/TestApp/build/release-iphonesimulator/TestApp.app";
+  exports.iosTestApp = "sample-code/apps/TestApp/TestApp.app";
   exports.iosWebviewApp = "sample-code/apps/WebViewApp/build/release-iphonesimulator/WebViewApp.app";
   exports.iosUICatalogApp = "sample-code/apps/UICatalog/build/release-iphonesimulator/UICatalog.app";
   exports.androidApiDemos = "sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk";
