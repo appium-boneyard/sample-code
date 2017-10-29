@@ -31,7 +31,7 @@
 require 'rubygems'
 require 'appium_lib'
 
-APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
+APP_PATH = '../../apps/TestApp/TestApp.app'
 
 desired_caps = {
   caps: {

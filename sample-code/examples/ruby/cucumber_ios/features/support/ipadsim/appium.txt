@@ -2,7 +2,7 @@
 platformName = "ios"
 deviceName = "iPad Air"
 platformVersion = "10.2"
-app = "../../../apps/TestApp/build/release-iphonesimulator/TestApp.app"
+app = "../../../apps/TestApp/TestApp.app"
 automationName = 'XCUITest'
 
 [appium_lib]
