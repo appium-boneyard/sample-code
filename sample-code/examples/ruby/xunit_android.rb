@@ -18,7 +18,7 @@ class SettingsTest < Test::Unit::TestCase
                              appPackage: 'com.android.settings' },
                appium_lib: { sauce_username: nil,
                              sauce_access_key: nil } }
-    driver = Appium::Driver.new(caps)
+    driver = Appium::Driver.new(caps, true)
     Appium.promote_appium_methods self.class
     driver.start_driver.manage.timeouts.implicit_wait = 20 # seconds
   end

@@ -40,7 +40,7 @@ SAUCE_ACCESS_KEY = ENV['SAUCE_ACCESS_KEY']
 # This is the test itself
 describe 'Computation' do
   before(:each) do
-    Appium::Driver.new(desired_caps).start_driver
+    Appium::Driver.new(desired_caps, true).start_driver
     Appium.promote_appium_methods RSpec::Core::ExampleGroup
   end
 
