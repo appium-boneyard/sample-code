@@ -31,12 +31,12 @@
 require 'rubygems'
 require 'appium_lib'
 
-APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp.app'
+APP_PATH = '../../apps/TestApp/build/release-iphonesimulator/TestApp-iphonesimulator.app'
 
 desired_caps = {
   caps: {
     platformName:  'iOS',
-    platformVersion: '11.0',
+    platformVersion: '10.3',
     deviceName:    'iPhone 6',
     app:           APP_PATH,
     automationName: 'XCUITest',
