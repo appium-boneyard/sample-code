@@ -6,7 +6,7 @@ use Test::More;
 use Cwd qw/getcwd abs_path/;
 use Selenium::Remote::Driver 0.20;
 
-my $app = getcwd() . '/../../apps/TestApp/build/release-iphonesimulator/TestApp.app';
+my $app = getcwd() . '/../../apps/TestApp/build/release-iphonesimulator/TestApp-iphonesimulator.app';
 my $caps = {
     app               => abs_path($app),
     browserName       => "",
