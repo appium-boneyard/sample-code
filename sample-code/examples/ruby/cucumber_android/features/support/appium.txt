@@ -1,5 +1,6 @@
 [caps]
 platformName = "Android"
+deviceName = "Nexus 7"
 appActivity = ".Settings"
 appPackage = "com.android.settings"
 
