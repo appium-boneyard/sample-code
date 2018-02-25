@@ -24,7 +24,7 @@ public class SimpleIOSSauceTests implements SauceOnDemandSessionIdProvider {
   final private String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
   private SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
 
-  private IOSDriver driver;
+	private IOSDriver<MobileElement> driver;
   private String sessionId;
 
   @Rule
@@ -62,10 +62,10 @@ public class SimpleIOSSauceTests implements SauceOnDemandSessionIdProvider {
   public void testUIComputation() {
 
     // populate text fields with values
-    MobileElement fieldOne = (MobileElement) driver.findElementByAccessibilityId("TextField1");
+		MobileElement fieldOne = driver.findElementByAccessibilityId("TextField1");
     fieldOne.sendKeys("12");
 
-    MobileElement fieldTwo = (MobileElement) driver.findElementsByClassName("UIATextField").get(1);
+    MobileElement fieldTwo = driver.findElementsByClassName("UIATextField").get(1);
     fieldTwo.sendKeys("8");
 
     // they should be the same size, and the first should be above the second
