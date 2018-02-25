@@ -29,7 +29,7 @@ public class SimpleIOSSauceTests implements SauceOnDemandSessionIdProvider {
 
   @Rule
   public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
-  @Override
+
   public String getSessionId() {
     return sessionId;
   }
@@ -39,13 +39,13 @@ public class SimpleIOSSauceTests implements SauceOnDemandSessionIdProvider {
   @Before
   public void setUp() throws MalformedURLException {
     DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");
+    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "11.2");
     desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
     desiredCapabilities.setCapability(MobileCapabilityType.APP, "http://appium.s3.amazonaws.com/TestApp6.0.app.zip");
-    desiredCapabilities.setCapability("appiumVersion", "1.3.4");
     desiredCapabilities.setCapability("name", name.getMethodName());
 
-    URL sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
+    URL sauceUrl = new URL("https://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:443/wd/hub");
 
     driver = new IOSDriver<MobileElement>(sauceUrl, desiredCapabilities);
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
