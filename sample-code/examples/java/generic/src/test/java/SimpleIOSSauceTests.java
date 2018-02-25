@@ -47,7 +47,7 @@ public class SimpleIOSSauceTests implements SauceOnDemandSessionIdProvider {
 
     URL sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
 
-    driver = new IOSDriver(sauceUrl, desiredCapabilities);
+    driver = new IOSDriver<MobileElement>(sauceUrl, desiredCapabilities);
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     sessionId = driver.getSessionId().toString();
   }
