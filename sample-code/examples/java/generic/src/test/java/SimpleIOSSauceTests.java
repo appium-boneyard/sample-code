@@ -24,7 +24,7 @@ public class SimpleIOSSauceTests implements SauceOnDemandSessionIdProvider {
   final private String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
   private SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
 
-	private IOSDriver<MobileElement> driver;
+  private IOSDriver<MobileElement> driver;
   private String sessionId;
 
   @Rule
@@ -62,7 +62,7 @@ public class SimpleIOSSauceTests implements SauceOnDemandSessionIdProvider {
   public void testUIComputation() {
 
     // populate text fields with values
-		MobileElement fieldOne = driver.findElementByAccessibilityId("TextField1");
+    MobileElement fieldOne = driver.findElementByAccessibilityId("TextField1");
     fieldOne.sendKeys("12");
 
     MobileElement fieldTwo = driver.findElementsByClassName("UIATextField").get(1);
