@@ -19,14 +19,14 @@
   },
   "homepage": "https://github.com/appium/sample-code",
   "devDependencies": {
-    "chai": "^2.2.0",
-    "chai-as-promised": "^5.0.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "colors": "^1.0.3",
     "express": "^4.12.3",
-    "mocha": "^2.4.5",
+    "mocha": "^5.2.0",
     "q": "^2.0.2",
     "underscore": "^1.8.3",
-    "wd": "^0.3.11"
+    "wd": "^1.7.0"
   },
   "scripts": {
     "ios-simple": "mocha ios-simple.js",
