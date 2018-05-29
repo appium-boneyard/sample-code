@@ -19,63 +19,64 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class Main implements SauceOnDemandSessionIdProvider {
-  final private String USERNAME = System.getenv("SAUCE_USERNAME");
-  final private String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-  private SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
+	final private String USERNAME = System.getenv("SAUCE_USERNAME");
+	final private String ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+	private SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME, ACCESS_KEY);
 
-  private IOSDriver driver;
-  private String sessionId;
+	private IOSDriver<?> driver;
+	private String sessionId;
 
-  @Rule
-  public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
-  @Override
-  public String getSessionId() {
-    return sessionId;
-  }
+	@Rule
+	public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
+	@Override
+	public String getSessionId() {
+		return sessionId;
+	}
 
-  public @Rule TestName name = new TestName();
+	public @Rule TestName name = new TestName();
 
-  @Before
-  public void setUp() throws MalformedURLException {
-    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");
-    desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
-    desiredCapabilities.setCapability(MobileCapabilityType.APP, "http://appium.s3.amazonaws.com/TestApp6.0.app.zip");
-    desiredCapabilities.setCapability("appiumVersion", "1.3.4");
-    desiredCapabilities.setCapability("name", name.getMethodName());
+	@Before
+	public void setUp() throws MalformedURLException {
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");
+		desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
+		desiredCapabilities.setCapability(MobileCapabilityType.APP, "http://appium.s3.amazonaws.com/TestApp6.0.app.zip");
+		desiredCapabilities.setCapability("appiumVersion", "1.3.4");
+		desiredCapabilities.setCapability("name", name.getMethodName());
 
-    URL sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
+		URL sauceUrl = new URL("http://" + authentication.getUsername() + ":"+ authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub");
 
-    driver = new IOSDriver(sauceUrl, desiredCapabilities);
-    sessionId = driver.getSessionId().toString();
-  }
+		driver = new IOSDriver<>(sauceUrl, desiredCapabilities);
+		sessionId = driver.getSessionId().toString();
+	}
 
-  @After
-  public void tearDown() {
-    System.out.println("Link to your job: https://saucelabs.com/jobs/" + this.getSessionId());
-    driver.quit();
-  }
+	@After
+	public void tearDown() {
+		System.out.println("Link to your job: https://saucelabs.com/jobs/" + this.getSessionId());
+		driver.quit();
+	}
 
-  @Test
-  public void testUIComputation() {
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testUIComputation() {
 
-    // populate text fields with values
-    MobileElement fieldOne = (MobileElement) driver.findElementByAccessibilityId("TextField1");
-    fieldOne.sendKeys("12");
+		// populate text fields with values
+		MobileElement fieldOne = (MobileElement) driver.findElementByAccessibilityId("TextField1");
+		fieldOne.sendKeys("12");
 
-    MobileElement fieldTwo = (MobileElement) driver.findElementsByClassName("UIATextField").get(1);
-    fieldTwo.sendKeys("8");
+		MobileElement fieldTwo = (MobileElement) driver.findElementsByClassName("UIATextField").get(1);
+		fieldTwo.sendKeys("8");
 
-    // they should be the same size, and the first should be above the second
-    assertTrue(fieldOne.getLocation().getY() < fieldTwo.getLocation().getY());
-    assertEquals(fieldOne.getSize(), fieldTwo.getSize());
+		// they should be the same size, and the first should be above the second
+		assertTrue(fieldOne.getLocation().getY() < fieldTwo.getLocation().getY());
+		assertEquals(fieldOne.getSize(), fieldTwo.getSize());
 
-    // trigger computation by using the button
-    driver.findElementByAccessibilityId("ComputeSumButton").click();
+		// trigger computation by using the button
+		driver.findElementByAccessibilityId("ComputeSumButton").click();
 
-    // is sum equal?
-    String sum = driver.findElementsByClassName("UIAStaticText").get(0).getText();
-    TestCase.assertEquals(Integer.parseInt(sum), 20);
-  }
+		// is sum equal?
+		String sum = driver.findElementsByClassName("UIAStaticText").get(0).getText();
+		TestCase.assertEquals(Integer.parseInt(sum), 20);
+	}
 
 }
