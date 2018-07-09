@@ -38,6 +38,7 @@ public class IOSBrowserLocalTest
 	{
 		mobiledriver.quit();
 	}
+
 	@Test
 	public static void launchBrowser() throws InterruptedException
 	{
