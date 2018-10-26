@@ -24,6 +24,8 @@ class SimpleIOSSauceTests(SauceTestCase):
         els = self.driver.find_elements_by_class_name('UIATextField')
 
         self._sum = 0
+        
+        # for loop to check i in range 2
         for i in range(2):
             rnd = randint(0, 10)
             els[i].send_keys(rnd)
