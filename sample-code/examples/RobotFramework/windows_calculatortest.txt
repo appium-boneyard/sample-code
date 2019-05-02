@@ -14,7 +14,7 @@ Initialize
     [Documentation]    (based on https://github.com/appium/sample-code/blob/master/sample-code/examples/python/windows_calculatortest.py)
     #Make sure we're in standard mode
     Click Element    xpath=//Button[starts-with(@Name,'Menu')]
-    Click Element    xpath=//ListItem[contains(@Name,'Standard Calculator')]
+    Click Element    xpath=//ListItem[contains(@Name,'Standard')]
     Click Element    name=Clear
     Click Element    name=Seven
     Element Should Contain Text    accessibility_id=CalculatorResults    Display is 7
